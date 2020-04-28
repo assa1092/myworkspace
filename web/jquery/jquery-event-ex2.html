@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <button class="btn btn-info btn-block btn-lg" id="button1">이벤트 함수 on</button>
+        <button class="btn btn-secondary btn-block btn-lg" id="button2">객체로 등록</button>
+    </div>
+    <script>
+
+        $("#button1").on("click",function(){
+            console.log("1번 버튼 클릭됨");
+        });
+        $("#button1").on("mouseenter",function(){
+            console.log("1번버튼 마우스 들어감")
+        });
+        $("#button1").on("mouseleave",function(){
+            console.log("1번버튼 마우스 나감")
+        });
+
+
+
+
+        //객체로 한번에 click, mouseenter, mouseover를 
+        //한번에 처리할수 있다.
+        $("#button2").on({
+            "click":function(){
+                console.log("2번 버튼 클릭됨")
+            },
+            "mouseenter": function(){
+                console.log("2번 버튼 마우스 in");
+            },
+            "mouseover": function(){
+                console.log("2번 버튼 마우스 out");
+            }
+        });
+    
+    </script>
+</body>
+</html>

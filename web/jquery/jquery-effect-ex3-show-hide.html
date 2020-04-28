@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+    $(document).ready(function() {
+        // 처음엔 안보이게
+        $("p").hide();
+
+        $("#btn1").click(function(){
+            //처음엔  다 숨기고
+            $("p").hide();
+            //첫번째버튼 누르면 btn1 바로다음 p 요소가 보이게...
+            //id btn1 의 형제 엘리먼트로 바로다음에 오는 엘리먼트 p
+            $("#btn1+p").show();
+        });
+        $("#btn2").click(function(){
+              //처음엔  다 숨기고
+            $("p").hide();
+            //두번째버튼 누르면 btn2 바로다음 p 요소가 보이게...
+            //id btn2 의 형제 엘리먼트로 바로다음에 오는 엘리먼트 p
+            $("#btn2+p").show();
+        });
+        $("#btn3").click(function(){
+            $("p").hide();
+            //세번째버튼 누르면  btn3 바로다음 p 요소가 보이게...
+            //id btn3 의 형제 엘리먼트로 바로다음에 오는 엘리먼트 p
+            $("#btn3+p").show();
+        });
+    
+    });
+    </script>
+</head>
+<body>
+    <div class='container'>
+
+        <button id="btn1" class="btn btn-block btn-primary">첫번째</button>
+        <p>1111 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum labore velit dolore explicabo, cum similique hic debitis qui, nam dolorum, dicta sunt praesentium quidem distinctio esse provident? Natus, harum ipsa!</p>
+        <button id="btn2" class="btn btn-block btn-primary">두번째</button>
+        <p>2222  Sint, unde. Saepe tempora nisi pariatur veniam enim fuga omnis dolorum sit cupiditate, quis ex maxime recusandae, totam, error sunt dicta veritatis! Assumenda dicta maiores neque amet, sequi doloribus voluptatum.</p>
+        <button id="btn3" class="btn btn-block btn-primary">세번째</button>
+        <p>3333 Unde odio, ipsum veritatis est nesciunt corrupti facere illum excepturi atque cupiditate ipsa quasi quis sint impedit accusamus porro rerum aliquam id vero ratione. Minima quisquam pariatur incidunt numquam placeat.</p>
+
+    </div>
+</body>
+</html>

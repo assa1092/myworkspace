@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <input type="text" id="input1" class="form-control">
+        <button onclick="add()" class="btn btn-info"><i class="fas fa-plus"></i></button>
+        <button onclick="remove()" class="btn btn-danger"><i class="fas fa-minus"></i></button>
+        <h1 id="result"></h1>
+    </div>
+    <script>
+        var array = [];
+
+        function add(){
+            var n =  document.getElementById("input1").value;
+            
+            array.push(n);
+            var text = "";
+            // while 작성
+            var i =0;
+            while (i<array.length)
+            {
+                text += "<li>" + array[i] + "</li>" ;
+                    i++;
+            }
+
+            document.getElementById("result").innerHTML = text ;
+        }
+
+        function remove(){
+            // var n = document.getElementById("input1").value;
+
+            array.pop(); 
+            var text = "";
+
+            var i = 0;
+            while(i < array.length)
+            {
+                text +=  "<li>" + array[i] + "</li>";
+                i++;
+            }
+            document.getElementById("result").innerHTML =  text;
+
+        }
+    
+    </script>
+</body>
+</html>

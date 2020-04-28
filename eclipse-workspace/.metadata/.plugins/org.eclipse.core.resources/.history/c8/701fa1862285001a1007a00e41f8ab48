@@ -1,0 +1,25 @@
+package chap11.lecture.objectClass.clone;
+
+class Book{
+	int isbn;
+	String[] authors; 
+	
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
+	
+}
+
+
+public class CloneSample {
+	public static void main(String[] args) throws Exception {
+		Book b1 =  new Book();
+		b1.isbn =3;
+		b1.authors = new String[] {"a", "b"};
+		
+		Object o = b1.clone();
+	}
+
+}

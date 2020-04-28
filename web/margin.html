@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        div{
+            border: 1px solid black;
+        }
+        #elem1{
+            margin-top: 250px;
+            margin-right: 20px;
+            margin-bottom: 80px;
+            margin-left: 100px;
+
+        }
+        #elem2{
+            /*4개: top right bottom left */
+            /*3개: top (right left) bottom*/
+            /*2개 : (top bottom)  (fight left)*/
+            /*1개:  모두 */
+            margin:50px 20px 80px 100px;
+        }
+        #elem3{
+            width:300px;
+            margin: auto;  /* auto 정가운데*/
+        }
+    </style>
+</head>
+<body>
+    <div id="elem3">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, necessitatibus.
+    </div>
+    <hr>
+    <div id="elem2">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, laboriosam.
+    </div>
+    <div id="elem1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, quas.
+    </div>
+</body>
+</html>

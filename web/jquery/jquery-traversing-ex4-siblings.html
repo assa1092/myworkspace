@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+    $(document).ready(function() {
+        $("#myHeading").siblings().css("font-size", "50px");
+        //next() 트리구조면 기준에서 바로 오른쪽꺼
+        //       리스트 구조면 바로 밑에꺼 
+        $("#myHeading").next().css("color","yellow");
+
+        //myHeading 밑에꺼 전부...
+        $("#myHeading").nextAll().css("border-left","2px solid red");
+        
+        //myHeading 밑에부터  .until 까지...
+        $("#myHeading").nextUntil(".until").css("font-family","monospace");
+
+        $("#myHeading").prev().css("font-family","monospace");
+
+        $("#myHeading").prevAll().css("color","blue");
+
+        $("#myHeading").prevUntil(".until").css("border-right","2px solid red");
+    
+    });
+    </script>
+</head>
+<body>
+    <div class='container'>
+        <h1> 1 Lorem, ipsum dolor.</h1>
+        <h1 class="until">2 Harum, illo id!</h1>
+        <h1>3 Enim, id reprehenderit.</h1>
+        <h1>4 Provident, praesentium totam?</h1>
+        <h1 id="myHeading">5 Consequuntur, pariatur at?</h1>
+        <h1>6 Est, quo suscipit.</h1>
+        <h1>7 Fugit, repudiandae quaerat.</h1>
+        <h1>8 Distinctio, nisi quasi?</h1>
+        <h1 class="until">9 Accusantium, tempore autem.</h1>
+        <h1>10 Pariatur, fugiat odit.</h1>
+    </div>
+</body>
+</html>

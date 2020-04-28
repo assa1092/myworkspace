@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+    $(document).ready(function() {
+        $("#btn1").click(function(){
+            // <p> Element 추가하는 방법 3가지
+            // 방법 1 
+            // var p = $("<p />");
+            // $("#result").append(p);
+
+
+            // 방법 2
+            // $("#result").append("<p></p>")
+
+            // 방법3 
+            var p1 =  document.createElement("p");
+            $("#result").append(p1);
+        })
+    
+    });
+    </script>
+</head>
+<body>
+    <div class='container'>
+        <button class="btn btn-info" id="btn1">추가</button>
+        <div id="result"></div>
+    </div>
+</body>
+</html>

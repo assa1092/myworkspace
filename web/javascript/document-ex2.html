@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<hteml>
+    <head></head>
+    <body>
+        <form action="">
+            <input type="text">
+        </form>
+        <p id="para1" class="mypara">Lorem.</p>
+        <p id="para2" class="mypara">Soluta?</p>
+        <p id="para3">Sit.</p>
+
+        <img src="1.jpg" alt="">
+        <img src="2.jpg" alt="">
+        <img src="3.jpg" alt="">
+
+        <script>
+            var para1= document.getElementById("para1");
+            console.log("para1",para1);
+
+            var paras =  document.getElementsByTagName("p");
+            console.log("paras[1]",paras[1]);
+
+            var paras2 =  document.getElementsByClassName("mypara");
+            console.log("paras[0]",paras[0]);
+
+            var forms =  document.forms;
+            console.log("forms[0]",forms[0]);
+
+            var images =  document.images;
+            console.log("images[1]",images[1]);
+
+            var para3 =  document.querySelector("#para3");
+            console.log("para3", para3);
+
+            var paras2 =  document.querySelectorAll(".mypara");
+            console.log("paras[0]",paras[1]);
+        </script>
+            
+        </p>
+        
+    </body>
+</hteml>

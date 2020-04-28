@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <p id="para1">Lorem.</p>
+        <p id="para2">Quidem!</p>
+        <p id="para3">Tempora.</p>
+    </div>
+    <script>
+        //javascript 사용
+        var para1 = document.getElementById("para1").innerHTML;
+        // jQuery 사용
+        var para2 = $("#para2").html();
+
+        console.log(para1);
+        console.log(para2);
+
+        //javascript 사용
+        var paras1=document.getElementsByTagName("p");
+        for (var i = 0; i <paras1.length;i++){
+            console.log(paras1[i].innerHTML);
+            paras1[i].innerHTML = "hello";
+        }
+        //jQuery 사용
+        $("p").html("jqyery hello");
+    
+    </script>
+</body>
+</html>

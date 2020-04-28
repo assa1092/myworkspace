@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .dark{
+            background-color: black;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <button onclick="addClass()" >클래스 추가</button>
+    <button onclick="removeClass()" >클래스 제거</button>
+    <button onclick="toggleClass()" >클래스 토글</button>
+    <h1 id="head1">Lorem, ipsum dolor.</h1>
+
+    <script>
+        function toggleClass(){
+            document.getElementById("head1").classList.toggle("dark");
+        }
+        function addClass(){
+            document.getElementById("head1").classList.add("dark");
+        }
+        function removeClass(){
+            document.getElementById("head1").classList.remove("dark");
+        }
+    </script>
+    
+</body>
+</html>

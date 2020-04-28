@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class='container'>
+    </div>
+    <script>
+        var person = {
+            firstName:"John", 
+            lastName:"Doe", 
+            age:50, 
+            eyeColor:"blue"
+        };
+        var person2 = {
+            firstName:"Donale", 
+            lastName:"Trump", 
+            age:60, 
+            eyeColor:"brown"
+        };
+
+        console.log(person.firstName);
+        console.log(person.lastName);
+        console.log(person.age);
+        console.log(person.eyeColor);
+
+        console.log(person2.firstName);
+        console.log(person2.lastName);
+        console.log(person2.age);
+        console.log(person2.eyeColor);
+
+        person2.eyeColor="black";
+        person.eyeColor = "yellow";
+
+        console.log(person2.eyeColor);
+        console.log(person.eyeColor);
+
+        console.log(person2["eyeColor"]);
+
+        // 메소드
+        var person3 = {
+            firstName:"Jane",
+            lastName:"Doe",
+            age:30,
+            eyeColor:"brown",
+            walk:function(){
+                console.log("걷는다.");
+            },
+            name:function (){
+                return "JaneDoe";
+            }
+
+        };
+        console.log(person3.eyeColor);
+        person3.walk();
+        console.log( person3.name());
+
+        // this keyword
+        var person4={
+            firstName:"길동",
+            lastName:"홍",
+            name:function(){
+                //this 이 객체의 firstName
+                console.log(this.firstName);
+                console.log(this.lastName);
+                return this.firstName + "," + this.lastName;
+
+            }
+        };
+        var fullName = person4.name();
+        console.log(fullName);
+        
+        
+        document.write("이것은 단락...");
+
+
+
+    </script>
+</body>
+</html>

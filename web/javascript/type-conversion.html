@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <input type="text" name="" id="input1" class="form-control">
+        <input type="text" name="" id="input2" class="form-control">
+        <button onclick="plus()"  class="btn btn-info" id="button1">
+            <i class="fas fa-plus"></i></button>
+        <div id="result"></div>
+    </div>
+    <script>
+        function plus(){
+            //두개의 input 요소의 값을 얻어와서
+            var num1 =  document.getElementById("input1").value;
+            var num2 =  document.getElementById("input2").value;
+            console.log(num1, num2);
+            console.log(Number(num1), Number(num2));
+
+            //더해서 
+            var r = Number(num1) + Number(num2);
+
+            //result 요소에 입력
+            document.getElementById("result").innerHTML = r ;
+
+            //number -> string
+            var a = 3;
+            var b = "" +a;
+            console.log('b의 타입',typeof b);
+
+            //string -> number
+            var c = "3";
+            var d = Number(c);
+            console.log('d의 타입', typeof d);
+
+            var e = "3.14";
+            var f = parseInt(e);
+            var g = parseFloat(e);
+            console.log("parseInt",f);
+            console.log("parseFloat",g);
+
+            var h = +e;
+            console.log(e);
+            console.log("+", h);
+            console.log("typeof h", typeof h);
+
+
+        }
+    
+    </script>
+</body>
+</html>

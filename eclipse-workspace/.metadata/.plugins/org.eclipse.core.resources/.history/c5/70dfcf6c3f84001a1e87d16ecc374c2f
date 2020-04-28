@@ -1,0 +1,5 @@
+package chap10.lecture.checkedException;
+
+public class ClassNotFoundExceptionSample {
+
+}

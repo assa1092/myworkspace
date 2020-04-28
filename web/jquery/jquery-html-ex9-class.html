@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+        .blue {
+            background-color: blue;
+            font-size: 30px;
+            color: white;
+        }
+    </style>
+    <script>
+    $(document).ready(function() {
+
+        $("#btn1").click(function(){
+            $("#result").addClass("blue");
+        });
+        $("#btn2").click(function(){
+            $("#result").removeClass("blue");
+        });
+        $("#btn3").click(function(){
+            $("#result").toggleClass("blue");
+        });
+    
+    });
+    </script>
+</head>
+<body>
+    <div class='container'>
+
+        <button id="btn1" class="btn btn-primary">addClass</button>
+        <button id="btn2" class="btn btn-secondary">removeClass</button>
+        <button id="btn3" class="btn btn-info">toggleClass</button>
+    </div>
+    <div class="container">
+        <div id="result">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, deserunt minus libero mollitia facere reiciendis officia, veniam, accusantium ullam hic quae quisquam. Culpa dolorum quod aspernatur ut maiores hic velit.</div>
+    </div>
+</body>
+</html>

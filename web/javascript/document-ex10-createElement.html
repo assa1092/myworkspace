@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 함수는 호출되는 순간 실행 되므로 어디에 위치하든 상관 없다...
+        function addElement(){
+            var newElem = document.createElement("p");
+            newElem.innerHTML = "새로운 요소  " + parseInt(Math.random()*100 + 1);
+           // 위쪽으로 새로운 요소 추가 
+           // document.getElementById("result").prepend(newElem);
+           
+           // 밑쪽으로 새로운 요소가 추가...
+             document.getElementById("result").appendChild(newElem); 
+         }
+       
+    </script>
+</head>
+<body>
+    <button onclick="addElement()" >추가</button>
+    
+    <div id="result"></div>
+    
+</body>
+</html>

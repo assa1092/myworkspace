@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .item:nth-child(1){
+            
+            background-color: red;
+            font-size: 20px;
+            flex: 1;
+           
+        }
+        .item:nth-child(2){
+            width: 200px;
+            background-color: blue;
+            font-size: 10px;
+            flex: 2;
+            
+        }
+        .item:nth-child(3){
+            width: 200px;
+            background-color: yellow;
+            font-size: 5px;
+            
+        }
+        .container{
+            display: flex;
+            flex-direction: row;
+            height: 200px;
+            background-color: gray;
+            align-items: stretch;
+            justify-content: flex-start;
+        }
+        .inner-container{
+
+            
+            flex-direction: column;
+            display: flex;
+            
+        }
+        .inner-container div:nth-child(1){
+            background-color: violet;
+            flex: 1;
+        }
+        .inner-container div:nth-child(2){
+            background-color: gold;
+            flex: 2;
+            
+        }
+        .inner-container div:nth-child(3){
+            background-color:indianred;
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="item">Lorem.</div>
+        <div class="item">Deleniti?</div>
+        <div class="item inner-container">
+
+            <div>Lorem.</div>
+            <div>Ipsam?</div>
+            <div>Laboriosam?</div>
+            
+        </div>
+    </div>
+    <div class="normal">Lorem ipsum dolor sit.</div>
+</body>
+</html>

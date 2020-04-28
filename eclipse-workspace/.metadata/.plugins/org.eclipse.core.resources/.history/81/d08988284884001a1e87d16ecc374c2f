@@ -1,0 +1,16 @@
+package chap10.lecture.multipleCatch;
+
+public class CatchSample {
+	public static void main(String[] args) {
+		String[] strs = {"100", "20", "3", "a"};
+		
+		int sum=0;
+		
+		for(int i=0; i<strs.length;i++) {
+			sum += Integer.parseInt(strs[i]);
+		}
+		
+		System.out.println(sum);
+	}
+
+}

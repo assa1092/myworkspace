@@ -1,0 +1,176 @@
+//본인 컴퓨터(git bash)실행
+git config --global user.name "My name"
+git config --global user.email "Email Address"
+
+//디렉토리 만들고 마우스 오른쪽 클릭후 
+// git bash here 클럭
+
+git init
+
+
+//파일 만들고 (index.html)
+git add.
+git commit-m 'first commit'
+git remote... (들어간 라인 복사해서쓰기)
+git push -u origin master
+
+
+
+
+
+//github에서 우측상단 + 클릭후 repository 에 확인
+
+
+
+
+
+
+
+
+
+admin@DESKTOP-7CU21TB MINGW64 ~
+$ git config --global user.name"assa1092"
+
+admin@DESKTOP-7CU21TB MINGW64 ~
+$ git config --global user.email vincent1092@naver.com
+
+admin@DESKTOP-7CU21TB MINGW64 ~
+$ cd documents
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents
+$ cd myworkspace
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace
+$ mkdir my-first-webpage
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace
+$ cd my-first-webpage
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage
+$ git init
+Initialized empty Git repository in C:/Users/admin/Documents/myworkspace/my-first-webpage/.git/
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ code.
+bash: code.: command not found
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ code .
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git add .
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git commit -m 'first commit'
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: empty ident name (for <vincent1092@naver.com>) not allowed
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git config --global user.email "vincent1092@naver.com"
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git commit -m 'first commit'
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: empty ident name (for <vincent1092@naver.com>) not allowed
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git config --global user.name "assa1092"
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git config --global user.email vincent1092@naver.com
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git add .
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   index.html
+
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git commit -m "fitst commit"
+[master (root-commit) d2f7686] fitst commit
+ 1 file changed, 20 insertions(+)
+ create mode 100644 index.html
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git remote add origin https://github.com/assa1092/my-first-webpage.git
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git push -u origin master
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 606 bytes | 606.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/assa1092/my-first-webpage.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git config --list
+diff.astextplain.textconv=astextplain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+http.sslbackend=openssl
+http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+core.autocrlf=true
+core.fscache=true
+core.symlinks=false
+credential.helper=manager
+user.email=vincent1092@naver.com
+user.name=assa1092
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+remote.origin.url=https://github.com/assa1092/my-first-webpage.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git config user.name
+assa1092
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+admin@DESKTOP-7CU21TB MINGW64 ~/documents/myworkspace/my-first-webpage (master)
+
+

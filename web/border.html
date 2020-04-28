@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        div{
+            height: 100px;
+            background-color: yellowgreen;
+            text-align: center;
+        }
+        #elem1{
+            border-style: dotted;
+            border-width: 10px;
+            border-color: blue;
+        }
+        #elem2{
+            border-top-style: dashed;
+            border-top-width: 5px;
+            border-top-color:blue
+        }
+        #elem3{
+            border-right-style: solid;
+            border-right-width: 10px;
+            border-right-color:red;
+
+            border-bottom-style: double;
+            border-bottom-width: 2px;
+            border-bottom-color: blue;
+
+            border-left-style: inset;
+            border-left-width: 7px ;
+            border-left-color: black;
+        }
+        #elem4{
+            border-top: 2px solid red;
+            border-right: 10px dotted blue;
+            border-bottom: 9px double yellow;
+            border-left: 7px groove black;
+        }
+        #elem5{
+            /*4개: top right bottom left */
+            /*3개: top (right left) bottom*/
+            /*2개 : (top bottom)  (fight left)*/
+            /*1개:  모두 */
+            border-style: dotted double solid dashed;
+            border-width: 10px 2px 7px 10px;
+            border-color: red blue yellow black;
+        }
+        #elem6{
+            /*4개: top right bottom left */
+            /*3개: top (right left) bottom*/
+            /*2개 : (top bottom)  (fight left)*/
+            /*1개:  모두 */
+            border-style: solid double dotted;
+            border-color:  black;
+            border-width: 5px;
+        }
+        #elem7{
+            border:5px  dashed blue;
+            border-radius: 210px 50px 100px 100px;
+        }
+        #elem8:hover{
+            border-bottom: 5px solid black;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="elem8">elem8</div>
+    <hr>
+    <div id="elem7">elem7</div>
+    <hr>
+    <div id="elem6">elem6</div>
+    <hr>
+    <div id="elem5">elem5</div>
+    <hr>
+    <div id="elem4">elem4</div>
+    <hr>
+    <div id="elem3">elem3</div>
+    <hr>
+    <div id="elem2">elem2</div>
+    <hr>
+    <div id="elem1">elem1</div>
+
+
+</body>
+</html>

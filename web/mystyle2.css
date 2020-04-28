@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    background-color: black;
+}
+
+.memu {
+    color: white;
+    padding: 10px;
+}
+.memu:hover{
+    color: violet;
+}
+
+.dummy {
+    flex: 1;
+}
+
+.side-bar, .side-bar2 {
+    background-color: gray;
+    padding: 10px;
+    color: white;
+    margin-right: 10px;
+}
+
+.main-container {
+
+    margin-top: 10px;
+    display: flex;
+}
+.footer{
+    background-color: black;
+    color: white;
+    margin-top: 10px;
+}
+.side-bar2{
+    float: right;
+}

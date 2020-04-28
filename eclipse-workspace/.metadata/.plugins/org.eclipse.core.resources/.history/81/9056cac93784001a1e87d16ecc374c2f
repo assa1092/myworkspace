@@ -1,0 +1,5 @@
+package chap10.lecture.runtimeException.arrayIndex;
+
+public class ArrayIndexExceptionSample {
+
+}

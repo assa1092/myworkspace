@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <input type="number" name="" id="input1" class="form-control">
+        <input type="number" name="" id="input2" class="form-control">
+        <input type="number" name="" id="input3" class="form-control">
+        <button onclick="loop()" class="btn btn-success">출력</button>
+        <h1 id="result"></h1>
+        <h1>합계: <span id="result1"></span></h1>
+        
+    </div>
+    <script>
+    function loop() {
+        var n1 = document.getElementById("input1").value;
+        var n2 = document.getElementById("input2").value;
+        var n3 = document.getElementById("input3").value;
+
+        n1 = Number(n1);
+        n2 = Number(n2);
+        n3 = Number(n3);
+
+        document.getElementById("result").innerHTML = "";
+        
+        //n1, n2 두 수 사이의 수를 출력한다
+        for (var i = n1; i <= n2; i++) {
+            
+        // n3 로 나누어서 0이 되면 (n3의 배수) 건너뛰기
+            if((i %n3) == 0){       
+                continue;
+            }
+            // document.getElementById("result").innerHTML = 
+            // document.getElementById("result").innerHTML + (i + ", ");
+            document.getElementById("result").innerHTML += (i + ", ");
+        }
+
+        var sum = 0;
+
+         //n1, n2 두 수 사이의 합를 출력한다
+        for (var i = n1; i <= n2; i++){
+          
+        // n3 로 나누어서 0이 되면 (n3의 배수) 건너뛰기
+            if( (i % n3) ==0){
+                continue;
+            }
+            sum += i;
+            console.log("i",i);
+            console.log("sum",sum);
+        }
+        document.getElementById('result1').innerHTML = sum;
+    }
+    </script>
+</body>
+</html>

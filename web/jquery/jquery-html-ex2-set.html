@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+    $(document).ready(function() {
+        $("#btn1").click(function(){
+            $("#para1").text("hello javascript");
+            $("#para2").text("hello <strong>javascript</strong>");
+            $("#para3").html("hello <strong>javascript</strong>");
+
+            // input1.value = "hello javascript"
+            $("#input1").val("hello javascript");
+            //img의 src 값을 ../javascript/캡틴.jpg 로 변경
+            $("img").attr("src","../javascript/캡틴.jpg");
+        });
+    
+    });
+    </script>
+</head>
+<body>
+    <div class='container'>
+
+        <p id="para1">1</p>
+        <p id="para2">2</p>
+        <p id="para3">3</p>
+
+        <input type="text" id="input1" class="form-control">
+        <img src="../javascript/아이언맨.jpg" alt="">
+        <br>
+        <button class="btn btn-info" id="btn1">값 변경</button>
+    </div>
+</body>
+</html>

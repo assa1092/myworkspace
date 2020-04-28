@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <button onclick="dice()" class="btn btn-success">주사위 두개 던지기</button>
+        <h1 id="result"></h1>
+    </div>
+    <script>
+        function getRandom(){
+            return parseInt(Math.random()*6+1);
+        }
+
+        function dice(){
+            var d1 = getRandom();
+            var d2 = getRandom();
+
+            console.log(d1, d2);
+
+            if (d1 == d2) {
+                document.getElementById("result").innerHTML="당 첨";
+
+            } 
+            else {
+                document.getElementById("result").innerHTML="낙 첨";
+
+            }
+
+        }
+    
+    </script>
+</body>
+</html>

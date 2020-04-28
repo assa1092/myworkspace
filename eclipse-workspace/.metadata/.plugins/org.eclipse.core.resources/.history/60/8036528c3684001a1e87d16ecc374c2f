@@ -1,0 +1,5 @@
+package chap10.lecture.nullPointerException;
+
+public class NullPointerExceptionSample {
+
+}

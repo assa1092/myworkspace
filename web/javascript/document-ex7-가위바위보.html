@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class='container'>
+        <div class="row">
+            <div class="col"><img onclick="rps(1)" src="가위.jpg" alt="" class="img-fluid"></div>
+            <div class="col"><img onclick="rps(2)" src="바위.jpg" alt="" class="img-fluid"></div>
+            <div class="col"><img onclick="rps(3)" src="보.jpg" alt="" class="img-fluid"></div>
+        </div>
+
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"><img src="" alt="" class="img-fluid" id="computerImage"></div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h1 id="result" class="text-center"></h1>
+            </div>
+        </div>
+    </div>
+    <script>
+        function rps(user) {
+            console.log(user);
+
+            //1,2,3 을 랜덤으로 호출...
+            var computer = Math.floor(Math.random() * 3 + 1);
+
+            switch (computer) {
+                case 1:
+                    document.getElementById("computerImage").src = "가위.jpg";
+                    break;
+                case 2:
+                    document.getElementById("computerImage").src = "바위.jpg";
+                    break;
+                case 3:
+                    document.getElementById("computerImage").src = "보.jpg";
+                    break;
+            }
+
+            var resultText = "";
+            if (user == computer) {
+                //비김
+                resultText = "비김";
+            } else if (user == 1 && computer == 2) {
+                //짐
+                resultText = "짐";
+            } else if (user == 2 && computer == 3) {
+                //짐
+                resultText = "짐";
+            } else if (user == 3 && computer == 1) {
+                // 짐
+                resultText = "짐";
+            } else {
+                //이김
+                resultText = "이김";
+            }
+            document.getElementById("result").innerHTML = resultText;
+
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+    $(document).ready(function() {
+        $("#btn1").click(function(){
+
+            var para1Text = $("#para1").text();
+
+            var para1Html = $("#para1").html();
+
+            console.log(para1Text);
+            console.log(para1Html);
+
+            var para2Text = $("#para2").text();
+            //para2의 text만 가져온다
+
+            var para2Html = $("#para2").html();
+            //para2의 html의 태그까지 가져온다.
+
+            console.log(para2Text);
+            console.log(para2Html);
+
+            var input1Value = document.getElementById("input1").value;
+            console.log(input1Value);
+
+            var input1ValueJQ = $("#input1").val();
+            console.log(input1ValueJQ);
+
+            var input1Attr = $("#input1").attr("type");
+            console.log(input1Attr);
+
+            var input1Class = $("#input1").attr("class");
+            console.log(input1Class);
+
+            var input1Id = $("#input1").attr("id");
+            console.log(input1Id);
+        });
+    
+    });
+    </script>
+</head>
+<body>
+    <div class='container'>
+        <p id="para1">Lorem ipsum dolor sit amet.</p>
+        <p id="para2">Lorem ipsum <strong>dolor</strong> sit amet.</p>
+        <input type="text" id="input1" class="form-control">
+
+        <button class="btn btn-primary" id="btn1">정보 읽기</button>
+    </div>
+</body>
+</html>

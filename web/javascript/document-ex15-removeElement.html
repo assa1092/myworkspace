@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="container">
+        <p id="para1">Lorem, ipsum dolor.</p>
+        <p id="para2">Nam, temporibus quia!</p>
+        <p id="para3">Aperiam, assumenda ea.</p>
+        <p id="para4">Lorem, ipsum dolor.</p>
+    </div>
+    <button id="button1">삭제</button>
+    <button id="button2">자기 자신 삭제</button>
+    <script>
+        document.getElementById("button1").addEventListener("click",function(){
+            var parent =  document.getElementById("container");
+            parent.removeChild(parent.children[0]);
+        });
+
+        var button2 = document.getElementById("button2");
+        button2.addEventListener("click",function(){
+            document.getElementById("para2").remove();
+            
+        });
+        
+
+    </script>
+</body>
+</html>

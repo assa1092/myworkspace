@@ -1,0 +1,23 @@
+package chap10.lecture.throwsKeyword;
+
+public class ThrowsKeywordSample {
+	public static void main(String[] args) {
+		try {
+			method2();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void method2() throws ClassNotFoundException {
+		method1();
+	}
+	
+	public static void method1() throws ClassNotFoundException {
+		Class.forName("java.lang.SString");
+		
+	}
+
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#btn1").click(function () {
+                $("#table1").slideDown(1000);
+                $("tr:nth-child(odd)").css("background-color","gold");
+            })
+
+            $("#btn2").click(function () {
+                $("#table1").slideUp(1000);
+                // $("tr:nth-child(even)").css("background-color","blue");
+            })
+
+            $("#btn3").click(function () {
+                $("#table1").slideToggle(1000);
+            });
+        });
+    </script>
+</head>
+<!--  .row>.col*3>button.btn.btn-block.btn-primary#btn$ -->
+<body>
+    <div class='container'>
+        <div class="row">
+            <div class="col"><button class="btn btn-block btn-primary" id="btn1">슬라이드다운 버튼</button></div>
+            <div class="col"><button class="btn btn-block btn-secondary" id="btn2">슬라이드업 버튼</button></div>
+            <div class="col"><button class="btn btn-block btn-info" id="btn3">슬라이드토글 버튼</button></div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id="table1">
+                    <table class="table" id="table2">
+                        <tr>
+                            <td>Lorem.</td>
+                            <td>Quisquam.</td>
+                            <td>Excepturi.</td>
+                            <td>Quo.</td>
+                            <td>Voluptatibus!</td>
+                        </tr>
+                        <tr>
+                            <td>Labore.</td>
+                            <td>Quia.</td>
+                            <td>Molestias!</td>
+                            <td>Dolores?</td>
+                            <td>At.</td>
+                        </tr>
+                        <tr>
+                            <td>Ut.</td>
+                            <td>Quia.</td>
+                            <td>Blanditiis!</td>
+                            <td>Quos.</td>
+                            <td>Aliquam?</td>
+                        </tr>
+                        <tr>
+                            <td>Blanditiis.</td>
+                            <td>Quis!</td>
+                            <td>Enim.</td>
+                            <td>Unde?</td>
+                            <td>Iure!</td>
+                        </tr>
+                        <tr>
+                            <td>Fuga.</td>
+                            <td>Consequuntur.</td>
+                            <td>Eum?</td>
+                            <td>Itaque.</td>
+                            <td>Optio.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

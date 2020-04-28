@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+    $(document).ready(function() {
+        $("#btn1").click(function(){
+            $("#fade").fadeIn("fast");
+        });
+        $("#btn2").click(function(){
+            $("#fade").fadeOut("slow");
+        });
+        $("#btn3").click(function(){
+            //"slow"  "fast"  2000밀리 초로 설정가능
+            $("#fade").fadeToggle(2000);
+        });
+    
+    });
+    </script>
+</head>
+<body>
+    <div class='container'>
+        <button class="btn btn-secondary" id="btn1">페이드 인</button>
+        <button class="btn btn-info" id="btn2">페이드 아웃</button>
+        <button class="btn btn-warning" id="btn3">페이드 토글</button>
+
+        <h1 id="fade">Lorem, ipsum dolor.</h1>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <div id="container">
+        <p>Lorem, ipsum.</p>
+        <p>Velit, soluta?</p>
+        <p>Alias, minima?</p>
+    </div>
+
+    <script>
+        var con = document.getElementById("container");
+        var ch = con.children;
+        console.log(ch[0]);
+        console.log(ch[1]);
+        console.log(ch[2]);
+
+        console.log(con.firstElementChild);
+        console.log(con.lastElementChild);
+
+        console.log(ch[1].nextElementSibling);
+        console.log(ch[1].previousElementSibling);
+
+        console.log(ch[1].parentElement);
+        console.log(ch[2].parentElement);
+        console.log(ch[0].parentElement);
+
+
+    </script>
+    
+</body>
+</html>

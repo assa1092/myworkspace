@@ -1,0 +1,5 @@
+package chap10.examples.sec100201;
+
+public class NullPointerExceptionExample {
+
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+  <title>Document</title>
+  <style>
+  </style>
+  <script>
+  $(document).ready(function() {
+    $("#row1").children().children().css("color","blue");
+    // $("#row1 p").css("color","blue");
+    
+    // row1 아래 모든것 찾아서 빨간색
+    $("#row1").find("*").css("border-left", "2px solid red");
+    //row1 아래 홀수번째 요소를 찾아서 검은색
+    $("#row1").find(":nth-child(odd)").css("border-right", "2px solid black");
+  
+  });
+  </script>
+</head>
+<body>
+  <div class='container'>
+    <div class="row" id="row1">
+      <div class="col">
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Est consequuntur excepturi minima aperiam?</p>
+        <p>Earum ducimus ipsa explicabo aliquid!</p>
+        <p>Impedit ipsam enim voluptatum nam.</p>
+        <p>Sapiente quidem cum aliquam laudantium.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

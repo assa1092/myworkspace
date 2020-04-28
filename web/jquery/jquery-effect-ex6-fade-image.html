@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+
+    <style>
+        #small-image1{
+            width:100px;
+        }
+        #big-image1 {
+            width : 100%;
+            display: none;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+    </style>
+    <script>
+        $(function(){
+            $("#small-image1").click(function(){
+                $("#big-image1").fadeIn();
+            });
+            $("#big-image1").click(function(){
+                // this => #big-image1  자기 자신...
+                $(this).fadeOut();
+            });
+
+        })
+    </script>
+</head>
+<body>
+
+    <img id="small-image1" src="../javascript/아이언맨.jpg" alt="">
+    <img src="../javascript/아이언맨.jpg" alt="" id="big-image1">
+    
+</body>
+</html>

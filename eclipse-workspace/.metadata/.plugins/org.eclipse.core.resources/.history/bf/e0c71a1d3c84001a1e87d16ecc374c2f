@@ -1,0 +1,5 @@
+package chap10.examples.sec100204;
+
+public class ClassCastExceptionExample {
+
+}

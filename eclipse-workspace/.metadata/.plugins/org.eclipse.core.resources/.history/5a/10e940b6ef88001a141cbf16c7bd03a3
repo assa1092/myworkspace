@@ -1,0 +1,50 @@
+package kr.co.ca;
+
+import com.naver.Dog;
+import com.naver.Test;
+
+
+public class MainEx {
+
+	public static void main(String[] args) {
+		Dog d1 =  new Dog("d001", "happy", "hong");
+		Dog d2 = new Dog("d002", "happy", "hong");
+		Dog d3 = new Dog("d002","world", "kim");
+		
+		
+		// equals()에서 id가 같으면 같은것으로 재정의 해놓음...
+		System.out.println(d1.equals(d2));	// false
+		System.out.println(d2.equals(d3));	//true
+		
+		
+		System.out.println("-------------------------");
+		
+		
+		
+		Test t1 = new Test();
+		Test t2 = new Test();
+		Test t3 = new Test();
+		Test t4 = new Test();
+
+		t1.me1();		// false
+//		Test t = new Test();
+		
+		// 반환형이 있는 메소드는 받는 값이 있어야한다.
+		boolean b= t2.me2();	
+		System.out.println(b);		// true
+		 
+		t3.me3();			// false
+		t4.me4();			// false, true
+		t4.me5();			// true, false
+		
+		
+		
+		
+		
+		
+		
+		
+
+	}
+
+}

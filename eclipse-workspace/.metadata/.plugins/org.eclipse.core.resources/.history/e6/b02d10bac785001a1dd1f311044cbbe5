@@ -1,0 +1,13 @@
+package chap05.example.sec050701;
+
+import chap05.enumType.Language;
+
+public class EnumMEthodsSample {
+	public static void main(String[] args) {
+		Language l1 = Language.KOREAN;
+		System.out.println(l1 instanceof Enum);
+		System.out.println(l1.name());
+		System.out.println(l1.ordinal());
+	}
+
+}

@@ -1,0 +1,18 @@
+package kr.co.ca;
+
+import com.naver.Test;
+
+
+public class MainEx {
+
+	public static void main(String[] args) {
+		Test test = new Test();
+		test.me1();
+//		Test t = new Test();
+		Test t2 = new Test();
+		 boolean b= t2.me2();	// 반환형이 있는 
+		 System.out.println(b);
+
+	}
+
+}

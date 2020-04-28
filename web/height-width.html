@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        div{
+            background-color: lightblue;
+        }
+        #elem1{
+            height: 200px;
+            width: 300px;
+        }
+        #elem2{
+            height: 200px;
+            width: 300px;
+            border: 50px solid black;
+            box-sizing: border-box;
+        }
+        #elem3{
+            height: 200px;
+            width: 300px;
+            box-sizing: border-box;
+        }
+        #elem3:hover{
+            border-bottom: 5px solid red;
+        }
+        #elem4{
+            height: 200px;
+            width: 50%; /* 부모 body 영역의 50%*/
+        }
+        #elem5{
+            height: 200px;
+            width: 50vw;  /* viewport width(화면 크기의 50% )상대적)*/
+        }
+        #elem6{
+            height: 200px ;
+            min-width: 300px;
+        }
+        #elem7{
+            height: 200px;
+            max-width: 300px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="elem7"></div>
+    <hr>
+    <div id="elem6">elem6</div>
+    <hr>
+    <div id="elem5"></div>
+    <hr>
+    <div id="elem4"></div>
+<hr>
+    <div id="elem3"></div>
+    <hr>
+    <div id="elem2"></div>
+    <hr>
+    <div id="elem1"></div>
+</body>
+</html>

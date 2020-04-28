@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <button onclick="coin()" class="btn btn-warning">동전던지기</button>
+        <button onclick="reset()" class="btn btn-danger">초기화</button>
+        <h1 id="result"></h1>
+    </div>
+    <script>
+        function reset() {
+            document.getElementById("result").innerHTML = "동전을 던지세요";
+
+        }
+
+
+
+
+        function coin(){
+            // 0 <= a <a
+            var a  = Math.random();
+
+            //만약 a가 0.5보다 작으면 당첨
+            if (a < 0.5) {
+                document.getElementById("result").innerHTML = "당첨되었습니다"
+             }
+            if (a>=0.5) {
+                document.getElementById("result").innerHTML = "당첨되지 않았습니다.";
+            }
+
+        }
+    
+    </script>
+</body>
+</html>

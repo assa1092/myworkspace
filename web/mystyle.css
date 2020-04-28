@@ -1,0 +1,27 @@
+
+        .container{
+            display: flex;
+            background-color: black;
+        }
+        .menu:hover{
+            background-color: gold;
+        }
+        .menu{
+            color: white;
+            padding: 10px;
+        }
+        .dummy{
+            flex: 1;
+        }
+        .main-container {
+            margin-top: 10px; 
+            display: flex;
+            
+        }
+        .side-bar {
+            background-color: gray;
+            color:white;
+            padding: 10px;
+            margin-right: 10px;
+        }
+       

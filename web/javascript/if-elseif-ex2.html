@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class='container'>
+        <button onclick="ballAll()" class="btn btn-outline-primary">볼 추첨</button>
+        <!-- <div id="result"></div> -->
+        <h1 id="result1"></h1>
+        <h1 id="result2"></h1>
+        <h1 id="result3"></h1>
+        <h1 id="result4"></h1>
+        <h1 id="result5"></h1>
+        <h1 id="result6"></h1>
+    </div>
+    <script>
+        function ballAll() {
+            ball("result1");    
+            ball("result2");
+            ball("result3");
+            ball("result4");
+            ball("result5");
+            ball("result6");
+        }
+
+
+
+        function ball(elementId) {
+            var n = parseInt(Math.random() * 45 + 1);
+
+            document.getElementById(elementId).innerHTML = n;
+
+            
+            if (n < 10) {
+                document.getElementById(elementId).style.backgroundColor = "blue";
+            } else if (n < 20) {
+                document.getElementById(elementId).style.backgroundColor = "yellow";
+            } else if (n < 30) {
+                document.getElementById(elementId).style.backgroundColor = "red";
+            } else if (n < 40) {
+                document.getElementById(elementId).style.backgroundColor = "grey";
+            } else {
+                document.getElementById(elementId).style.backgroundColor = "green";
+            }
+
+
+            
+            
+            
+        }
+    </script>
+</body>
+
+</html>

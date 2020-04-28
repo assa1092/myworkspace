@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+    $(document).ready(function() {
+        $("h1").first().css("color", "yellow");
+        $("h1").last().css("color", "red");
+        //eq(0) 위에서부터 시작 0부터 
+        $("h1").eq(5).css("color", "blue");
+        $("h1").filter(".myhead").css("color", "gold");
+        //h1이고 myhead 인 것
+        $("h1.myhead").css("color","gold");
+
+        //.myhead 가 아닌 것만 
+        $("h1").not(".myhead").css("text-decoration", "underline");
+    
+    });
+    </script>
+</head>
+<body>
+    <div class='container'>
+        <h1>1  Lorem, ipsum dolor.</h1>
+        <h1>2  Animi, sunt deserunt.</h1>
+        <h1 class="myhead">3  Eligendi, quia alias?</h1>
+        <div>
+
+            <h1 class="myhead">4  Ad, magni dolorum?</h1>
+            <h1>5  Assumenda, alias fuga?</h1>
+            <h1>6  Provident, ratione repellendus?</h1>
+        </div>
+        <h1>7  Rem, ratione vel.</h1>
+        <h1>8  Harum, similique delectus.</h1>
+        <h1>9  Praesentium, distinctio sapiente.</h1>
+        <h1>10  Nostrum, fugit quae.</h1>
+    </div>
+</body>
+</html>

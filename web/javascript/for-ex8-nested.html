@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+        h1 {
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <input type="number" id="input1" class="form-control">
+        <button onclick="triangle()" class="btn btn-outline-danger">삼각형</button>
+        <button onclick="unTriangle()" class="btn btn-danger">거꾸로</button>
+        <h1 id="result"></h1>
+    </div>
+    <script>
+
+        function unTriangle(){
+            var n = document.getElementById("input1").value;
+            n = Number(n);
+
+            var text = "";
+            for (var i = 0; i <n; i++){
+                
+                for (var j = 0; j < (n-i); j++){
+                    text +="*";
+                                    
+                }
+                text +="<br>";
+            }
+            document.getElementById("result").innerHTML = text;
+        }
+        function triangle(){
+            var n = document.getElementById("input1").value;
+            n = Number(n);
+            var text = "";
+            for(var i = 0; i < n ; i++){
+                
+                for (var j=0; j<=i; j++){
+                    
+                    
+                    text +="*";
+                    
+                }
+                text += "<br>";
+            }
+            document.getElementById("result").innerHTML= text;
+        }
+    
+    </script>
+</body>
+</html>

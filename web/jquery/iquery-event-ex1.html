@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <button class="btn btn-primary" id="button1">js button</button>
+        <button class="btn btn-outline-primary" id="button2">jq button</button>
+
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-secondary" id="button3">dblclick</button></div>
+        </div>
+
+        <button id ="button4" class="btn btn-warning btn-black">mouseenter</button>
+        <button class="btn btn-danger btn-black" id="button5">mouseleave</button>
+        <button class="btn btn-info btn-block" id="button6">hover</button>
+
+
+    </div>
+    <script>
+        var button1 = document.getElementById("button1");
+        button1.addEventListener("click", function(){
+            alert("javascript button");
+        })
+
+        $("#button2").click(function(){
+            alert("jquery button");
+        })
+        $("#button3").dblclick(function(){
+            alert("더블클릭 됨");
+
+        })
+
+        $("#button4").mouseenter(function(){
+            alert("4번째 버튼에 마우스 들어옴");
+        })
+        
+        $("#button5").mouseleave(function(){
+            alert("5번째 버튼에 마우스 떠남");
+        })
+
+        // .hover( handlerIn, handlerOut )
+        // 들어오고 나가는것을 같이 정의 해야 함...
+        //jquery.com 검색
+        $("#button6").hover(function(){
+            console.log("6번 마우스 커서 들어옴");
+        }, function(){
+            console.log("6번 마우스 커서 나감");
+        })
+    
+    </script>
+</body>
+</html>

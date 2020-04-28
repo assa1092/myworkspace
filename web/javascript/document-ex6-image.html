@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <button onclick="setIronman()" class="btn btn-info">아이언맨</button>
+        <button onclick="setCaptain()" class="btn btn-success">캡틴</button>
+        <h6 id="result"></h6>
+        <div>
+            <img src="" alt="" id="img1" class="img-fluid" >
+
+        </div>
+    </div>
+    <script>
+        function setIronman(){
+            var image =  document.getElementById("img1");
+            image.src =  "아이언맨.jpg";
+            image.width= "300";
+            image.height = "300";
+            
+            var imgtext = image.src ;
+             document.getElementById("result").innerHTML = imgtext;
+        }
+        function setCaptain(){
+            document.getElementById("img1").src = "캡틴.jpg";
+            document.getElementById("img1").width = "300";
+            document.getElementById("img1").height = "300";
+            
+            var imgtext = document.getElementById("img1").src;
+            document.getElementById("result").innerHTML = imgtext;
+        }
+
+    
+    </script>
+</body>
+</html>

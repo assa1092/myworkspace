@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="demo"></div>
+    </div>
+    
+    <script>
+        // literal value(문자 그대로의 값 ex; 3, 4)
+        console.log( 3 + 4);
+
+        //variable (값이 변하는 변수)
+        // 변수 선언 (var)
+        var a;
+
+        // 값 할당 (assignment)
+        a=7;
+        console.log(a);
+        a=5;
+        console.log(a);
+
+        var b;
+        b=10;
+        console.log(b);
+        console.log(a+b);
+        b=20;
+        console.log(a+b);
+
+        var c = 100;
+        console.log(c);
+
+        var d, e, f;
+        d = 1000;
+        e = 10000;
+        f = 20000;
+
+        var g = 333, h = 555, i = 999;
+
+       // console.log(j);
+
+        console.log("Hello");
+        console.log('Hello'); // 문자는 string타입
+
+        var j;
+        j = "hi";
+        console.log(j);
+        j = "안녕";
+        console.log(j);
+        
+        j = 33;
+        console.log(j);
+
+        var k = 3, l = "hi", m = 7;
+        k = m;
+        console.log(k);
+
+        //문제 1
+        var n = 10;
+        var o = 30;
+
+        //여러분들이 작성
+        var p = n ;
+        n = o ;
+        o = p ;
+
+
+        
+
+        console.log(n);  // 30;
+        console.log(o);  // 10;
+       
+
+       // alert(n); // alert() ; 창으로 출력
+        // alert(o);
+
+        document.getElementById("demo").innerHTML = n;
+
+        // 변수명은 대, 소문자를 구분한다
+
+        var carname = "Volvo";
+        var carName = "Ford";
+        console.log(carname);
+        console.log(carName);
+
+        // 영문대소문자, 숫자, $, _
+        //조합(but, 숫자가 먼저오면 안됨)
+        var $ = 0 ;
+        var _ = 1 ;
+        var $car = 2 ;
+        var _car = 3;
+        var car3 = 5;
+        var car77 = 100;
+        // var 7car = 111; // 숫자먼저 오면 안됨
+
+
+        // lower camelCase
+        var firstName = "john";
+    </script>
+</body>
+</html>

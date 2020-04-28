@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+    </style>
+    <script>
+    $(document).ready(function() {
+        $("#button1").click(function(){
+            $("p").hide();
+        });
+
+        $("#button2").click(function(){
+            // 2000 밀리 초 동안 숨겨지기 "slow" "fast"로 가능
+            //.show() 도 동일
+            $("#button2 + p").hide(2000);  
+        });
+    
+    });
+    </script>
+</head>
+<body>
+    <div class='container'>
+        <button class="btn btn-block btn-info" id="button1">숨겨라</button>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi natus doloremque odio maiores quam, blanditiis laborum saepe corporis porro incidunt accusamus repellendus mollitia veritatis cupiditate nostrum at autem consequuntur. Sunt.</p>
+
+        <button class="btn btn-block btn-warning" id="button2">숨겨라+파라미터</button>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio numquam, voluptatem repudiandae facere, iusto, minima eaque maiores cum autem doloribus magni quae cumque illum dicta! Illum amet voluptatibus error minus.</p>
+    </div>
+</body>
+</html>
