@@ -24,8 +24,10 @@ public class Monster {
 
 
 	@Override
+	// 몬스터 객체를 호출할때 
+	// 16진수가 아닌 내가 원하는 걸로 보이기위해 재정의
 	public String toString() {
-		//return "monster [hp=" + hp + "]";
+//		return "monster [hp=" + hp + "]";
 		return "monster hp: "+ hp;
 	}
 	
