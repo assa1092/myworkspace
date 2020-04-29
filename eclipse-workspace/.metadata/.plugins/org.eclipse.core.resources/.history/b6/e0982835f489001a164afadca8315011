@@ -6,23 +6,19 @@ public abstract class Weapon {
 	private String name;
 	private int attackPower;
 	
-	
-	// 디폴트 생성자
 	public Weapon() {
 		// TODO Auto-generated constructor stub
 	}
 
-	// 사용자 정의 생성자
 	public Weapon(String name, int attackPower) {
 		super();
 		this.name = name;
 		this.attackPower = attackPower;
 	}
 	
-	// 몬스터 공격하기 	
 	public void attack(Monster m) {
 		
-		describe();		// 공격 묘사 추상메소드 화살을 쏩니다.
+		describe();
 		
 		int nowHp = m.getHp();
 		int remainHp = nowHp -attackPower;
@@ -35,7 +31,6 @@ public abstract class Weapon {
 	// 추상메소드를 만들면 그 클래스는 무조건 추상 클래스가 된다...
 	public abstract void describe();
 
-	
 	@Override
 	public String toString() {
 		return name;
