@@ -1,0 +1,20 @@
+package com.naver;
+
+public class Bow2 extends Weapon {
+
+	public Bow2() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Bow2(String name, int attackPower) {
+		super(name, attackPower);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void describe() {
+		System.out.println("활을  마구 쏩니다.");
+		
+	}
+	
+}
