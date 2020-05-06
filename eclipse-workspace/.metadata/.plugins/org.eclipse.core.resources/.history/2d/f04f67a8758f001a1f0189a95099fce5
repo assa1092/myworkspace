@@ -11,9 +11,7 @@ public class MainEx {
 
 	public static void main(String[] args) {
 		
-		// 디폴트 생성자에서 작업하겠다는 의미..
-		//new Process();
-		new ProcessEx();
+		new Process();
 		
 //		Monster m = new Monster(10);
 //		
