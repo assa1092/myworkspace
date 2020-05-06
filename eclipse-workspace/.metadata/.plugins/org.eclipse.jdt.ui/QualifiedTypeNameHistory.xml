@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="chap08.examples.sec080701.MyClassB"/>
-<fullyQualifiedTypeName name="chap09.lecture.nestedClass.NestedClass.StaticClass"/>
-<fullyQualifiedTypeName name="chap09.lecture.nestedClass.NestedClass.OtherClass"/>
-<fullyQualifiedTypeName name="chap09.examples.sec090203.A.B"/>
-<fullyQualifiedTypeName name="chap09.examples.sec090203.A.C"/>
-<fullyQualifiedTypeName name="chap09.examples.sec090304.Outter.Nested"/>
-<fullyQualifiedTypeName name="chap09.lecture.nestedInterface.Outter.NestedInterface"/>
-<fullyQualifiedTypeName name="chap09.examples.sec090401.Button.OnClickListener"/>
 <fullyQualifiedTypeName name="chap09.examples.sec090502.RemoteControl"/>
 <fullyQualifiedTypeName name="chap09.examples.sec090502.Button.OnClickListener"/>
 <fullyQualifiedTypeName name="chap09.lecture.anonymous.MyInterface"/>
@@ -18,7 +10,6 @@
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
 <fullyQualifiedTypeName name="chap10.examples.sec100701.BalanceInsufficientException"/>
-<fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
 <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
 <fullyQualifiedTypeName name="chap10.exercises.Ex07.NotExistIDException"/>
 <fullyQualifiedTypeName name="chap10.exercises.Ex07.WrongPasswordException"/>
@@ -39,7 +30,6 @@
 <fullyQualifiedTypeName name="chap05.enumType.Language"/>
 <fullyQualifiedTypeName name="chap05.example.sec050701.Week"/>
 <fullyQualifiedTypeName name="chap11.examples.sec110602.Car"/>
-<fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="java.lang.reflect.Constructor"/>
 <fullyQualifiedTypeName name="java.lang.reflect.Field"/>
 <fullyQualifiedTypeName name="java.lang.InstantiationException"/>
@@ -60,4 +50,14 @@
 <fullyQualifiedTypeName name="java.util.UUID"/>
 <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
 <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
+<fullyQualifiedTypeName name="javax.management.monitor.Monitor"/>
+<fullyQualifiedTypeName name="com.naver.Sword"/>
+<fullyQualifiedTypeName name="com.naver.Bow"/>
+<fullyQualifiedTypeName name="com.naver.Hammer"/>
+<fullyQualifiedTypeName name="com.naver.Monster"/>
+<fullyQualifiedTypeName name="com.naver.Weapon"/>
+<fullyQualifiedTypeName name="com.naver.Hero"/>
+<fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="com.naver.NoHaveWeaponException"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,29 @@
+package com.naver;
+
+public class Hero {
+	private Weapon[] weapons;
+	private Weapon hasweapon;
+	
+	public Hero() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Hero(Weapon[] weapons, int idx) {
+		super();
+		this.weapons = weapons;
+		this.hasweapon = weapons[idx];
+	}
+	
+	public void attack(Monster m) {
+		hasweapon.attack(m);
+	}
+	
+	public void changeWeapon(int idx) throws NoHasweaponException{
+		if(idx >= weapons.length) {
+			throw new NoHasweaponException();
+		}
+		hasweapon = weapons[idx];
+		System.out.println(hasweapon);
+	}
+
+}
