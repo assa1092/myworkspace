@@ -1,0 +1,226 @@
+CRUD
+Create			생성/입력
+Read(Retrieve)		조회
+Update			수정
+Delete			삭제
+
+sqlplus
+로그인 방법
+exit/ quit
+
+
+sql문: 맨 마지막에 ;을 붙임.(insert, select, update, delete, create, alter, drop, grant, revoke)
+sqlplus 명령어: 맨 마지막에 ;를 붙일수도 있고 안 붙일 수도 있음.
+
+
+SQL문 세가지
+1. DML :  Data Manipulation Language(데이터 조작 언어)
+table에 데이터를 입력, 조회, 수정, 삭제(CRUD)를 할 때 사용하는 SQL을 DML이라고 한다.
+
+insert
+select
+update
+delete
+==============
+
+2. DDL : Data Definition Language(데이더 정의 언어)
+DB에서 객체(계정, 테이블도  객체)를 만들거나 수정하거나 삭제하는 작업을 할 때 사용하는 sql을 DDL이라고한다.
+
+create		생성
+alter		변경
+drop		삭제
+===============
+
+3. DCL : Data Control Language
+DB 작업 중에 사용자에게 권한을 주는 작업을 할 때  사용하는 sql을 DCL 이라고한다.
+
+grant		권한부여
+revoke		권한취소
+
+TCL : Transcation Control Language
+commit
+rollback
+
+
+===============================================
+
+계정 생성...(DDL)	대소문자 상관없음
+
+CREATE USER ca IDENTIFIED BY ca
+create user ca identified by ca
+
+//ca 계정에 CONNECT, RESOURCE, DBA 권한 부여
+GRANT CONNECT, RESOURCE, DBA TO ca;		// id ca한테 권한을 준다.
+
+
+// ca 계정으로부터 connect 권한을 회수
+REVOKE CONNECT FROM CA;	// ca 는 대문자
+
+
+// ca 계정으로부터 RESOURCE, DBA권한을 회수하세요
+REVOKE  RESOURCE, DBA FROM ca;
+
+
+
+===========================
+SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE='CA';
+
+
+// 계정 비밀번호 변경
+ALTER USER ca IDENTIFIED BY ca2(비밀번호);
+
+// 계정 삭제.
+DROP USER ca;
+
+================================================
+// 생성 create 입력 insert
+
+table 생성...
+
+CREATE TABLE test(
+id VARCHAR2(6),	// VARCHAR2(6)	 6바이트 한글 2자까지
+name VARCHAR2(21),	// VARCHAR2(21) 21바이트 한글은 7자까지
+age NUMBER(3),		// 세자리 숫자 999까지
+address NVARCHAR2(7)  // NVARCHAR2(7) 7글자까지 입력가능
+);
+
+TABLE 삭제
+DROP TABLE test;
+
+id(char 5), name(char 12), age(number 5) 컬럼으로 이루어진 test2테이블을 생성하시오.
+
+CREATE TABLE test2(
+id CHAR(5),
+name CHAR(12),
+age NUMBER(5)
+);
+
+
+CHAR(5)	 : ABE -> 3글자를 입력했지만 5글자입력됨. 공백 2개를 데이터로 인식함.
+VARCHAR2(5) : ABE ->3글자만 입력됨.
+
+ desc test2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 CHAR(5)
+ NAME                                               CHAR(12)
+ AGE                                                NUMBER(5)
+
+table 수정
+test2 테이블에 address라는 컬럼을 추가..
+
+ALTER TABLE test2 ADD address VARCHAR2(100);
+
+test2 테이블에 phone라는 컬럼을 추가..
+ALTER TABLE test2 ADD phone NUMBER(11);
+
+colume수정...( MODIFY )
+
+test2 테이블의 phone 컬럼의 자료형을 VARCHAR2(11) 로 변경
+ALTER TABLE test2 MODIFY phone VARCHAR2(11);
+
+test2 테이블의 name 컬럼의 자료형을 VARCHAR2(12) 로 변경
+ALTER TABLE test2 MODIFY name VARCHAR2(12);
+
+
+컬럼명 변경...( RENAME COLUMN 컬럼명 )
+RENAME COLUMN A TO B; 				// A컬럼 을 B로변경
+ALTER TABLE test2 RENAME COLUMN phone TO tel;	// phone을  tel로 변경
+
+age ->nai
+ALTER TABLE test2 RENAME COLUMN age TO nai;
+
+ALTER TABLE test2 RENAME COLUMN nai TO age;
+ALTER TABLE test2 RENAME COLUMN tel TO phone;
+
+
+컬럼 삭제...( DROP COLUMN 컬럼명 )
+ALTER TABLE test2 DROP COLUMN phone;
+ALTER TABLE test2 DROP COLUMN address;
+
+
+테이블명 변경...( RENAME )
+RENAME test2 TO tbl_test2;
+
+
+테이블 삭제 ...
+DROP TABLE test;
+DROP TABLE tbl_test2 CASCADE CONSTRAINTS;	// 제약조건 무시하고 삭제
+
+테이블 생성
+create table employee(
+eid VARCHAR2(6),
+ename VARCHAR2(21),
+depart VARCHAR2(21)
+);
+
+테이블에 데이터 입력.. (INSERT INTO) 
+INSERT INTO employee (eid, ename, depart)		// 데이터 들어오는 순서도 맞쳐야한다.
+values
+('e001','홍길동','인사팀');
+
+INSERT INTO employee (eid, ename, depart)		
+values
+('e002','김유신','영업부');
+
+INSERT INTO employee (ename, depart)		
+values
+('유관순','홍보팀');
+
+INSERT INTO employee (depart, eid)
+values
+('비서팀','e004');
+
+SELECT * FROM employee;	// employee 테이블에 있는 모든것을 가져온다.
+
+
+
+DML 작업을 할 때,(create, update, delete)
+C, U, D
+
+commit : 작업 내용을 실제 DB에 저장한다. 이전 데이터가 완전히 UPDATE된다.
+rollback : (INSERT, UPDATE, DELETE)작업 내용을 취소한다.이전 COMMIT한 곳까지만 복구한다.
+
+INSERT INTO employee
+(eid, ename, depart)
+values
+('e005', 'kim','관리부');
+
+INSERT INTO employee
+(eid)
+values
+('e006');
+
+
+INSERT INTO employee
+(eid)
+values
+('e007');
+
+savepoint a;		// 임시저장 
+
+INSERT INTO employee
+(eid)
+values
+('e008');
+INSERT INTO employee
+(eid)
+values
+('e009');
+
+rollback to a;		// savepoint a 포인트까지 롤백...
+
+rollback;	// 커밋 전까지 롤백...
+
+
+INSERT INTO employee		// 컬럼 순서를 정확히 알고있으면 생략가능...
+values
+('e006','kim','영업부');
+
+// UPDATE
+UPDATE employee 
+SET 
+ename = 'park',
+depart = '인사팀'
+where
+eid = 'e005';

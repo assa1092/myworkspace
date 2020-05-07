@@ -1,0 +1,896 @@
+Microsoft Windows [Version 10.0.18362.778]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\admin>sqlplus
+
+SQL*Plus: Release 11.2.0.2.0 Production on 목 5월 7 11:24:54 2020
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> exit
+Disconnected from Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+C:\Users\admin>sqlplus
+
+SQL*Plus: Release 11.2.0.2.0 Production on 목 5월 7 11:28:56 2020
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> exit
+Disconnected from Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+C:\Users\admin>sql plus system/sys1234
+'sql'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
+배치 파일이 아닙니다.
+
+C:\Users\admin>sqlplus system/sys1234	 // system/sys1234 (id/pw) 로 접속해서 sqlplus 실행
+
+SQL*Plus: Release 11.2.0.2.0 Production on 목 5월 7 11:30:27 2020
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> CREATE USER ca IDENTIFIED BY ca	// 새로운 유저 ca 생성 비번은 ca 
+  2  ;
+
+User created.
+
+SQL> show user					// 지금 접속한 유져 보여주기
+USER is "SYSTEM"
+SQL> conn ca/ca				// conn ca/ca 유져 변경...
+ERROR:
+ORA-01045: user CA lacks CREATE SESSION privilege; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> show user
+USER is ""
+SQL> conn system/sys1234		// conn system/sys1234 시스템으로 접속...
+Connected.
+SQL> show user
+USER is "SYSTEM"
+SQL> GRANT CONNECT, RESOURCE, DBA TO ca	// GRANT 유저에게 권한 부여, CONNECT, RESOURCE, DBA TO ca에게
+  2  ;
+
+Grant succeeded.
+
+SQL> conn ca/ca		// 사용자 변경
+Connected.
+SQL> show user			// 현 사용자 보기
+USER is "CA"
+SQL> conn system/sys1234	// 사용자 변경
+Connected.
+SQL> show user			// 현 사용자 보기
+USER is "SYSTEM"
+SQL> REVOKE CONNECT TO ca	
+  2  ;
+REVOKE CONNECT TO ca
+       *
+ERROR at line 1:
+ORA-00990: missing or invalid privilege
+
+
+SQL> REVOKE CONNECT FROM ca		// ca 사용자에게 CONNECT 권한 취소.
+  2  ;
+
+Revoke succeeded.
+
+SQL> SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE='ca';
+
+no rows selected
+
+SQL> SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE='CA';	// GRANTEE='CA'인 유저의 권한보기
+
+GRANTEE
+------------------------------------------------------------
+GRANTED_ROLE                                                 ADMIN_ DEFAUL
+------------------------------------------------------------ ------ ------
+CA
+RESOURCE                                                     NO     YES
+
+CA
+DBA                                                          NO     YES
+
+
+SQL> REVOKE  RESOURCE, DBA FROM ca;			// ca 사용자로부터 RESOURCE, DBA 권한 취소
+
+Revoke succeeded.
+
+SQL> SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE='CA';		// GRANTEE='CA'인 유저의 권한보기
+
+no rows selected
+
+SQL> GRANT CONNECT, RESOURCE, DBA TO ca;			// ca 사용자에게 RESOURCE, DBA 권한 부여
+
+Grant succeeded.
+
+SQL> SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE='CA';	// GRANTEE='CA'인 유저의 권한보기
+
+GRANTEE
+------------------------------------------------------------
+GRANTED_ROLE                                                 ADMIN_ DEFAUL
+------------------------------------------------------------ ------ ------
+CA
+CONNECT                                                      NO     YES
+
+CA
+RESOURCE                                                     NO     YES
+
+CA
+DBA                                                          NO     YES
+
+
+SQL> conn system/sys1234		// 사용자 변경
+Connected.
+SQL> ALTER USER ca IDENTIFIED BY ca2;	// ca 유저의 비번 변경
+
+User altered.
+
+SQL> conn ca/ca		// 사용자 변경
+ERROR:				// 비번 바뀌어서 접속 에러
+ORA-01017: invalid username/password; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> show user
+USER is ""
+SQL> conn ca/ca2
+Connected.
+SQL> conn system/sys1234
+Connected.
+SQL> DROP USER ca		// ca사용자 삭제
+  2  ;
+
+User dropped.
+
+SQL> show user
+USER is "SYSTEM"
+SQL> conn ca/ca2		// 사용자 변경	
+ERROR:				// ca 사용자 삭제되어서 접속 불가.
+ORA-01017: invalid username/password; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> CREATE USER ca IDENTIFIED BY ca;		// ca 사용자 생성
+SP2-0640: Not connected
+SQL> conn system/sys1234				// 사용자 변경
+Connected.
+SQL> CREATE USER ca IDENTIFIED BY ca;		// 사용자 생성
+
+User created.
+
+SQL> GRANT CONNECT, RESOURCE, DBA TO ca;		// GRANT 권한부여 CONNECT,RESOURCE,DBA TO ca
+
+Grant succeeded.
+
+SQL> show^C
+C:\Users\admin>
+
+C:\Users\admin>
+C:\Users\admin>
+C:\Users\admin>
+C:\Users\admin>
+C:\Users\admin>
+C:\Users\admin>sqlplus
+
+SQL*Plus: Release 11.2.0.2.0 Production on 목 5월 7 12:44:53 2020
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE='CA';
+
+GRANTEE
+------------------------------------------------------------
+GRANTED_ROLE                                                 ADMIN_ DEFAUL
+------------------------------------------------------------ ------ ------
+CA
+CONNECT                                                      NO     YES
+
+CA
+RESOURCE                                                     NO     YES
+
+CA
+DBA                                                          NO     YES
+
+
+SQL> CREATE TEBLE test(
+  2  id VARCHAR2(6),
+  3  name VARCHAR2(21),
+  4  age NUMBER(3),
+  5  address NVARCHAR2(7)
+  6  );
+CREATE TEBLE test(
+       *
+ERROR at line 1:
+ORA-00901: invalid CREATE command
+
+
+SQL> CREATE TABLE test(		// test 테이블 생성 id, name, age, address 라는 컬럼을 가진
+  2  id VARCHAR2(6),
+  3  name VARCHAR2(21),
+  4  age NUMBER(3),
+  5  address NVARCHAR2(7)
+  6  );
+
+Table created.
+
+SQL>
+SQL> DROP TABLE test;			// test 테이블 제거
+
+Table dropped.
+
+SQL> CREATE TABLE test2(		// test2 테이블 생성 id, name, age 라는 컬럼
+  2  id CHAR(5),
+  3  name CHAR(12),
+  4  age NUMBER(5)
+  5  );
+
+Table created.
+
+SQL> desc test2		// test2 테이블 내용 보여주기..
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 CHAR(5)
+ NAME                                               CHAR(12)
+ AGE                                                NUMBER(5)
+
+SQL> ALTER TABLE test2 ADD address VARCHAR2(100);   // test2테이블의 address 컬럼 ADD VARCHAR2(100)자료형으로
+
+Table altered.
+
+SQL> DESC TEST2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 CHAR(5)
+ NAME                                               CHAR(12)
+ AGE                                                NUMBER(5)
+ ADDRESS                                            VARCHAR2(100)
+
+SQL> ALTER TABLE test2 ADD phone NUMBER(11);	// 테이블에 컬럼 추가
+
+Table altered.
+
+SQL> desc test2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 CHAR(5)
+ NAME                                               CHAR(12)
+ AGE                                                NUMBER(5)
+ ADDRESS                                            VARCHAR2(100)
+ PHONE                                              NUMBER(11)
+
+SQL> ALTER TABLE test2 MODIFY phone VARCHAR2(11);		// test2 테이블에 phone컬럼 변경 (MODIFY)
+
+Table altered.
+
+SQL> DESC TEST2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 CHAR(5)
+ NAME                                               CHAR(12)
+ AGE                                                NUMBER(5)
+ ADDRESS                                            VARCHAR2(100)
+ PHONE                                              VARCHAR2(11)
+
+SQL> ALTER TABLE test2 MODIFY name VARCHAR2(12);		// test2 테이블에 name컬럼 변경 (MODIFY)
+
+Table altered.
+
+SQL> DESC TEST2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 CHAR(5)
+ NAME                                               VARCHAR2(12)
+ AGE                                                NUMBER(5)
+ ADDRESS                                            VARCHAR2(100)
+ PHONE                                              VARCHAR2(11)
+
+SQL> ALTER TABLE test2 RENAME COLUMN phone TO tel;		// test2테이블의 이름변경  RENAME COLUMN A TO B -> A에서 B로 변경
+
+Table altered.
+
+SQL> DESC TEST2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 CHAR(5)
+ NAME                                               VARCHAR2(12)
+ AGE                                                NUMBER(5)
+ ADDRESS                                            VARCHAR2(100)
+ TEL                                                VARCHAR2(11)
+
+SQL> ALTER TABLE test2 RENAME COLUMN age TO nai;		// test2테이블의 이름변경  RENAME COLUMN A TO B -> A에서 B로 변경
+
+Table altered.
+
+SQL> desc test2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 CHAR(5)
+ NAME                                               VARCHAR2(12)
+ NAI                                                NUMBER(5)
+ ADDRESS                                            VARCHAR2(100)
+ TEL                                                VARCHAR2(11)
+
+SQL> ALTER TABLE test2 RENAME COLUMN nai TO age;		// test2테이블의 이름변경  RENAME COLUMN A TO B -> A에서 B로 변경
+
+Table altered.
+
+SQL> ALTER TABLE test2 RENAME COLUMN tel TO phone;		// test2테이블의 이름변경  RENAME COLUMN A TO B -> A에서 B로 변경
+
+Table altered.
+
+SQL> desc test2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 CHAR(5)
+ NAME                                               VARCHAR2(12)
+ AGE                                                NUMBER(5)
+ ADDRESS                                            VARCHAR2(100)
+ PHONE                                              VARCHAR2(11)
+
+SQL> ALTER TABLE test2 DROP COLUMN phone;			// test2테이블의 phone컬럼 삭제 DROP COLUMN 
+
+Table altered.
+
+SQL> desc test2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 CHAR(5)
+ NAME                                               VARCHAR2(12)
+ AGE                                                NUMBER(5)
+ ADDRESS                                            VARCHAR2(100)
+
+SQL> ALTER TABLE test2 DROP COLUMN address;			// test2테이블의 address컬럼 삭제 DROP COLUMN 
+
+Table altered.
+
+SQL> desc test2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 CHAR(5)
+ NAME                                               VARCHAR2(12)
+ AGE                                                NUMBER(5)
+
+SQL> RENAME test2 to tbl_test2;				// RENAME A TO B	-> A에서 B 로 이름 변경
+
+Table renamed.
+
+SQL> desc test2
+ERROR:
+ORA-04043: object test2 does not exist
+
+
+SQL> desc tbl_test2
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 CHAR(5)
+ NAME                                               VARCHAR2(12)
+ AGE                                                NUMBER(5)
+
+SQL> DROP TABLE tbl_test2 CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> SELECT * FROM tbl_test2;
+SELECT * FROM tbl_test2
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> create table employee(
+  2  eid VARCHAR2(6),
+  3  ename VARCHAR2(21),
+  4  depart VARCHAR2(21)
+  5  );
+
+Table created.
+
+SQL> desc employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                VARCHAR2(6)
+ ENAME                                              VARCHAR2(21)
+ DEPART                                             VARCHAR2(21)
+
+SQL> INSERT INTO employee (eid, ename, depart)
+  2  values
+  3  ('e001','홍길동','인사팀');
+
+1 row created.
+
+SQL> desc employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                VARCHAR2(6)
+ ENAME                                              VARCHAR2(21)
+ DEPART                                             VARCHAR2(21)
+
+SQL> select * from employee
+  2  ;
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e001         홍길동
+인사팀
+
+
+SQL> INSERT INTO employee (eid, ename, depart)
+  2  values
+  3  ('e002','김유신','영업부');
+
+1 row created.
+
+SQL> select * from employee;
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e001         홍길동
+인사팀
+
+e002         김유신
+영업부
+
+
+SQL> INSERT INTO employee (ename, depart)
+  2  values
+  3  ('유관순','홍보팀');
+
+1 row created.
+
+SQL> select * from employee;
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e001         홍길동
+인사팀
+
+e002         김유신
+영업부
+
+             유관순
+홍보팀
+
+
+SQL> INSERT INTO employee (dpart, eid)
+  2  values
+  3  ('비서팀','e004');
+INSERT INTO employee (dpart, eid)
+                      *
+ERROR at line 1:
+ORA-00904: "DPART": invalid identifier
+
+
+SQL> INSERT INTO employee (depart, eid)
+  2  values
+  3  ('비서팀','e004');
+
+1 row created.
+
+SQL> select * from employee;
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e001         홍길동
+인사팀
+
+e002         김유신
+영업부
+
+             유관순
+홍보팀
+
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e004
+비서팀
+
+
+SQL> SELECT * FROM employee
+  2  ;
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e001         홍길동
+인사팀
+
+e002         김유신
+영업부
+
+             유관순
+홍보팀
+
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e004
+비서팀
+
+
+SQL> SELECT * FROM employee WHERE ename = '유관순';
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+             유관순
+홍보팀
+
+
+SQL> SELECT EID FROM employee WHERE ename = '유관순';
+
+EID
+------------
+
+
+SQL> show user
+USER is "SYSTEM"
+SQL> exit;
+Disconnected from Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+C:\Users\admin>sqlplus system/sys1234
+
+SQL*Plus: Release 11.2.0.2.0 Production on 목 5월 7 15:43:26 2020
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> SELECT * FROM employee;
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e001         홍길동
+인사팀
+
+e002         김유신
+영업부
+
+             유관순
+홍보팀
+
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e004
+비서팀
+
+
+SQL> INSERT INTO employee
+  2  (eid, ename, depart)
+  3  values
+  4  ('e005', 'kim','관리부');
+
+1 row created.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from employee;
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e001         홍길동
+인사팀
+
+e002         김유신
+영업부
+
+             유관순
+홍보팀
+
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e004
+비서팀
+
+
+SQL> INSERT INTO employee
+  2  (eid, ename, depart)
+  3  values
+  4  ('e005', 'kim','관리부');
+
+1 row created.
+
+SQL> commit
+  2  ;
+
+Commit complete.
+
+SQL> select * from employee;
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e001         홍길동
+인사팀
+
+e002         김유신
+영업부
+
+             유관순
+홍보팀
+
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e004
+비서팀
+
+e005         kim
+관리부
+
+
+SQL> INSERT INTO employee
+  2  (eid)
+  3  values
+  4  ('e006');
+
+1 row created.
+
+SQL> INSERT INTO employee
+  2  (eid)
+  3  values
+  4  ('e007');
+
+1 row created.
+
+SQL> savepoint a;
+
+Savepoint created.
+
+SQL> INSERT INTO employee
+  2  (eid)
+  3  values
+  4  ('e008');
+
+1 row created.
+
+SQL> INSERT INTO employee
+  2  (eid)
+  3  values
+  4  ('e009');
+
+1 row created.
+
+SQL> select eid from employee;
+
+EID
+------------
+e001
+e002
+
+e004
+e005
+e006
+e007
+e008
+e009
+
+9 rows selected.
+
+SQL> rollback to a;
+
+Rollback complete.
+
+SQL> select eid from employee;
+
+EID
+------------
+e001
+e002
+
+e004
+e005
+e006
+e007
+
+7 rows selected.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select eid from employee;
+
+EID
+------------
+e001
+e002
+
+e004
+e005
+
+SQL> INSERT INTO employee
+  2  values
+  3  ('e006','kim','영업부');
+
+1 row created.
+
+SQL> select * from employee
+  2  ;
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e001         홍길동
+인사팀
+
+e002         김유신
+영업부
+
+             유관순
+홍보팀
+
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e004
+비서팀
+
+e005         kim
+관리부
+
+e006         kim
+영업부
+
+
+6 rows selected.
+
+SQL> INSERT INTO employee
+  2  values
+  3  ('e006','kim','영업부');INSERT INTO employee
+  4  values
+  5  exit
+  6  exit;
+('e006','kim','영업부');INSERT INTO employee
+                          *
+ERROR at line 3:
+ORA-00911: invalid character
+
+
+SQL> UPDATE employee
+  2  SET
+  3  ename = 'park',
+  4  depart = '인사팀'
+  5  where
+  6  eid = 'e005';
+
+1 row updated.
+
+SQL> select * from employee;
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e001         홍길동
+인사팀
+
+e002         김유신
+영업부
+
+             유관순
+홍보팀
+
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e004
+비서팀
+
+e005         park
+인사팀
+
+e006         kim
+영업부
+
+
+6 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from employee;
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e001         홍길동
+인사팀
+
+e002         김유신
+영업부
+
+             유관순
+홍보팀
+
+
+EID          ENAME
+------------ ------------------------------------------
+DEPART
+------------------------------------------
+e004
+비서팀
+
+e005         park
+인사팀
+
+e006         kim
+영업부
+
+
+6 rows selected.
+
+SQL> show user
+USER is "SYSTEM"
+SQL> conn ca/ca2
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> conn ca/ca
+Connected.
+SQL> show user
+USER is "CA"
+SQL>
