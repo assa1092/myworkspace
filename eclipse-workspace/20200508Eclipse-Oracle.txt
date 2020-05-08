@@ -1,0 +1,81 @@
+1. ojdbc.jar 파일을 클래스패스에 복붙한 이유
+ - jdbc 작업을 위한 사전 작업
+
+2. Data Source Explorer 작업은
+ - jdbc 작업과 관련이 없음.
+ - 이클립스에서 db 작업하려고
+ - cmd 에서 db 작업하면 불편함.
+ - commit, rollback
+ - autocommit
+
+
+국민이 있습니다.
+국민들의 정보를 db로 관리하려합니다.
+
+기본키 = 주키 = p.k = primary key
+테이블에서 
+특정 레코드 하나를 선택할 수 있게 하는 컬럼.
+ - unique하다. -> 유니크 제약조건 : 중복이 되면 안된다. 유일무이
+ - 반드시 값을 가져야 한다. not null 제약조건
+
+무결성제약조건
+외래키, foreign key
+1. 다른 테이블(Child)의 외래키가 되기 위해서는 
+   테이블(Parent)의 primary key이여야 한다.
+2. 외래키로 지정된 컬럼은 부모 테이블에 있는 값만을 입력받을 수있다.
+   그리고 그 외래키에 null 값을 입력할 수 있다.
+
+1.식별관계
+부모 테이블의 기본키가 자식 테이블의 외래키이면서 기본키로도 사용되 수있다.
+
+2. 비식별관게
+부모 테이블의 기본키를 자식테이블의 외래키로만 사용했다.
+
+create table test2(
+id number(3) primary key,
+name varchar2(21)
+)
+
+create table test3(
+id number(3),
+name varchar2(21),
+constraint pk_test3_id primary key(id)		
+)
+// 제약사항: 테이블3의 id를 pk로한다.constraint pk_test3_id
+// primary key(id) id를 pk로...
+
+create table test4(
+id number(3),
+name varchar2(21)
+)
+
+alter table test4 add constraint pk_test4_id primary key(id)
+
+
+
+create table depart(
+did number(3),
+dname varchar2(20) not null		// null값만 아니면 상관없다. 중복가능
+)
+
+alter table depart add constraint pk_depart_did primary key(did)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
