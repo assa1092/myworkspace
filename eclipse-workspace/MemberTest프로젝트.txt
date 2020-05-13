@@ -1,0 +1,55 @@
+
+
+
+
+
+
+1. Process 클래스 생성
+2. MainEx 클래스에 Process() 익명객체생성
+3. MemberDTO 클래스 생성 
+   implements Serializable // 직렬화 하기위해
+   
+4. DB 클래스 생성
+   List컬랙션으로 MemberDTO타입의 db객체 만든다.
+5. Command 인터페이스 생성 execute(Scanner sc)
+
+6. Command 인터페이스를 상속 받는 InsertCommand, SelectCommand, UpdateCommand, DeleteCommand 생성한다.
+7. InsertCommand 구현
+8. SelectCommand
+9. UpdateCommand
+10. DeleteCommand
+11. Process 구현...
+12. 실행(테스트).
+
+
+
+
+
+selectcommand, updatecommand, deletecommand
+process
+
+
+
+
+
+
+
+
+
+
+1. Process 클래스 생성
+2. MainEx의 main()메서드에서 Process 클래스를 이용해서 익명의 개체 1개 생성
+3. Command 인터페이스 생성
+4. InsertCommand, SelectCommand, UpdateCommand, DeleteCommand를 생성
+5. InsertCommand 구현.
+6. SelectCommand 구현.
+7. UpdateCommand 구현.
+8. DeleteCommand 구현.
+9. Process 클래스의 디폴트 생성자 구현.
+10. 실행(테스트)
+
+
+
+
+
+

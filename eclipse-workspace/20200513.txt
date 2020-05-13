@@ -1,0 +1,14 @@
+com.naver.Process() : full package 명.
+
+Scanner 객체 사용시
+nextLine 이 아닌경우는 무조건 sc.nextLine();추가
+
+DTO : Data Transfer Object
+TO : Transfer Object
+VO : Value Object
+객체 = object = instance= bean=  entity (일반적으로 같은 개념으로 본다.)
+
+
+implements Serializable 직렬화 때문에. 
+무조건 default constructor는 만든다.
+사용자 생성자, getter/setter, ( overriding-> equals/hashcode, toString ) 만든다.
