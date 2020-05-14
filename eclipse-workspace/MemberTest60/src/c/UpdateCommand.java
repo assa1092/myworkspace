@@ -11,28 +11,29 @@ public class UpdateCommand implements Command {
 
 	@Override
 	public void execute(Scanner sc) {
-		System.out.println("수정할 id를 입력하세요.");
+		System.out.println("수정 아이디");
 		String id = sc.nextLine();
 		
-		MemberDTO dto =  new MemberDTO(id, null, -1);
+		MemberDTO dto = new MemberDTO(id, null, -1);
 		boolean isMember = DB.db.contains(dto);
 		
-		if(isMember) {
-			System.out.println("이름을 입력하세요.");
-			String name = sc.nextLine();
+		if (isMember) {
+			System.out.println("이름");
+			String name= sc.nextLine();
 			
-			System.out.println("나이를 입력하세요.");
+			System.out.println("나이");
 			int age = sc.nextInt();
 			
 			dto.setAge(age);
 			dto.setName(name);
-			int idx = DB.db.indexOf(dto);
+			
+			int idx =DB.db.indexOf(dto);
 			
 			DB.db.set(idx, dto);
+			
 		}else {
-			System.out.println("회원이 아닙니다.");
+			System.out.println("회원 아님");
 		}
-		
 		
 	}
 
