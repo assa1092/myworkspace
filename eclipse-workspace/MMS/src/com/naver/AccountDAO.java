@@ -42,7 +42,7 @@ public class AccountDAO {
 			
 			// 여기까지 온것은 null이 아니라는것이기 때문에 닫는다.
 			pstmt1.close();
-			System.out.println(4/0);	// 4/0나누면 에러... 트렌젝션 상황 만듬
+			// System.out.println(4/0);	// 4/0나누면 에러... 트렌젝션 상황 만듬
 			
 			// 입금되는 형태 만들기
 			pstmt2 = conn.prepareStatement(sql2);

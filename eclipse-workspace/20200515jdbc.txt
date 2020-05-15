@@ -1,0 +1,20 @@
+JDBC
+Java
+DB
+Connectivity
+
+DAO(DB쪽에 문제가 생기면 여기만 바꾸면된다.)
+Data(base)
+Access
+Object
+
+
+pstmt.executeUpdate();======> select 로 시작하는게 아니면 무조건
+
+
+pstmt.executeQuery();==========> select 로 시작하는것은 무조건
+
+// sql 에서는 숫자빼고 무조건 ''안에 넣는다...
+select * from tbl_member where
+
+transaction
