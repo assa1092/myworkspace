@@ -8,3 +8,4 @@ insert into account (name, balance) values ('b',1000)
 select * from ACCOUNT
 
 update account set balance = 1000 where name ='a'
+select * from TBL_MEMBER
