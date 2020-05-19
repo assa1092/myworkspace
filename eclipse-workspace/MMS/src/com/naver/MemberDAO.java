@@ -93,6 +93,119 @@ public class MemberDAO {
 	}
 	
 	
+	public List<MemberDTO> selectByName(String name){
+		List<MemberDTO> list = new ArrayList<MemberDTO>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from tbl_member WHERE name=?";
+		
+		try {
+			conn =  DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			System.out.println("커낵션 연결 성공");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, name);
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String id = rs.getString("id");
+				int age = rs.getInt("age");
+				
+				MemberDTO dto = new MemberDTO(id, name, age);
+				list.add(dto);
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("커낵션 연결 실패");
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+				
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+		
+		
+		return list;
+		
+	}
+	
+	public MemberDTO selectById(String id) {
+		MemberDTO dto = null;
+		List<MemberDTO> list = new ArrayList<MemberDTO>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from tbl_member WHERE id=?";
+		
+		try {
+			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			System.out.println("커낵션 연결 성공");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+	
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+				
+				//list.add(new MemberDTO(id, name, age));
+				dto = new MemberDTO(id, name, age);
+			}
+			
+			
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("커낵션 연결 실패");
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+				
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+		
+		
+		return dto;
+	}
+	
+	
+	
+	
+	
 	// select 조회는 무조건 반환값이 있어야 한다. 
 	// 반환객체 만들고 바로 return list; 바로 한세트로 작성하고 시작...
 	public List<MemberDTO> selectAll(){

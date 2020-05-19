@@ -60,7 +60,7 @@ public class AccountDAO {
 				if(isOk) {
 					conn.commit();		// true 면 commit
 				}else {
-					conn.rollback();	// false 면 rollback
+					conn.rollback();	// false면 중간에 트렌젝션 상황이 발생한것. 그래서  rollback
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
