@@ -22,16 +22,14 @@ public class Process {
 			menu = sc.nextInt();
 			sc.nextLine();
 
-			if (menu == 4) {
-				new main.MainProcess();
-			}
+		
 			if (menu < command.length) {
 				command[menu].execute(sc);
 			} else {
 				isTrue = false;
 			}
 		}
-		System.out.println("종료");
-		sc.close();
+		System.out.println("창고 관리 종료");
+		
 	}
 }

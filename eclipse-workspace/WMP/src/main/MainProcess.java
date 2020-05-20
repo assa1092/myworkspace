@@ -2,6 +2,8 @@ package main;
 
 import java.util.Scanner;
 
+import main.search.SearchProcess;
+
 public class MainProcess {
 	public MainProcess() {
 
@@ -17,27 +19,24 @@ public class MainProcess {
 
 			switch (menu) {
 			case 1:
-
 				new product.com.naver.Process();
-
 				break;
 			case 2:
-
 				new storage.com.naver.Process();
-
 				break;
 			case 3:
-
 				new manager.com.naver.Process();
-			case 4:
-				new SelectProcess();
-
-			case 5:
-				isRun = false;
-				System.out.println("프로그램 종료");
 				break;
+			case 4:
+				new SearchProcess();
+				break;
+			case 5:
+
+				isRun = false;
+
 			}
 		}
-
+		System.out.println("프로그램 종료");
+		sc.close();
 	}
 }

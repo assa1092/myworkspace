@@ -14,7 +14,6 @@ public class ProductDTO implements Serializable {
 	private int price;
 	private int discount;
 	private String sid;
-	private int totalPrice = price - discount;
 
 	public ProductDTO() {
 	}

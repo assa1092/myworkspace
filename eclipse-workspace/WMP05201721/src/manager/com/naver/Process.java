@@ -20,12 +20,10 @@ public class Process {
 		
 		while (isTrue) {
 			System.out.println("메뉴를 선택해주세요.");
-			System.out.println("0. 직원 정보 입력, 1. 직원 정보 조회, 2.직원 정보 수정, 3. 직원 정보 삭제, 4. 돌아가기");
+			System.out.println("0. 관리자 정보 입력, 1. 관리자 정보 조회, 2.관리자 정보 수정, 3. 관리자 정보 삭제, 4. 돌아가기");
 			menu = sc.nextInt();
 			sc.nextLine();
-			if (menu ==4) {
-				new main.MainProcess();
-			}	
+		
 			
 			if (menu < command.length) {
 				command[menu].execute(sc);
@@ -33,7 +31,7 @@ public class Process {
 				isTrue = false;
 			}
 		}		
-		System.out.println("프로그램 종료");
-		sc.close();
+		System.out.println("관리자 관리 종료");
+		
 	}
 }

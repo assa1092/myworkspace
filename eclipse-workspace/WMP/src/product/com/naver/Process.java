@@ -20,15 +20,12 @@ public class Process {
 			System.out.println("0: 물품 입력, 1: 물품 조회, 2: 물품 수정, 3: 물품 삭제, 4: 돌아가기");
 			menu = sc.nextInt();
 			sc.nextLine();
-			if(menu == 4) {
-				new main.MainProcess();
-			}
 			if (menu < productCommand.length) {
 				productCommand[menu].execute(sc);
 			} else {
 				isTrue = false;
 			}
 		}
-		sc.close();
+		System.out.println("물품 관리 종료");
 	}
 }

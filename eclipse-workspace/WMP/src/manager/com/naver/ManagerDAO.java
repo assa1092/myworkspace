@@ -24,11 +24,11 @@ public class ManagerDAO {
 			System.out.println("드라이버 연결 실패");
 		}
 	}
-	// ���� 
+	// 삭제
 	public void delete(String mid) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "delete from tbl_manager WHERE id=?";
+		String sql = "delete from tbl_manager WHERE mid=?";
 		
 		boolean isOk = false;
 		
@@ -78,7 +78,7 @@ public class ManagerDAO {
 		
 	}
 	
-	// ����.
+	// 수정
 	public void update(ManagerDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -134,7 +134,9 @@ public class ManagerDAO {
 		
 	}
 	
-	// ��ü ��ȸ
+	
+	
+	// 조회
 	public List<ManagerDTO> selectAll() {
 		List<ManagerDTO> list = new ArrayList<ManagerDTO>();
 		
@@ -200,7 +202,7 @@ public class ManagerDAO {
 	}
 	
 	
-	// ����.
+	// 입력
 	public void insert(ManagerDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
