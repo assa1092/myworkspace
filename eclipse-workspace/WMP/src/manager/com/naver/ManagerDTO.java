@@ -11,7 +11,6 @@ public class ManagerDTO implements Serializable {
 	private String mid;
 	private String mname;
 	private String dept;
-	
 
 	public ManagerDTO() {
 		// TODO Auto-generated constructor stub
@@ -79,8 +78,8 @@ public class ManagerDTO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "===============================\n" + mid + "\n" + "이름   : " + mname + "\n" + "부서   : " + dept + "\n"
-				+ "\n===============================\n";
+		return "===============================\n" + mid + "\n" + "이름   : " + mname + "\n" + "부 서   : " + dept + "\n"
+				+ "===============================\n";
 	}
 
 }

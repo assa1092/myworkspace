@@ -82,7 +82,7 @@ public class StorageDTO {
 
 	@Override
 	public String toString() {
-		return "===============================\n" + sid + "\n위치 : " + location + "\n관리 품목 : " + stype + "\n관리자 : "
+		return "===============================\n" + sid + "\n창고 위치 : " + location + "\n제품종류 : " + stype + "\n관리자 : "
 				+ mid + "\n===============================\n";
 	}
 

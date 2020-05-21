@@ -11,9 +11,13 @@ public class MainProcess {
 		int menu = -1;
 		Scanner sc = new Scanner(System.in);
 		while (isRun) {
-			System.out.println("물류 관리");
+			System.out.println("======================");
+			System.out.println("물류 관리 시스템");
+			System.out.println("======================");
 			System.out.println("메뉴를 선택해주세요.");
-			System.out.println("1: 물품 관리, 2: 창고 관리, 3: 관리자 관리, 4: 검색, 5: 종료");
+			System.out.println("-------------------------------------------------------------------");
+			System.out.println("1: 물품 관리 | 2: 창고 관리 | 3: 관리자 관리 | 4: 검색 | 5: 종료");
+			System.out.println("-------------------------------------------------------------------");
 			menu = sc.nextInt();
 			sc.nextLine();
 
@@ -36,7 +40,7 @@ public class MainProcess {
 
 			}
 		}
-		System.out.println("프로그램 종료");
+		System.out.println("시스템 종료");
 		sc.close();
 	}
 }

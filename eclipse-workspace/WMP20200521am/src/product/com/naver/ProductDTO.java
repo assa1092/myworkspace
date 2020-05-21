@@ -114,7 +114,8 @@ public class ProductDTO implements Serializable {
 	@Override
 	public String toString() {
 		return "===============================\n" + pid + "\n" + "제품명 : " + pname + "\n" + "수량 : " + amount + "개"
-				+ "\n" + "총 가격 : " + (price - (price * discount) / 100) + "원" + "\n===============================\n";
+				+ "\n" + "보관중인 창고 아이디 : " + sid + "\n" + "총 가격 : " + (price - (price * discount) / 100) + "원"
+				+ "\n===============================\n";
 
 	}
 

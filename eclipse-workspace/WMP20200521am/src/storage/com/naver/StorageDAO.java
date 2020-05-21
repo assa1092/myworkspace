@@ -28,22 +28,51 @@ public class StorageDAO {
 		}
 	}
 
+	// 삭제
 	public void delete(String sid) {
 		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = "delete from tbl_storage where sid = ?";
+		// 삭제하기 위해선 mid를 null로 바꿔주어야 하므로 2개의 요청을 한다.
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		// 먼저 삭제하려는 창고의 mid를 null로 바꾸기
+		String sql1 = "update tbl_storage set mid = null where sid = ?";
+		// 삭제되는 창고의 sid를 가지고 있는 물품의 sid값 null로 바꿔주기
+		String sql2 = "update tbl_product set sid = null where sid = ?";
+		boolean update = false;
+		// 바꾼 후 삭제하기
+		String sql3 = "delete from tbl_storage where sid = ?";
 
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setString(1, sid);
-
-			pstmt.executeUpdate();
+			// sql1 실행
+			pstmt1 = conn.prepareStatement(sql1);
+			pstmt1.setString(1, sid);
+			pstmt1.executeUpdate();
+			pstmt1.close();
+			// sql2 실행
+			pstmt2 = conn.prepareStatement(sql2);
+			pstmt2.setString(1, sid);
+			pstmt2.executeUpdate();
+			pstmt2.close();
+			update = true;
+			// tbl_storage의 mid, tbl_product의 sid를 null로 바꾸어 주었다면 삭제 실행
+			if (update) {
+				// sql3 실행
+				pstmt3 = conn.prepareStatement(sql3);
+				pstmt3.setString(1, sid);
+				pstmt3.executeUpdate();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
+				if (pstmt2 != null) {
+					pstmt2.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
 
 			} catch (Exception e2) {
 				e2.printStackTrace();
@@ -51,6 +80,7 @@ public class StorageDAO {
 		}
 	}
 
+	// 수정
 	public void update(StorageDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

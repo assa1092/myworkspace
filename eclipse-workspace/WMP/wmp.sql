@@ -22,4 +22,9 @@ dept varchar2(15)
 
 insert into tbl_manager (mid, mname, dept) values ('m001', 'kim', '인사');
 insert into tbl_storage (sid, location, stype, mid) values ('s001','서울','전자기기','m001');
-select * from tbl_storage
+select * from tbl_product
+delete from tbl_manager
+
+SELECT m.mname  "관리자", m.dept  "부서", s.location   "창고위치", s.stype  "물품 종류", p.pname  "물품 이름", p.amount  "수량", p.price  "가격" 
+FROM tbl_manager m , tbl_storage s , tbl_product p
+WHERE s.sid='s002' and m.mid = s.mid and s.sid = p.sid

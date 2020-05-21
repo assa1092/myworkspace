@@ -14,7 +14,7 @@ public class UpdateCommand implements StorageCommand {
 		System.out.println("수정할 창고 위치를 입력하세요.");
 		String location = sc.nextLine();
 
-		System.out.println("수정할 관리품목을 입력하세요.");
+		System.out.println("수정할 제품종류를 입력하세요.");
 		String stype = sc.nextLine();
 
 		System.out.println("수정할 관리자 아이디를 입력하세요");

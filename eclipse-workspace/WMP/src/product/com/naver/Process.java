@@ -17,7 +17,9 @@ public class Process {
 		Scanner sc = new Scanner(System.in);
 		while (isTrue) {
 			System.out.println("메뉴를 선택해주세요.");
-			System.out.println("0: 물품 입력, 1: 물품 조회, 2: 물품 수정, 3: 물품 삭제, 4: 돌아가기");
+			System.out.println("-------------------------------------------------------------------------");
+			System.out.println("0: 제품 추가 | 1: 제품 조회 | 2: 제품 수정 | 3: 제품 삭제 | 4: 돌아가기");
+			System.out.println("-------------------------------------------------------------------------");
 			menu = sc.nextInt();
 			sc.nextLine();
 			if (menu < productCommand.length) {
@@ -26,6 +28,6 @@ public class Process {
 				isTrue = false;
 			}
 		}
-		System.out.println("물품 관리 종료");
+		System.out.println("제품 관리 종료");
 	}
 }

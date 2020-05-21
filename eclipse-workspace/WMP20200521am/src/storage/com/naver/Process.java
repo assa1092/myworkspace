@@ -17,12 +17,15 @@ public class Process {
 		Scanner sc = new Scanner(System.in);
 
 		while (isTrue) {
-			System.out.println("메뉴 번호를 입력하세요");
-			System.out.println("0.창고 정보 입력, 1. 창고 정보 조회, 2. 창고 정보 수정, 3. 창고 정보 삭제, 4. 돌아가기");
+			System.out.println("메뉴를 선택해주세요.");
+			System.out.println(
+					"---------------------------------------------------------------------------------------------");
+			System.out.println("0: 창고 정보 입력 | 1: 창고 정보 조회 | 2: 창고 정보 수정 | 3: 창고 정보 삭제 | 4: 돌아가기");
+			System.out.println(
+					"---------------------------------------------------------------------------------------------");
 			menu = sc.nextInt();
 			sc.nextLine();
 
-		
 			if (menu < command.length) {
 				command[menu].execute(sc);
 			} else {
@@ -30,6 +33,6 @@ public class Process {
 			}
 		}
 		System.out.println("창고 관리 종료");
-		
+
 	}
 }
