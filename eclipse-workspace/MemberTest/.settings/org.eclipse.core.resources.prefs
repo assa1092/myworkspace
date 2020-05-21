@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/a/InsertCommand.java=euc-kr
+encoding//src/b/SelectCommand.java=euc-kr
+encoding//src/c/UpdateCommand.java=euc-kr
+encoding//src/com/naver/DB.java=euc-kr
+encoding//src/com/naver/MemberDTO.java=euc-kr
+encoding//src/com/naver/Process.java=euc-kr
+encoding//src/d/DeleteCommand.java=UTF-8
+encoding//src/kr/co/ca/Command.java=euc-kr
+encoding//src/kr/co/ca/MainEx.java=euc-kr
+encoding/src=euc-kr
