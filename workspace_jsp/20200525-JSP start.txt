@@ -1,0 +1,40 @@
+JSP/SERVLET 학습 (서버 프로그래밍)
+
+1. tomcat.apache.org 접속
+2. 좌측 메뉴 - Download - Tomcat7 클릭
+3. 우측화면 - 화면의 수직 중간 부분에 
+   - Binary Distributions ->  Core -> 32-bit/64-bit Windows Service Installer(pgp, sha512) 클릭
+
+
+tomcat 설치 : 서버...
+ - Concainer : HTML, CSS, JAVA Script, IMG, MP4...
+ - 서버..
+
+web.xml
+배포서술자
+deployment descriptor
+d.d
+환경 설정파일
+
+
+src 폴더
+ - class
+ - servlet
+
+WebContent 폴더
+ - html, css, js, jsp, img..
+
+Web-INF (외부에서 접근이 불가능한 폴더. 그래서 보완 우수)
+ - lib
+ - classes
+ - web.xml (배포서술자, 환경설정파일)
+
+디자인 패턴
+ - Command 패턴
+ - MVC1 패턴 : 간단한 프로젝트, 취미로 하는 프로젝트, 돈 받고 X (모두 다 jsp로 저장.)
+ - MVC2 패턴 : 복잡한 프로젝트, 직업적으로 하는 프로젝트, 돈 받고 O .. 
+		보안상 더 우수. (Web-INF 폴더와 또 다른 폴더에 저장된다.)
+
+
+
+
