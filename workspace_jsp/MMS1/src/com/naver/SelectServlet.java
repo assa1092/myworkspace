@@ -25,8 +25,12 @@ public class SelectServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, 
+							HttpServletResponse response) 
+									throws ServletException, IOException {
+		
 		Command com = new SelectCommand();
+		// selectCommand로 데이터를 다 불러온다.
 		com.execute(request, response);
 	}
 

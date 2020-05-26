@@ -24,9 +24,11 @@ public class SelectCommand implements Command {
 		// 3. jsp에 뿌려줄 데이터 바인딩(저장.)
 		// void javax.servlet.ServletRequest.setAttribute(String name, Object o)
 		request.setAttribute("list", list);
+		// 보통, key 값과 value 값을 같게 해준다.
 		//request.setAttribute("age", age);
 		
-		//request에 저장된것이 redirect 방식으로하면 데이터가 날라간다.
+		// request에 저장된것이 redirect 방식으로하면 데이터가 사라진다.
+		// Dispatcher 방식으로 보내면 데이터 유지...
 
 		// 4. forwarding 작업.
 		RequestDispatcher dis = request.getRequestDispatcher("select.jsp");

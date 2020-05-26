@@ -16,7 +16,6 @@ import com.sun.media.sound.EmergencySoundbank;
 import kr.co.dto.MemberDTO;
 
 public class MemberDAO {
-	// JNDI (Java Naming Directory Interface) 이름을 이용해서 mapping 
 	// javax.sql 에 있는 DataSource
 	private DataSource dataFactory;
 	
@@ -26,6 +25,7 @@ public class MemberDAO {
 			Context ctx = new InitialContext();
 			
 			// 컨텍스트 객체에서 DataSource 객체를 찾아온다.
+			// JNDI (Java Naming Directory Interface) 이름을 이용해서 mapping 
 			dataFactory = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle11g");	
 			// env이하에는 context.xml에서 설정한 name값이 온다.
 			// Object 를 상속받은것이기때문에 형변환...
@@ -164,6 +164,7 @@ public class MemberDAO {
 		boolean isOk = false;
 		
 		try {
+			// Connection pool 인 dataFactory에서 커낵션 가져오기...
 			conn = dataFactory.getConnection();
 			conn.setAutoCommit(false);
 			
@@ -197,7 +198,7 @@ public class MemberDAO {
 					pstmt.close();
 				}
 				if (conn != null) {
-					conn.close(); 	// 커낵션 반환의 의미
+					conn.close(); 	// 커낵션 풀로  반환의 의미
 				}
 				
 			} catch (Exception e2) {

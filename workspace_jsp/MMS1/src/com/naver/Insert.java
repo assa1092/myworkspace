@@ -55,11 +55,11 @@ public class Insert extends HttpServlet {
 		
 		// 포워딩... 
 		// url-pattern 값이 select 로
-		// Dispatcher 방식 : 주소창에 주소가 안바뀌면서 이동
+		// Dispatcher 방식 : 주소창에 주소가 안바뀌면서 이동 하는 방식
 		// RequestDispatcher dis =  request.getRequestDispatcher("select");	
 		// dis.forward(request, response);
 		
-		// Redirect 방식 :  주소창에 주소가 바뀌면서 방식
+		// Redirect 방식 :  주소창에 주소가 바뀌면서 이동하는 방식
 		response.sendRedirect("select");
 		
 		

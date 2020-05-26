@@ -29,9 +29,10 @@ public class InsertUI extends HttpServlet {
 	protected void doGet(HttpServletRequest request, 
 							HttpServletResponse response) 
 									throws ServletException, IOException {
-		// insert.jsp로 넘어가야 한다.포워딩..
+		// insert.jsp로 넘어가야 한다.포워딩..forwarding
 		RequestDispatcher dis  = request.getRequestDispatcher("insert.jsp");
 		dis.forward(request, response);
+		// Dispatcher방식으로 forwarding 했기때문에 url이 바뀌지는 않는다.
 	}
 
 	/**
