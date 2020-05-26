@@ -1,0 +1,25 @@
+클라이언(사용자)가 서버로 데이타를 전송합니다.
+그러면 그 데이터를 서버에서 획득한다.
+(클라이언트  -> 서버)
+
+서버 -> 클라이언트
+
+
+
+클라이언트 -> 서버   데이터전송
+1. 영문 데이터 전송
+2. 한글 데이터 전송
+  - post : request.setCharacterEncoding()
+  - get : 
+  == project Explorer -> Servers
+  == -> Tomcat v7.0 Server at localhost-config
+  == -> server.xml 더블클릭 65번째 줄에 URIEncoding ="utf-8" 추가
+  == <Connector URIEncoding ="utf-8" connectionTimeout="20000" port="8089" protocol="HTTP/1.1" redirectPort="8443"/>
+
+
+
+input 태그의 형식
+
+1. type  : 입력 태그의 유형을 설정하는 속성
+2. value : 입력 태그의 초기값을 설정하는 속성
+3. name  : 서버로 전달되는 이름을 설정하는 속성
