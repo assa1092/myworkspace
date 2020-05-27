@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SelectServlet
+ * Servlet implementation class Test1
  */
 
-public class SelectServlet extends HttpServlet {
+public class Test1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectServlet() {
+    public Test1() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -25,13 +25,14 @@ public class SelectServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, 
-							HttpServletResponse response) 
-									throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 초기화 파라미터로 선언 했기때문에 요기에서만 호출 가능...
+		String dcn = getInitParameter("driverClassName");
+		String url = getInitParameter("url");
 		
-		Command com = new SelectCommand();
-		// selectCommand로 데이터를 다 불러온다.
-		com.execute(request, response);
+		System.out.println(dcn);
+		System.out.println(url);
+		
 	}
 
 	/**

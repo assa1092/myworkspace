@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SelectServlet
+ * Servlet implementation class Test4Servlet
  */
-
-public class SelectServlet extends HttpServlet {
+@WebServlet("/test4")
+public class Test4Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectServlet() {
+    public Test4Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -25,21 +25,20 @@ public class SelectServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, 
-							HttpServletResponse response) 
-									throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Command com = new SelectCommand();
-		// selectCommand로 데이터를 다 불러온다.
-		com.execute(request, response);
+		String no = (String) request.getAttribute("no");
+		System.out.println(no);
+		
+		System.out.println("test4 doGet");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		System.out.println("test4 doPost");
 	}
 
 }

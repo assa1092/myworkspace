@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Test052702</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 컨텍스트 파라미터 선언-->
+  <!-- 구조상 모든 서블릿에서 사용 가능-->
+  <context-param>
+  	<param-name>username</param-name>
+  	<param-value>ca3</param-value>
+  </context-param>
+  
+  <context-param>
+  	<param-name>password</param-name>
+  	<param-value>pca3</param-value>
+  </context-param>
+  
+  
+  <servlet>
+  	<servlet-name>ntest1</servlet-name>
+  	<servlet-class>com.naver.Test1</servlet-class>
+  	
+  	<!-- 초기화 파라미터 선언-->
+  	<!-- Test1에서만 사용 가능하고 다른곳에서는 안됨.-->
+	<!-- WEB-INF 안에 있어서 보안성이 우수.-->
+  	<init-param>
+  		<param-name>driverClassName</param-name>
+  		<param-value>111</param-value>
+  	</init-param>
+  	
+  	<init-param>
+  		<param-name>url</param-name>
+  		<param-value>naver.com</param-value>
+  	</init-param>
+  	
+  	
+  	
+  	
+  	
+  </servlet>
+  
+  
+  <servlet-mapping>
+  	<servlet-name>ntest1</servlet-name>
+  	<url-pattern>/test1</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  <servlet>
+  	<servlet-name>ntest2</servlet-name>
+  	<servlet-class>com.naver.Test2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ntest2</servlet-name>
+  	<url-pattern>/test2</url-pattern>
+  </servlet-mapping>
+</web-app>

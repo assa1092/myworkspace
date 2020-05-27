@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SelectServlet
+ * Servlet implementation class Test3Servlet
  */
-
-public class SelectServlet extends HttpServlet {
+@WebServlet("/test3")
+public class Test3Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectServlet() {
+    public Test3Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,18 +28,21 @@ public class SelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, 
 							HttpServletResponse response) 
 									throws ServletException, IOException {
+		request.setAttribute("no", "no");
 		
-		Command com = new SelectCommand();
-		// selectCommand로 데이터를 다 불러온다.
-		com.execute(request, response);
+		
+		System.out.println("test3 doGet");
+		response.sendRedirect("test4");
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		System.out.println("test3 doPost");
+		response.sendRedirect("test4");
 	}
 
 }

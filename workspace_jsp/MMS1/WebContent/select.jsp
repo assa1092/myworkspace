@@ -20,7 +20,7 @@
 	
 		Object oList = request.getAttribute("list");
 		List<MemberDTO> list = null;
-		if(oList != null){
+		if(oList != null){			// list 에 값이 있으면 출력..
 			list = (List<MemberDTO>)oList;		// 강제 형변환
 			for(int i = 0;i<list.size();i++){
 				 MemberDTO dto= list.get(i);

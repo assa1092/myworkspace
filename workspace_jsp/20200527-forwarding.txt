@@ -1,0 +1,45 @@
+# request 가 하는 일...
+1. 한글 지원.
+2. client가 보내준 데이터 넘겨받기.
+	String value = request.getParameter(name);
+3. 데이터를 저장 할 수 있는 기능 (data binding)
+
+
+
+forwarding
+
+1. dispatcher  (포워딩 하세요.)
+	RequestDispatcher dis = request.getRequestDispatcher("test2");
+	dis.forward(request, response);
+	요청이 1개만 생성됨, 재사용 (request 스코프)
+	주소가 안 바뀜.
+	get 방식 -> get 방식 유지
+	post 방식 -> post 방식 유지
+
+2. redirect  (리다이렉트하세요...)
+	response.sendRedirect("test2");
+	요청이 2개 이상이 생성됨.
+	주소가 바뀜
+
+	post 방식 -> get 방식으로 변경 된다...
+
+
+지금까지 Servlet에서 JSP로 객체를 보낼 때 사용했던 방법입니다.
+
+Servlet에서는 reqeust.setAttribute("이름", 객체);  로 전달하였고,
+
+JSP에서는 Obeject obj =  request.getAttribute("이름"); 으로 받았습니다.
+
+이 때 사용했던 request 객체가 request 영역입니다.
+
+
+초기화 파라미터 : 특정 서블릿에서만 사용할수있는 파라미터
+컨텍스트  파라미터
+
+
+
+Command 클래스에서 하는 일
+1. 클라이언트가 보내준 데이터 획득및 가공.
+2. DAO 객체 생성 및 해당 메소드 호출
+3. 데이터 바인딩.
+4. 포워딩.

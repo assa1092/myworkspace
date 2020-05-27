@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SelectServlet
+ * Servlet implementation class Test6Servlet
  */
-
-public class SelectServlet extends HttpServlet {
+@WebServlet("/test6")
+public class Test6Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectServlet() {
+    public Test6Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -25,13 +25,15 @@ public class SelectServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, 
-							HttpServletResponse response) 
-									throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 체크박스값 가져와서 보여주기
+		request.setCharacterEncoding("utf-8");
 		
-		Command com = new SelectCommand();
-		// selectCommand로 데이터를 다 불러온다.
-		com.execute(request, response);
+		String[] arr = request.getParameterValues("h");
+		for(String value : arr ) {
+			System.out.println(value);
+		}
+		
 	}
 
 	/**
