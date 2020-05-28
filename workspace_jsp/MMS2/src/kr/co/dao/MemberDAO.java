@@ -11,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import kr.co.domain.LoginDTO;
 import kr.co.domain.MemberDTO;
 
 
@@ -76,6 +77,43 @@ public class MemberDAO {
 		}
 	}
 	
+	public MemberDTO  selectById(String id) {
+		MemberDTO dto = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM member WHERE id=?";
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				// id로 검색하면 하나이거나 없거나...
+				// 이럴때 while 보다는 if가 더 효율적...
+				// rs 객체가 있기때문에 !=null 하면 안된다... 
+				//	rs != null 안된다
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+				
+				dto = new MemberDTO(id, name, age);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		
+		return dto;
+	}
+	
 	
 	public List<MemberDTO> selectAll(){		//selectAll() 말고 나중에는 list 로... 
 		List<MemberDTO> list =  new ArrayList<MemberDTO>();
@@ -84,7 +122,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		// String sql = "SELETE * FROM member";
-		String sql = "SELECT id, name 이름, age 나이 FROM member";
+		String sql = "SELECT id, name 이름, age 나이 FROM member ORDER BY id";
 		
 		try {
 			
@@ -140,6 +178,38 @@ public class MemberDAO {
 	}
 	
 	
+	public boolean login(LoginDTO loginDTO) {
+		boolean login = false;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "SELECT * FROM member WHERE id=? and pw=?" ;
+		ResultSet rs = null;
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, loginDTO.getId());
+			pstmt.setString(2, loginDTO.getPw());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				login = true;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		
+		
+		return login;
+	}
+	
 	
 	// 반복되는것 중복피하기위한 메소드
 	// select 외에는 ResultSet rs의 값을 null 로 주면 된다...
@@ -162,6 +232,11 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		
+	}
+
+	public MemberDTO updateUI(String id) {
+		// TODO Auto-generated method stub
+		return selectById(id);
 	}
 	
 	

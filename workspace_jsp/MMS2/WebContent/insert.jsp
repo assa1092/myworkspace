@@ -13,6 +13,7 @@
 		ID : <input name = "id"><br>
 		Name : <input name = "name"><br>
 		Age : <input type ="number" name = "age"><br>
+		
 		<input type = "submit" value = "가입">
 		
 	</form>

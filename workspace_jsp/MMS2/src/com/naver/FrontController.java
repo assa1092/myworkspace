@@ -38,11 +38,25 @@ public class FrontController extends HttpServlet {
 		
 		Command com = null;
 		if(sp.equalsIgnoreCase("/insertui.do")) {
-			com = new InsertCommand();
-		}else if(sp.equalsIgnoreCase("/insert.do")) {
+			com = new InsertUICommand();
+		} else if(sp.equalsIgnoreCase("/insert.do")) {
 			com = new InsertCommand();
 		} else if(sp.equalsIgnoreCase("/select.do")) {
 			com = new SelectCommand();
+		} else if(sp.equalsIgnoreCase("/selectById.do")) {
+			com = new SelectByIdCommand();
+		} else if(sp.equalsIgnoreCase("/updateui.do")) {
+			com = new UpdateUICommand();
+		} else if(sp.equalsIgnoreCase("/update.do")) {
+			com = new UpdateCommand();
+		} else if(sp.equalsIgnoreCase("/delete.do")) {
+			com = new DeleteCommand();
+		} else if(sp.equalsIgnoreCase("/loginui.do")) {
+			com = new LoginUICommand();
+		} else if(sp.equalsIgnoreCase("/login.do")) {
+			com = new LoginCommand();
+		} else if(sp.equalsIgnoreCase("/logout.do")) {
+			com = new LogoutCommand();
 		}
 		
 		if(com != null) {	
