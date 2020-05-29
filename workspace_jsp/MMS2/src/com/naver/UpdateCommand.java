@@ -18,7 +18,7 @@ import kr.co.domain.MemberDTO;
 public class UpdateCommand implements Command{
 	// 수정한 내용을 DB로 보내는 기능...
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CommandAction execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 클라이언트가 보내준 데이터 획득및 가공.(숫자...)
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
@@ -41,7 +41,8 @@ public class UpdateCommand implements Command{
 		// 수정 다 하면 목록 화면으로 이동...
 		// 주소 바뀌어야해서 redirect
 		
-		response.sendRedirect("select.do");
+//		response.sendRedirect("select.do");
+		return new CommandAction(true, "select.do");
 		
 	}
 }

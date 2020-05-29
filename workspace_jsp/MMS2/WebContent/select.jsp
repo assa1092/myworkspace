@@ -2,6 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +20,15 @@
 	
 	<a href="insertui.do">회원 등록</a><br><br>
 	
+	<!-- 향상된 for 문을 얘기함...forEach  -->
+	<!-- for(int x : arr)    arr->items="${list}"  int x -> var ="dto" -->
+	<c:forEach items="${list}" var ="dto">
+		<a href = "selectById.do?id=${dto.id }">${dto.id} : ${dto.name}</a>
+		<br>
+	</c:forEach>
 	
-	<%
+	  
+	<%-- <%
 		List<MemberDTO> list =  (List<MemberDTO> )request.getAttribute("list");
 		for(int i =0; i<list.size(); i++) {
 			
@@ -32,7 +41,7 @@
 			out.print("<br>");
 			
 		}
-	%>
+	%> --%>
 	
 
 </body>

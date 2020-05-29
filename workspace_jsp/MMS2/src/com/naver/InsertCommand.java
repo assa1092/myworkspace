@@ -19,7 +19,7 @@ import kr.co.domain.MemberDTO;
 public class InsertCommand implements Command{
 	// 입력된 값을 DB에 저장하는 기능.
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CommandAction execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 클라이언트가 보내준 데이터 획득및 가공.(숫자...)
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
@@ -36,7 +36,8 @@ public class InsertCommand implements Command{
 		dao.insert(dto);
 		
 		// 4. 포워딩(dispatcher, redirect).
-		response.sendRedirect("select.do");	// 서블릿을 거칠려면 .do로 넘어가야한다.
+//		response.sendRedirect("select.do");	// 서블릿을 거칠려면 .do로 넘어가야한다.
+		return new CommandAction(true, "select.do");
 		
 		
 	}

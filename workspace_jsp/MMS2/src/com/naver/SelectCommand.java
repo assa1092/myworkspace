@@ -20,7 +20,7 @@ import kr.co.domain.MemberDTO;
 public class SelectCommand implements Command{
 	// 조회하는 기능...
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CommandAction execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 2. DAO 객체 생성 및 해당 메소드 호출
 		MemberDAO dao = new MemberDAO();
@@ -33,7 +33,8 @@ public class SelectCommand implements Command{
 		
 		// 4. 포워딩(dispatcher, redirect).
 		// 리다이렉트로 보내면 데이터가 없어진다...
-		request.getRequestDispatcher("select.jsp").forward(request, response);
+//		request.getRequestDispatcher("select.jsp").forward(request, response);
+		return new CommandAction(false, "select.jsp");
 		
 		
 		

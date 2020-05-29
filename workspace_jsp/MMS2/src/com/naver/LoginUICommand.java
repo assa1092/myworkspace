@@ -16,11 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginUICommand implements Command {
 	// 로그인 화면으로 이동...
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CommandAction execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
 		// 4. 포워딩(dispatcher, redirect).
-		request.getRequestDispatcher("login.jsp").forward(request, response);
+		//request.getRequestDispatcher("login.jsp").forward(request, response);
+		return new CommandAction(false, "login.jsp");
 	}
 
 }

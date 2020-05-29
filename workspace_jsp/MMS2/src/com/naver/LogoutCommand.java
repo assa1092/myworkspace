@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 public class LogoutCommand implements Command {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CommandAction execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//		session
 //		1. session : scope(시간, 브라우져)
@@ -40,7 +40,9 @@ public class LogoutCommand implements Command {
 			// session.setMaxInactiveInterval(1);  // 세션시간을 0으로 설정하기.
 			session.invalidate();		// 세션을 제거하기.
 		}
-			response.sendRedirect("select.do");
+		
+//			response.sendRedirect("select.do");
+			return new CommandAction(true, "select.do");
 		
 
 	}

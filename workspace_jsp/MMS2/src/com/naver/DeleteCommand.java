@@ -20,7 +20,7 @@ import kr.co.domain.LoginDTO;
 public class DeleteCommand implements Command{
 	// delete 는 바로 삭제되니 다른것이 필요없다...
 	@Override
-	public void execute(HttpServletRequest request, 
+	public CommandAction execute(HttpServletRequest request, 
 							HttpServletResponse response) 
 			throws ServletException, IOException {
 		// 1. 클라이언트가 보내준 데이터 획득및 가공.(숫자...)
@@ -45,17 +45,25 @@ public class DeleteCommand implements Command{
 					MemberDAO dao = new MemberDAO();
 					
 					dao.delete(id);
-					response.sendRedirect("select.do");
+					
+					session.invalidate();	// 세션종료. 로그아웃...
+					
+					// true 면 리다이렉트...
+					return new CommandAction(true, "select.do");
+//					response.sendRedirect("select.do");
 				} else {
-					response.sendRedirect("loginui.do");
+					return new CommandAction(true, "loginui.do");
+//					response.sendRedirect("loginui.do");
 				}
 
 			} else {
-				response.sendRedirect("loginui.do");
+				return new CommandAction(true, "loginui.do");
+//				response.sendRedirect("loginui.do");
 			}
 
 		} else {// 세션이 있으면 로그인 되었을 가능이 있다. 없으면 무조건 로그인이 안된상태... 로그인 하고 와...
-			response.sendRedirect("loginui.do");
+			return new CommandAction(true, "loginui.do");
+//			response.sendRedirect("loginui.do");
 		}
 
 		// 2. DAO 객체 생성 및 해당 메소드 호출

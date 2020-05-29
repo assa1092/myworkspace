@@ -1,4 +1,24 @@
-session : scope(시간, 브라우져)
+session
+1. session : scope(시간, 브라우져)
+ - 일정 시간이 지나면 세션은 유지 되지 않음.
+ - 다른 브라우져에서는 세션이 유지 되지 않음.
+2. session 시간 설정
+ - setMaxInactiveInerval() 호출.
+3. 로그 아웃 방법.
+ - 세션시간을 0으로 설정하기.
+ - 세션을 제거하기. session.removeAttribute()
+ - 세션에 바인딩된 데이터 제거하기
+
+
+----------MMS2
+
+1. 회원 삭제후 로그인이 되어있는 상황이 정상인가?
+2. 회원 가입때, 비밀번호를 입력할 수 있게 하는게 좋지 않을까?
+3. 회원 정부 수정 때, 로그인 상태에서 수정하게 하는게 좋지 않을까???
+
+
+
+
 
 
 
@@ -17,7 +37,3 @@ JSP는 HTML문서 사이에 JSP문법코드가 삽입된 형태로 작성된다.
 6. <jsp:~~/>, <c:~~/> - 액션 태그
 
 
-
-출처: https://hyunssssss.tistory.com/61 [현's 블로그]
-
-alter table member add pw varchar2(8)

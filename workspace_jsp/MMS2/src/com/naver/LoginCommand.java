@@ -20,7 +20,7 @@ import kr.co.domain.LoginDTO;
 public class LoginCommand implements Command {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CommandAction execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 클라이언트가 보내준 데이터 획득및 가공.(숫자...)
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -43,9 +43,11 @@ public class LoginCommand implements Command {
 			// session이 유지되는 시간 30초로 설정
 			session.setMaxInactiveInterval(60);
 			session.setAttribute("login", new LoginDTO(id, null));
-			response.sendRedirect("select.do");		
+//			response.sendRedirect("select.do");	
+			return new CommandAction(true, "select.do");
 		} else {	// 로그인이 실패하면  로그인 화면으로 이동
-			response.sendRedirect("loginui.do");	
+			//response.sendRedirect("loginui.do");
+			return new CommandAction(true, "loginui.do");
 		}
 		
 		

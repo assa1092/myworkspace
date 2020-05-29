@@ -19,7 +19,7 @@ import kr.co.domain.MemberDTO;
 public class UpdateUICommand implements Command{
 	// 수정하는 화면으로 넘어가기..
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CommandAction execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 클라이언트가 보내준 데이터 획득및 가공.(숫자...)
 		String id = request.getParameter("id");
 		
@@ -32,6 +32,7 @@ public class UpdateUICommand implements Command{
 		request.setAttribute("dto", dto);
 		
 		// 4. 포워딩(dispatcher, redirect).
-		request.getRequestDispatcher("update.jsp").forward(request, response);
+//		request.getRequestDispatcher("update.jsp").forward(request, response);
+		return new CommandAction(false, "update.jsp");
 	}
 }
