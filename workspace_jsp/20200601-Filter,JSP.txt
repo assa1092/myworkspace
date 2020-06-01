@@ -1,0 +1,72 @@
+Filter
+1. 필터 클래스 생성.
+2. 필터 클래스의 맵핑.
+3. 필터 클래스의 체이닝.
+4. 필터 클래스의 체이닝 순서.
+	- 필터 생성 순서가 아니라.
+	- 필터 맵핑 순서에 따라 필터 위치가 정해진다.
+5. 필터 클래스의 기능.
+	- 요청시 적용되는 기능.
+	- chain.doFilter(request, response);
+	- 응답시 적용되는 기능.
+6. 한글지원 코드는 request 때 둘 다 작성해준다.
+request.setCharacterEncoding("utf-8");
+response.setContentType("text/html;charset=utf-8");
+chain.doFilter(request, response);
+
+
+JSP
+
+1. 주석 태그	<%-- --> :보안이  가장 우수한 주석...소스에서도 보이지 않는다.
+
+2. 지시어(directive ) 태그 : 환경설정 태그
+	- <%@ %>
+	- page directive tag <%@ page %>
+	  - 1. 로그인과 관련된 화면: session="false"
+	  - 2. 예외처리 페이지를 정의, 설정해줄때...errorPage = "AllError.jsp"
+	  - 3. 페이지를 에러페이지로 설정하고 싶을 때 : isErrorPage="true"
+	- include directive tag <%@ include %>	: 정적인 include tag
+           - 1.이 페이지에 또다른 페이지를 포함시킬때...
+           - 2.<html>, <body> 가 안들어가고. 해당 코드만 들어간다. 값이 바뀌면 안된다.
+	
+        - include Action Tag : : 동적인 include tag
+           - 1. 해당 코드는 들어가지 않고 실행 결과만 코드에 들어간다.
+	   - 2. 소스보기해도 안보인다. 결과만 코드에 나오기 때문에...
+	   - 2. 값이 바뀌는 코드가 들어가도 된다. 
+	- taglib directibe tag <%@ taglib %>
+
+#### 이클립스에서 jsp 파일에  taglib 추가하기...
+1. window -> preference -> Web -> jsp Files -> Editor - > Templates-> New JSP File(Html5)(밑에서 9번째.) 클릭..
+2. <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+   추가후 저장...
+
+
+
+3. scriptlet 태그 <% %> : 생성자나 메서드 안쪽과 동일한 개념.
+4. declaration tag (선언태그) : <%! %>  클래스의 필드영역 이라 생각하면..됨..
+5. expression tag
+  - EL ${}은 <% %> 선언된 변수를 인식하지 못한다...
+6. action tag
+7. 내장객체(request, response, out, application, session, config, page, pageContext, except)
+8. 영역객체 (pageContext, request, session, application)
+9. el
+10. jstl
+
+
+
+
+JSP는 HTML문서 사이에 JSP문법코드가 삽입된 형태로 작성된다.
+
+1. <%   %> - 스크립트릿, 이 안에 자바 코드 쓸수 있다. 
+
+2. <%=   %> - 익스프레션, 자바식 출력
+
+3. <%@   %> - 지시자, 웹컨테이너가 jsp 페이지를 처리할 때 필요한 정보를 기술
+
+4. <%!    %> - 선언부, 변수선언이나 메서드를 선언
+
+5. &{ } - 익스프레션 언어(EL)
+
+6. <jsp:~~/>, <c:~~/> - 액션 태그
