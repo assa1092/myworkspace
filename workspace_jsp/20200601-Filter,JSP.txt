@@ -23,7 +23,7 @@ JSP
 	- <%@ %>
 	- page directive tag <%@ page %>
 	  - 1. 로그인과 관련된 화면: session="false"
-	  - 2. 예외처리 페이지를 정의, 설정해줄때...errorPage = "AllError.jsp"
+	  - 2. 예외처리 페이지를 정의, 설정해줄때...errorPage = "AllError.jsp" 에러나면 AllError.jsp에서 처리한다...
 	  - 3. 페이지를 에러페이지로 설정하고 싶을 때 : isErrorPage="true"
 	- include directive tag <%@ include %>	: 정적인 include tag
            - 1.이 페이지에 또다른 페이지를 포함시킬때...
@@ -67,6 +67,6 @@ JSP는 HTML문서 사이에 JSP문법코드가 삽입된 형태로 작성된다.
 
 4. <%!    %> - 선언부, 변수선언이나 메서드를 선언
 
-5. &{ } - 익스프레션 언어(EL)
+5. ${ } - 익스프레션 언어(EL)
 
 6. <jsp:~~/>, <c:~~/> - 액션 태그

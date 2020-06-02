@@ -1,0 +1,53 @@
+1. jsp의 기본 태그를 표가할때 반드시 들어가는 코드? <% %>
+2. jsp의 주석 태그 : <%-- --%>
+3. jsp의 지시어 태그 : <%@ %>
+   - page 의 지시어 태그 <%@ page %>
+      - 1. 로그인 관련 화면 : session = "false"
+      - 2. 예외처리 정의 설정 : errorPage = "AllError.jsp "
+      - 3. 특정 페이지를 에러페이즈로 설정할때 isErrorPage = "true"
+   - include tag : <%@ include file=""%>
+      - 1. 정적(static)으로 파일을 추가함 : 코드복사
+      - 2. 추가되는 파일을 servlet이나 클래스로 변환되지 않는다.
+      - 3. footer를 표기할때 사용함...
+   - tablib directive tag : <%@ tablib uri = "" prefix ="" %>
+
+
+
+4. scriptlet tag : <% %> : 메서드나 생성자 scope
+
+5. declaration tag : <%! %> : 필드 scope
+
+6. Expression Tag : <%= %> : 출력할 값이 있는 경우만 사용가능...
+	현재 페이지에 선언된 출력할 변수값...
+
+
+액션 태그
+<jsp:
+
+<jsp:include></jsp:include> : 넘겨주는 데이터가 있을때...
+<jsp:include/> : 넘겨주는 데이터가 없을때...
+
+<jsp:forward>
+<jsp:param>
+
+usebean, setproperty, getproperty
+javabean
+
+객체 = bean = entity = instance = object
+
+EL : ${ } -> <% %>안에 선언된 변수를 인식하지 못함....
+바인딩된 데이터를 출력할때...
+
+${pageScope.p}
+${requestScope.r}
+${sessionScope.s}
+${allplcationScope.a}
+======================
+${pageScope["p"]}
+${requestScope["r"]}
+${sessionScope["s"]}
+${allplcationScope["a"]}
+=======================
+${initParam.url}	->Context의 param
+=========================
+${param.id}
