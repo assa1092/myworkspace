@@ -16,7 +16,16 @@ public class MainEx {
 		t1.me2();
 		end = System.currentTimeMillis();
 		System.out.println(end-start);
-
+		
+		
+		System.out.println("================================");
+		Test t2 = new Test();
+		start = System.currentTimeMillis();
+		t2.me3();
+		end = System.currentTimeMillis();
+		System.out.println("me3   : "+(end-start));
+		
+		t2.me4();
 	}
 
 }

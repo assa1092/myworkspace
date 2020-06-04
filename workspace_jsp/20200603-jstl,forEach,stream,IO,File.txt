@@ -1,0 +1,98 @@
+20200602
+
+Action tag(include, forward(welcome 화일 만들어서 보내고), param, useBean, setProperty, getProperty...)
+
+ - <jsp: include page=""/>(동적) == <%@ include file ==""/>(정적)
+ - <jsp: include page=""/>(넘겨줄 데이터 없을때는 태그 하나만 데이터있을때는 닫는 태그까지 사용.)
+	<jsp:param value ="" name=""/ >
+   </jsp:include>
+ - <jsp:forward page =""/> (Dispatcher 방식으로 포워딩 된다....)
+  - <jsp:forward page="">
+	<jsp:paranm name="" value""/>
+	<jsp:paranm name="" value""/>
+    </jsp:forward>
+
+
+==============
+welcome file list...
+
+index.html
+index.htm
+index.jsp
+
+==================
+내장객체
+request
+response
+out
+application
+session
+config:
+pageContext : EL 은 scriptlet태그에 선언된 변수를 인식하지 못함...(그래서 바인딩하고나서 사용한다.)
+page
+
+=========================
+exception (isErrorPage = "true" 로 선언해주어야 사용할수있다...)
+<% %> 안에서만 내장객체 사용할수 있다... <%! %>
+
+=======================================
+
+영역객체(데이터를 저장할수 있는 기능을 갖고있는 객체)
+
+pageContext(:page)  : 현재 페이지에서만 데이터가 유효
+request : 같은 요청
+session : 세션시간 & 같은 브라우져
+application : 해당 프로젝트 어느 곳에서나 데이터 유효
+
+==================================================================
+
+EL 표기법
+
+${}
+${111}
+"${3333}" : 속성값으로 사용가능 
+'${3333}' : 속성값으로 사용가능 ( "" 나  '' 로 감싸야한다...)
+<a href='${url}'></a>
+${"hello"}
+==================
+${}: 산술연산, 비교연산 , 논리연산, 삼항연산 가능하다...
+${} : null에 대해서 관대함...
+${} : ${empty msg}  ${msg == null}
+      ${not empty msg }  ${msg !=null}
+
+영역객체에 데이터 바인딩이 되어 있는데. 그 바인딩된 데이터가 List객체 또는 dto 객체일 때 
+${dto.id} == ${dto["id"]}  같은 표현...
+
+
+<c:forEach items = "${list}" var = "dto"> items는 EL코드 작성해야한다... 그 값을 받는 var 에..dto 로.
+	%{dto.id} : ${dto["name"]}
+</c:forEach>
+
+
+
+==============================================
+IO
+
+File class
+ - 파일, 폴더(디렉토리)를 관리하는 기능이 있는 클래스.
+ - 파일을 삭제할 수 있게 함. (생성 안됨)
+ - 폴더를 생성과 삭제할 수 있게 함.
+
+
+Stream
+1. 전송되는 데이터의 크기에 따른 분류
+  - byte stream : 1byte 씩 전송(멀티미디어 지원 O) : ~~Stream (대부분 byte stream 을 사용한다.)
+  - 문자(char) stream : 2byte 씩 전송(멀티미디어 지원 X) : ~~er (될수도 안될수도 있다...)
+
+  byte stream          문자 stream
+  InputStream		Reader
+  OutStream		Writer
+  FileRead		FileWriter
+  DataInputStream	InputStreamReader
+
+2. 특별한 기능이 있는지 여부에 따른 분류
+  (<-> 장치와 직접 연결이 되는지 여부에 따른 분류)
+  - 노드스트림(장치와 직접연결되는것) : FileInputStream, FileOutputStream,
+  - 필터스트림 : BufferedInputStream,
+
+BufferedInputStream

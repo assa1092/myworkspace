@@ -1,5 +1,7 @@
 package com.naver;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,6 +9,125 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class Test {
+	
+	public void me4() {
+		File f1 = new File("C:" + File.separator +"test112.txt");
+		File f2 = new File("C:", "copytest112.txt");
+		
+		InputStream in = null;
+		BufferedInputStream bis = null;
+		
+		OutputStream out = null;
+		BufferedOutputStream bos = null;
+		
+		
+		
+		try {
+			in = new FileInputStream(f1);
+			bis = new BufferedInputStream(in);
+			
+			out = new FileOutputStream(f2);
+			bos = new BufferedOutputStream(out);
+					
+			int what = -1;
+			
+			while (true) {
+				what = bis.read();
+				if (what == -1) {
+					break;
+				}
+				bos.write(what);
+			}
+			
+			System.out.println("파일 복사 완료.");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (bos != null) {
+					bos.close();
+				}
+				if (out != null) {
+					out.close();
+				}
+				if (bis != null) {
+					bis.close();
+				}
+				if (in != null) {
+					in.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public void me3() {
+		File f1 = new File("C:"+ File.separator + "show.jpg");
+		File f2 = new File("C:", "copyshow.jpg");
+		
+		// 스트림은 무거워서 무조건 닫아주어야한다.
+		InputStream in = null;
+		BufferedInputStream bis = null;
+		
+		OutputStream out = null;
+		BufferedOutputStream bos = null;
+		
+		try {
+			// 추상클래스라 객체를 만들 수 없다..
+			
+			in = new FileInputStream(f1);		// 그림에서 노드스트림 화살표까지 만들어진것.
+			bis = new BufferedInputStream(in);
+						
+			out = new FileOutputStream(f2);
+			bos = new BufferedOutputStream(out);
+			// 자료 지나갈 통로 까지 완성...
+			
+			int what = -1;
+			
+			while (true) {
+				what = bis.read();
+				if (what == -1) {
+					break;
+				}
+				bos.write(what);
+			}
+			System.out.println("파일 복사 종료.");
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try { 
+				// 우선순위...
+				// 장치에 바로 연결되는 노드 스트림 먼저 지우면 안된다..
+				// 필터 스트림 먼저 지워야 한다.
+				// 그래서 버퍼스트림 먼저 삭제...
+				if (bos != null) {
+					bos.close();
+				}
+				if (out != null) {
+					out.close();
+				}
+				if (bis != null) {
+					bis.close();
+				}
+				if (in != null) {
+					in.close();
+				}
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		
+		
+		
+	}
+	
 	
 	public void me2() {
 		
@@ -19,6 +140,7 @@ public class Test {
 		OutputStream out = null;
 		
 		// 배열을 이용하면 그대로 byte로...
+		// 버퍼의 개념과 비슷
 		byte[] arr = new byte[512];
 		
 		try {
