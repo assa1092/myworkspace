@@ -1,0 +1,41 @@
+일반적인 통신 방법 : 화면 전체...
+ - 화면 전체에 대해 요청하고... 화면 전체에 대해 응답한다...
+
+ajax : 화면 일부...깜빡임이 없다...
+ - 화면 일부에 대해 요청하고... 화면 일부에 대해 응답한다...
+
+ajax 를 쓸려면 jQuery 를 작성해야한다....
+
+
+=====================
+Board Project
+
+create table board(
+num number(4) primary key,
+writer varchar2(21) not null,
+title varchar2(60) not null,
+content varchar2(1000), 
+writeday date default sysdate,
+readcnt number(4) default 0,
+repRoot number(4),
+repStep number(4),
+repIndent number(4)
+);
+
+insert into board(num, writer, title, content, repRoot, repStep, repIndent)values(1, 'kim', 'test1', 'ok', 1,0,0);
+
+
+repRoot 컬럼의 목적 : 원글과 답글을 붙어있게 하려고....
+repStep 컬럼의 목적 : 원글과 답글들간의 정렬 순서를 지정하기 위해.
+repIndent : 들여쓰기...
+
+
+답글의 repRoot  : 값은 원글의 repRoot값을 넘겨 받는다...
+답글의 repStep  : 원글의 repStep +1...
+		  repRoot 값이 같고 
+	 	  원글의 repStep 값 보다 큰  
+		  기존 답글에 대해서 repStep을 1씩 증가시긴다....
+답글의 repIndent : 원글의 repIndent +1...
+
+
+select * from board order by repRoot desc, repStep asc 하면 답글도 정렬된다...
