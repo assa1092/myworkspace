@@ -43,18 +43,6 @@ public class FrontController extends HttpServlet {
 	 		com = new InsertUICommand();
 	 	} else if(sp.equalsIgnoreCase("/insert.do")){
 	 		com = new InsertCommand();
-	 	} else if(sp.equalsIgnoreCase("/read.do")) {
-	 		com = new ReadCommnad();	// MMS의 selectById 개념...
-	 	} else if(sp.equalsIgnoreCase("/updateui.do")) {
-	 		com = new UpdateUICommand();
-	 	} else if(sp.equalsIgnoreCase("/update.do")) {
-	 		com = new UpdateCommand();
-	 	} else if(sp.equalsIgnoreCase("/delete.do")) {
-	 		com = new DeleteCommand();
-	 	} else if(sp.equalsIgnoreCase("/replyui.do")) {
-	 		com = new ReplyUICommand();
-	 	} else if(sp.equalsIgnoreCase("/reply.do")) {
-	 		com = new ReplyCommand();
 	 	}
 	 	
 	 	else {

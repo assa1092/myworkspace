@@ -26,16 +26,6 @@ public class InsertCommand implements Command {
 		dao.insert(new BoardDTO(-1, writer, title, content, null, 0, 0, 0, 0));
 		
 		
-		// 한번에 여러개 데이타 넣기...
-//			for (int i = 7; i < 110; i++) {
-//				dao.insert(new BoardDTO(-1, "writer" + i, "title" + i, "content" + i, null, 0, 0, 0, 0));
-//				try {
-//					Thread.sleep(50);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
 		return new CommandAction(true, "list.do");	// list.jsp로 가면 빈 양식으로가는것...
 	}
 

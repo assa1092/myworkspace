@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.command.Command;
+import kr.co.command.InsertCommand;
+import kr.co.command.InsertUICommand;
+import kr.co.command.ListCommand;
 import kr.co.domain.CommandAction;
 
 /**
@@ -36,9 +39,16 @@ public class FrontController extends HttpServlet {
 		
 		Command com = null;
 		
-		if (sp.equalsIgnoreCase("list.do")) {
+		if (sp.equalsIgnoreCase("/list.do")) {
 			com = new ListCommand();
-		}	
+		} else if(sp.equalsIgnoreCase("/insertui.do")){
+			com = new InsertUICommand();
+		} else if (sp.equalsIgnoreCase("/insert.do")) {
+			com = new InsertCommand();
+		}
+		
+		
+		
 		else {
 			System.out.println("제공 되지 않는 서비스입니다.");
 		}

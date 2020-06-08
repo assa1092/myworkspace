@@ -1,0 +1,14 @@
+답글을 달면,
+
+해당 답글의 repRoot : 1 .원글의 repRoot값을 그대로 넘겨받음...
+해당 답글의 repStep : 
+1. 원글의 repStep + 1..
+2. repRoot 값이 같은 다른 답글이 있는지 확인...
+3. 원글의 repStep 값보다 큰 repStep값을 갖고 있는 답글의 repStep값을 변경 repStep+1
+
+update board set repStep = repStep +1 where repRoot = ? and repStep > ?
+
+
+문자열의 더하기 연산....
+1+1=2
+"hello"+110 == > "hello119"
