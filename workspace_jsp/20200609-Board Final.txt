@@ -1,0 +1,91 @@
+전체 게시글이 몇개인지 알아야 페이지수 결정된다...
+
+localhost:8089/Board/list.do?curPage=1
+localhost:8089/Board/list.do?curPage=2
+localhost:8089/Board/list.do?curPage=3
+
+rownum : 오라클에서만 지원하는 컬럼...
+
+
+PageTo 클래스의 changeVarVal()
+
+
+
+
+
+
+
+==============================================
+totalPage = (amount-1)/perPage +1;
+이렇게도 씀.....
+==============================================
+totalPage = amount/perPage;
+if(amount % perPage != 0) {
+	totalPage = totalPage +1;
+}
+
+perPage : 10
+amount :01   -> totalPage =1
+amount :11   -> totalPage =2
+amount :21   -> totalPage =3
+amount :31   -> totalPage =4
+
+totalPage = amount / perPage + 1
+1/10 = 0
+11/10 = 1
+21/10 = 2
+31/10 = 3
+==============================================
+
+// startNum : 게시글의 rownum 값
+startNum = (curPage -1)* perPage +1;
+
+perPage = 10
+curPage : 1 --> startNum : 01
+curPage : 2 --> startNum : 11
+curPage : 3 --> startNum : 21
+curPage : 4 --> startNum : 31
+
+==============================================
+
+endNum = curPage * perPage;
+if(endNum > amount) {
+	endNum = amount;
+	// 총 게시글의 수가 27
+	// endNum = 30??? 아니라...endNum = 27로...한다..
+}
+
+perPage = 10
+curPage : 1 --> endNum : 10
+curPage : 2 --> endNum : 20
+curPage : 3 --> endNum : 30
+curPage : 4 --> endNum : 40
+==============================================
+beginPageNum = ((curPage - 1)/pageLine) * pageLine +1;
+
+pageLine = 10
+curPage = 1  ---> beginPageNum  = 1
+curPage = 5  ---> beginPageNum  = 1
+curPage = 9  ---> beginPageNum  = 1
+curPage = 11  ---> beginPageNum  = 11
+curPage = 15  ---> beginPageNum  = 11
+curPage = 19  ---> beginPageNum  = 11
+curPage = 21  ---> beginPageNum  = 21
+curPage = 25  ---> beginPageNum  = 21
+curPage = 29  ---> beginPageNum  = 21
+
+for(int i=0;i <100 ; i++{
+	system.out.println(i/3);
+}
+0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, ....
+
+
+
+
+
+
+==============================================
+stopPageNum = beginPageNum + (pageLine-1);
+if(stopPageNum > totalPage) {
+	stopPageNum = totalPage;
+}
