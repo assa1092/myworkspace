@@ -234,7 +234,7 @@ public class BoardDAO {
 	}
 
 
-
+	// 조회수 증가....
 	private void increaseReadCnt(Connection conn, int num) {
 		PreparedStatement pstmt = null;
 		String sql = "update board set readcnt = readcnt+1 where num =?";
