@@ -18,10 +18,11 @@
 <input type="text" name="id" style="border:solid;"> <br>
 PassWord <br>
 <input type="text" name="pw" style="border:solid;" > <br>
-
 <input type="submit" value="로그인">
+</form>
 
-
+<form action="memberinsertui.do" method="post">
+<input type="submit" value="회원가입">
 </form>
 
 </body>

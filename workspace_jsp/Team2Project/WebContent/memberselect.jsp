@@ -25,7 +25,7 @@
 	<c:if test="${!empty login}">
 	<a href ="memberselectById.do?id=${login.id}">내정보보기</a>
 	</c:if>
-    <c:if test="${manager}"><a href="membergrantui.do">권한부여</a></c:if>
+    <c:if test="${manager}"><a href="membergrantui.do">회원관리</a></c:if>
 	
 	
 	

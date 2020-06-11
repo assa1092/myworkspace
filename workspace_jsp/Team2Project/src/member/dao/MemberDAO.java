@@ -147,8 +147,9 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				String name = rs.getString("name");
+				String property = rs.getString("property");
 				
-				mDTO = new MemberDTO(id, name, null, null);
+				mDTO = new MemberDTO(id, name, null, property);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -254,11 +255,34 @@ public class MemberDAO {
 		}
 		
 		
-		
-		
-		
-		
 	}
+	
+	public void grantDelete(String id, String property) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql1 = "delete from (select * from member where property = 'customer' or property = 'manager') where id = ?";
+		String sql2 = "delete from (select * from member where property = 'customer') where id = ?";
+		try {
+			conn = dataFactory.getConnection();
+			if(property.equals("admin")) {
+				pstmt = conn.prepareStatement(sql1);	
+			} else if(property.equals("manager")) {
+				pstmt = conn.prepareStatement(sql2);
+			}
+			
+			pstmt.setString(1, id);
+			
+			pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeAll(null, pstmt, conn);
+		}
+				
+	}
+	
 	
 }
 

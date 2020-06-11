@@ -20,7 +20,7 @@ public class LogoutCommand implements Command {
 
 		session.invalidate();
 		// TODO Auto-generated method stub
-		return new CommandAction(true, "memberselect.do");
+		return new CommandAction(true, "reviewlist.do");
 	}
 
 }

@@ -7,22 +7,60 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <title>IT 제품 리뷰</title>
 </head>
 <body>
-	<h1>IT 제품 리뷰</h1>
-	번호 : ${list.num }
-	<br> 작성일 : ${list.writeday }
-	<br> 제목 : ${list.title }
-	<br> 작성자 : ${list.id }
-	<br> 내용 : ${list.content }
-	<br> 카테고리 : ${list.category }
-	<br> 조회수 : ${list.readcnt }
-	<br> 별점 : ${list.starpoint }
-	<br>
 
-	<a href="reviewupdateui.do?num=${list.num }">수정</a> |
-	<a href="reviewdelete.do?num=${list.num }">삭제</a> |
-	<a href="reviewlist.do">목록</a>
+	<div style="padding: 20px 70px 20px 70px;">
+		<h1>IT 제품 리뷰</h1>
+		<table class="table table-striped">
+			<tr>
+				<th>번호</th>
+				<th>작성일</th>
+			</tr>
+			<tr>
+				<td>${list.num }</td>
+				<td><c:choose>
+						<c:when test="${fn:length(list.writeday)>10 }">
+							<c:out value="${fn:substring(list.writeday,0,10)}" />
+						</c:when>
+					</c:choose></td>
+			</tr>
+			<tr>
+				<th>카테고리</th>
+				<th>제목</th>
+			</tr>
+			<tr>
+				<td>${list.category }</td>
+				<td>${list.title }</td>
+			</tr>
+			<tr>
+				<th>작성자</th>
+				<th>내용</th>
+			</tr>
+			<tr>
+				<td>${list.id }</td>
+				<td>${list.content }</td>
+			</tr>
+			<tr>
+				<th>조회수</th>
+				<th>별점</th>
+			</tr>
+			<tr>
+				<td>${list.readcnt }</td>
+				<td>${list.starpoint }</td>
+
+			</tr>
+			
+		</table>
+		<c:if test="${!empty login}">
+		<button type="button" class="btn btn-outline-success" onclick="location.href='reviewupdateui.do?num=${list.num }'">수정</button>
+		 <button type="button" class="btn btn-outline-success" onclick="location.href='reviewdelete.do?num=${list.num }&id=${list.id }'">삭제</button>
+		 </c:if>
+			<button type="button" class="btn btn-outline-success" onclick="location.href='reviewlist.do'">목록</button>
+		
+	</div>
 </body>
 </html>

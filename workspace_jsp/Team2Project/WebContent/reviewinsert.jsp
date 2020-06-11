@@ -13,11 +13,24 @@
 	<h1>글쓰기</h1>
 	<form action="reviewinsert.do" method="post">
 
-		작성자 : <input name="writer"><br> 제목 : <input name="title"><br>
-		별점 : <input name="starpoint"><br> 
+		작성자 : <input name="id" readonly value="${login.id}"><br>
+		제목 : <input name="title"><br>
+		별점 : <select name="starpoint">
+				
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+			</select><br> 
 		카테고리 :		
 			<select name="category">
-				<option value="none">=== 선택 ===</option>
+				
 				<option value="컴퓨터">컴퓨터</option>
 				<option value="디지털">디지털</option>
 				<option value="가전">가전</option>

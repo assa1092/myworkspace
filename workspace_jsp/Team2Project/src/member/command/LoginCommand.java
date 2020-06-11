@@ -27,7 +27,7 @@ public class LoginCommand implements Command {
 		if (dto.getPw() != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("login", dto);
-			return new CommandAction(false, "reviewlist.do");
+			return new CommandAction(true, "reviewlist.do");
 		} else {
 			System.out.println("로그인실패");
 			return new CommandAction(true, "memberloginfalse.jsp");

@@ -23,7 +23,7 @@ public class InsertCommand implements Command {
 		MemberDAO dao = new MemberDAO();
 		dao.insert(new MemberDTO(id, name, pw, null));
 
-		return new CommandAction(true, "memberselect.do");
+		return new CommandAction(true, "reviewlist.do");
 	}
 
 }

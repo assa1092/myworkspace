@@ -26,13 +26,26 @@
 		Num : <input name="num" readonly value="${dto.num }"><br>
 		제 목 : <input name="title" value="${dto.title}"><br>
 		 아이디 :<input name="id" readonly value="${dto.id}"><br>
+		  별 점 : <select name="starpoint">
+				
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+			</select><br>
 		  Category :<select name="category">
-				<option value="none">=== 선택 ===</option>
+				
 				<option value="컴퓨터">컴퓨터</option>
 				<option value="디지털">디지털</option>
 				<option value="가전">가전</option>
 			</select><br>
-		 별 점 : <input name="starpoint" value="${dto.starpoint}"><br> 
+		
 		 내	용 : <br>
 		<textarea rows="5" name="content">${dto.content}</textarea>
 		<input type="submit" value="등록">

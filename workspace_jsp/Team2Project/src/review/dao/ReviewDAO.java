@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import review.domain.PageTO;
 import review.domain.ReviewDTO;
 
 public class ReviewDAO {
@@ -166,7 +167,7 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		String sql = "select max(num) from review";
 		ResultSet rs = null;
-		Integer num = null;
+		Integer num = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -263,5 +264,195 @@ public class ReviewDAO {
 			closeAll(null, pstmt, conn);
 		}
 
+	}
+
+	// 페이지네이션
+	public PageTO page(int curPage) {
+		PageTO to = new PageTO(curPage);
+		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from ("
+				+ "select rownum rnum, num, title, id, category, writeday, readcnt, starpoint from ("
+				+ "select * from review order by num desc)) " + "where rnum>=? and rnum<=?";
+
+		try {
+			conn = dataFactory.getConnection();
+			int amount = getAmount(conn);
+			to.setAmount(amount);
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, to.getStartNum());
+			pstmt.setInt(2, to.getEndNum());
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int num = rs.getInt("num");
+				String title = rs.getString("title");
+				String id = rs.getString("id");
+				String category = rs.getString("category");
+				String writeday = rs.getString("writeday");
+				int readcnt = rs.getInt("readcnt");
+				int starpoint = rs.getInt("starpoint");
+
+				ReviewDTO dto = new ReviewDTO(num, title, null, id, category, writeday, readcnt, starpoint);
+
+				list.add(dto);
+			}
+			to.setList(list);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+
+		return to;
+	}
+
+	// 페이지 처리를 위한 게시글 총량
+	private int getAmount(Connection conn) {
+		int amount = 0;
+
+		PreparedStatement pstmt = null;
+		String sql = "select count(num) from review";
+		ResultSet rs = null;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				amount = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, null);
+		}
+
+		return amount;
+	}
+
+	// 제목 + 내용으로 검색
+	public List<ReviewDTO> searchByTitleContent(String search) {
+		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM review WHERE (title like '%'||?||'%') or (content like '%'||?||'%')";
+
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int num = rs.getInt("num");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String id = rs.getString("id");
+				String category = rs.getString("category");
+				String writeday = rs.getString("writeday");
+				int readcnt = rs.getInt("readcnt");
+				int starpoint = rs.getInt("starpoint");
+
+				list.add(new ReviewDTO(num, title, content, id, category, writeday, readcnt, starpoint));
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+
+		return list;
+
+	}
+
+	// 제목으로 검색
+	public List<ReviewDTO> searchByTitle(String search) {
+		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM review WHERE title like '%'||?||'%'";
+
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, search);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int num = rs.getInt("num");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String id = rs.getString("id");
+				String category = rs.getString("category");
+				String writeday = rs.getString("writeday");
+				int readcnt = rs.getInt("readcnt");
+				int starpoint = rs.getInt("starpoint");
+
+				list.add(new ReviewDTO(num, title, content, id, category, writeday, readcnt, starpoint));
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+
+		return list;
+	}
+
+	// 작성자ID로 검색
+	public List<ReviewDTO> searchById(String search) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select * from review where id = ?";
+		ResultSet rs = null;
+		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, search);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int num = rs.getInt("num");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String category = rs.getString("category");
+				String writeday = rs.getString("writeday");
+				int readcnt = rs.getInt("readcnt");
+				int starpoint = rs.getInt("starpoint");
+
+				list.add(new ReviewDTO(num, title, content, search, category, writeday, readcnt, starpoint));
+			}
+
+			if (list == null) {
+				System.out.println("해당 ID로 작성된 게시글이 존재하지 않습니다.");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+		return list;
 	}
 }

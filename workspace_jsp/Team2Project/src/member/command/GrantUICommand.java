@@ -34,6 +34,18 @@ public class GrantUICommand implements Command {
 
 					request.setAttribute("cus", customerList);
 					request.setAttribute("man", managerList);
+					
+					request.setAttribute("admin", true);
+
+					return new CommandAction(false, "membergrant.jsp");
+				} else if (dto.getProperty().equals("manager")) {
+
+					MemberDAO dao = new MemberDAO();
+					List<MemberDTO> customerList = new ArrayList<MemberDTO>();
+					customerList = dao.selectList("customer");
+					request.setAttribute("cus", customerList);
+
+					request.setAttribute("admin", false);
 
 					return new CommandAction(false, "membergrant.jsp");
 				} else {

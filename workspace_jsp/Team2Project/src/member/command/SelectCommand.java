@@ -31,7 +31,9 @@ public class SelectCommand implements Command {
 		if(dto.getProperty().equals("admin")){
 			manager=true;
 			
-		}else{
+		} else if(dto.getProperty().equals("manager")) {
+			manager=true;
+		} else{
 			manager=false;
 		}}
 		request.setAttribute("manager", manager);

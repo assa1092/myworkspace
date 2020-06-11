@@ -88,6 +88,10 @@ public class FrontController extends HttpServlet {
 			com = new member.command.GrantUICommand();
 		} else if (sp.equalsIgnoreCase("/membergrant.do")) {
 			com = new member.command.GrantCommand();
+		} else if (sp.equalsIgnoreCase("/membergrantdelete.do")) {
+			com = new member.command.GrantDeleteCommand();
+		} else if (sp.equalsIgnoreCase("/reviewsearch.do")) {
+			com = new review.command.SearchCommand();
 		}
 
 		if (com != null) {

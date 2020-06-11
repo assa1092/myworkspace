@@ -20,6 +20,11 @@ public class SelectByIdCommand implements Command {
 		
 		MemberDAO dao = new MemberDAO();
 		MemberDTO mDTO = dao.selectById(id);
+		if(mDTO.getProperty().equals("admin")) {
+			request.setAttribute("admin", true);
+		}else if(mDTO.getProperty().equals("manager")) {
+			request.setAttribute("manager", true);
+		}
 		
 		request.setAttribute("mDTO", mDTO);
 		

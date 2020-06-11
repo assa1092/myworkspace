@@ -1,6 +1,7 @@
 package review.command;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,26 +12,22 @@ import review.domain.ReviewDTO;
 import share.Command;
 import share.CommandAction;
 
-public class InsertCommand implements Command {
-
+public class SearchCommand implements Command {
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String id = request.getParameter("id");
 		String category = request.getParameter("category");
-
-		String sStarpoint = request.getParameter("starpoint");
-		int starpoint = -1;
-		if (sStarpoint != null) {
-			starpoint = Integer.parseInt(sStarpoint);
-		}
-
+		String search = request.getParameter("search");
+		List<ReviewDTO> list = null;
 		ReviewDAO dao = new ReviewDAO();
-		dao.insert(new ReviewDTO(-1, title, content, id, category, null, 0, starpoint));
-
-		return new CommandAction(true, "reviewlist.do");
+		if (category.equals("title")) {
+			list = dao.searchByTitle(search);
+		} else if (category.equals("id")) {
+			list = dao.searchById(search);
+		} else if (category.equals("titlecontent")) {
+			list = dao.searchByTitleContent(search);
+		}
+		request.setAttribute("list", list);
+		return new CommandAction(false, "reviewsearch.jsp");
 	}
-
 }
