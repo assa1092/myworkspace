@@ -12,9 +12,10 @@
 <title>IT 제품 리뷰</title>
 </head>
 <body>
-
-	<div style="padding: 20px 70px 20px 70px;">
-		<h1>IT 제품 리뷰</h1>
+<div style="padding: 20px 70px 20px 70px;">
+<jsp:include page="header.jsp" />
+	
+		<h1>상세 보기</h1>
 		<table class="table table-striped">
 			<tr>
 				<th>번호</th>
@@ -61,6 +62,8 @@
 		 </c:if>
 			<button type="button" class="btn btn-outline-success" onclick="location.href='reviewlist.do'">목록</button>
 		
+	<br><br><br>
+	<jsp:include page="footer.jsp" />
 	</div>
 </body>
 </html>

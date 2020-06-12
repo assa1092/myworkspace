@@ -24,6 +24,8 @@ public class SelectByIdCommand implements Command {
 			request.setAttribute("admin", true);
 		}else if(mDTO.getProperty().equals("manager")) {
 			request.setAttribute("manager", true);
+		} else {
+			request.setAttribute("customer", true);
 		}
 		
 		request.setAttribute("mDTO", mDTO);

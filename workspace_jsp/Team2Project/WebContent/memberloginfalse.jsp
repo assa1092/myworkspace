@@ -10,10 +10,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div style="padding: 20px 70px 20px 70px;">
 <h1>아이디나 비밀번호가 틀렸습니다.</h1><br>
 
-<a href="memberloginui.do">로그인화면으로</a>
 
+<button type="button" class="btn btn-outline-primary" onclick="location.href='memberloginui.do'">로그인화면으로</button>
+<button type="button" class="btn btn-outline-success" onclick="location.href='reviewlist.do'">목록으로</button>
+<br>
+<br><br><br><br>
+<jsp:include page="footer.jsp" />
+</div>
 </body>
 </html>

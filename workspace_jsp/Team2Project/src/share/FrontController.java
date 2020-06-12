@@ -92,6 +92,8 @@ public class FrontController extends HttpServlet {
 			com = new member.command.GrantDeleteCommand();
 		} else if (sp.equalsIgnoreCase("/reviewsearch.do")) {
 			com = new review.command.SearchCommand();
+		} else if (sp.equalsIgnoreCase("/reviewmanagerdelete.do")) {
+			com = new review.command.ManagerDeleteCommand();
 		}
 
 		if (com != null) {

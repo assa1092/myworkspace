@@ -10,6 +10,8 @@
 <title>IT 제품 리뷰</title>
 </head>
 <body>
+<div style="padding: 20px 70px 20px 70px;">
+<jsp:include page="header.jsp" />
 	<h1>글쓰기</h1>
 	<form action="reviewinsert.do" method="post">
 
@@ -39,6 +41,8 @@
 		<br> 내용 : <br>
 		<textarea rows="5" name="content"></textarea>
 		<br> <input type="submit" value="등록">
-	</form>
+	</form><br><br><br>
+	<jsp:include page="footer.jsp" />
+	</div>
 </body>
 </html>

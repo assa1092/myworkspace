@@ -12,6 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div style="padding: 20px 70px 20px 70px;">
+<jsp:include page="header.jsp" />
 	<h1>검색결과</h1>
 	<table class="table">
 		<thead>
@@ -46,5 +48,7 @@
 	</table>
 	</div>
 	<button type="button" class="btn btn-outline-success" onclick="location.href='reviewlist.do'">목록</button>
+	<br><br><br><jsp:include page="footer.jsp" />
+	</div>
 </body>
 </html>

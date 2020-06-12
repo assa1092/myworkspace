@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class KrEncodingFilter
  */
-@WebFilter("*.do")
+@WebFilter("/*")
 public class KrEncodingFilter implements Filter {
 
 	/**
@@ -35,7 +35,7 @@ public class KrEncodingFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html: charset = utf-8");
+		response.setContentType("text/html; charset = utf-8");
 		chain.doFilter(request, response);
 	}
 

@@ -12,7 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div style="padding: 20px 70px 20px 70px;">
+<jsp:include page="header.jsp" />
 
 
 
@@ -50,7 +51,8 @@
 	<%// <c:forEach items="${list}" var="dto">
 	//<a href="selectById.do?id=${dto.id}">${dto.id} : ${dto.name}</a><br>
 	//</c:forEach> 
-		%>
-		
+		%><br><br><br>
+		<jsp:include page="footer.jsp" />
+		</div>
 </body>
 </html>

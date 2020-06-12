@@ -21,6 +21,8 @@
 </head>
 </head>
 <body>
+<div style="padding: 20px 70px 20px 70px;">
+<jsp:include page="header.jsp" />
 	<h1>리뷰 수정</h1>
 	<form action="reviewupdate.do" method="post">
 		Num : <input name="num" readonly value="${dto.num }"><br>
@@ -49,7 +51,8 @@
 		 내	용 : <br>
 		<textarea rows="5" name="content">${dto.content}</textarea>
 		<input type="submit" value="등록">
-	</form>
-
+	</form><br><br><br>
+<jsp:include page="footer.jsp" />
+</div>
 </body>
 </html>

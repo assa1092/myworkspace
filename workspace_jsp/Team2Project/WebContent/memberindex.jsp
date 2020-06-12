@@ -11,8 +11,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
+<div style="padding: 20px 70px 20px 70px;">
 	<jsp:forward page="memberselect.do"></jsp:forward>
 
+<br><br><br>
+<jsp:include page="footer.jsp" />
+</div>
 </body>
 </html>

@@ -34,10 +34,10 @@ public class GrantDeleteCommand implements Command {
 				return new CommandAction(true, "membergrantui.do");		
 				
 			}else {
-				return new CommandAction(true, "memberselectui.do.do");
+				return new CommandAction(true, "memberselectui.do");
 			}
 		}else {
-			return new CommandAction(true, "memberselectui.do.do");
+			return new CommandAction(true, "memberselectui.do");
 		}
 		
 		

@@ -9,18 +9,28 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script type="text/javascript">
+function managerdelete(num){
+	var isOk = confirm("삭제하시겠습니까?");
+	if(isOk==true){
+		location.href="reviewmanagerdelete.do?num="+num;
+	}
+}
+</script>
 <title>IT 제품 리뷰</title>
 </head>
 <body>
+
 	<div style="padding: 20px 70px 20px 70px;">
-		<h1>IT 제품 리뷰 리스트</h1>
+		<jsp:include page="header.jsp" />
+		<%-- <h1>IT 제품 리뷰 리스트</h1>
 		<!-- 버튼에 스타일 적용하기 -->
 		<button type="button" class="btn btn-primary"
 			onclick="location.href='${empty login ? 'memberloginui.do' : 'memberlogout.do'}'">${empty login ? '로그인' : '로그아웃' }</button>
 		&nbsp;&nbsp;
-		<%-- <a href="${empty login ? 'memberloginui.do' : 'memberlogout.do'}">	${empty login ? '로그인' : '로그아웃' }</a> --%>
-		<%-- <button type="button" class="btn btn-primary" onclick="location.href='${empty login ? 'memberinsertui.do' : ''}'">${empty login ? '회원가입' : ''}</button> --%>
-		<%-- <a	href="${empty login ? 'memberinsertui.do' : ' '}">${empty login ? '회원가입' : ' '}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
+		<a href="${empty login ? 'memberloginui.do' : 'memberlogout.do'}">	${empty login ? '로그인' : '로그아웃' }</a>
+		<button type="button" class="btn btn-primary" onclick="location.href='${empty login ? 'memberinsertui.do' : ''}'">${empty login ? '회원가입' : ''}</button>
+		<a	href="${empty login ? 'memberinsertui.do' : ' '}">${empty login ? '회원가입' : ' '}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<!-- 로그아웃 되었을 때만 회원가입 보기 -->
 		<c:if test="${empty login}">
 			<button type="button" class="btn btn-primary"
@@ -30,11 +40,12 @@
 		<c:if test="${!empty login}">
 			<button type="button" class="btn btn-info"
 				onclick="location.href='memberselectById.do?id=${login.id}'">내정보보기</button>
-			<%-- <a href="memberselectById.do?id=${login.id}">내정보보기</a> --%>
+			<a href="memberselectById.do?id=${login.id}">내정보보기</a>
 		</c:if>
-		<c:if test="${manager}">
-			<a href="membergrantui.do">권한부여</a>
-		</c:if>
+		<c:if
+			test="${login.property.equals('admin')||login.property.equals('manager') }">
+			<button onclick="location.href='membergrantui.do'">회원 관리</button>
+		</c:if> --%>
 		<c:if test="${!empty login}">
 			<button type="button" class="btn btn-primary"
 				onclick="location.href='reviewinsertui.do'" style="float: right">글쓰기</button>
@@ -49,6 +60,11 @@
 					<th>작성일</th>
 					<th>조회수</th>
 					<th>별점</th>
+
+					<c:if
+						test="${login.property.equals('admin')||login.property.equals('manager') }">
+						<th>삭제</th>
+					</c:if>
 				</tr>
 			</thead>
 			<tbody>
@@ -65,6 +81,12 @@
 							</c:choose></td>
 						<td>${dto.readcnt }</td>
 						<td>${dto.starpoint }</td>
+						<c:if
+							test="${login.property.equals('admin')||login.property.equals('manager') }">
+							<td>
+								<button onclick="managerdelete('${dto.num}')">글 삭제</button>
+							</td>
+						</c:if>
 					</tr>
 					</tr>
 				</c:forEach>
@@ -95,15 +117,19 @@
 					href="reviewlist.do?curPage=${(to.curPage+1) < to.totalPage? (to.curPage+1) : to.totalPage }">&raquo;</a>
 			</c:if>
 
-
+<br>
 			<form action="reviewsearch.do" method="get">
 				<select name="category">
 					<option value="title">제목</option>
 					<option value="id">글쓴이</option>
 					<option value="titlecontent">제목 + 내용</option>
-				</select> <input name="search"> <input type=submit value="검색">
+				</select> <input name="search" required> <input type=submit value="검색">
 			</form>
 		</div>
+		<br><br><br><br>
+		<jsp:include page="footer.jsp" />
 	</div>
+
 </body>
+
 </html>
