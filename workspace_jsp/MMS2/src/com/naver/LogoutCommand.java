@@ -26,8 +26,8 @@ public class LogoutCommand implements Command {
 //		2. session 시간 설정
 //		 - setMaxInactiveInerval() 호출.
 //		3. 로그 아웃 방법.
-//		 - 세션시간을 0으로 설정하기.
-//		 - 세션을 제거하기.
+//		 - 세션시간을 0으로 설정하기....session.setMaxInactiveInterval(1);
+//		 - 세션을 제거하기.....session.invalidate();
 //		 - 세션에 바인딩된 데이터 제거하기
 		
 		
@@ -37,7 +37,7 @@ public class LogoutCommand implements Command {
 //		request.getSession(false);// 없으면 놔둬...의미
 		HttpSession session = request.getSession();
 		if(session != null) {
-			// session.setMaxInactiveInterval(1);  // 세션시간을 0으로 설정해서 로그아웃..
+// 		session.setMaxInactiveInterval(1);  // 세션시간을 0으로 설정해서 로그아웃..
 			session.invalidate();		// 세션을 제거하기.
 		}
 		

@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <title>Insert title here</title>
 </head>
 <body>
 <div style="padding: 20px 70px 20px 70px;">
 <jsp:include page="header.jsp" />
-	<h1>검색결과</h1>
+	<h1>카테고리: ${category}</h1>
 	<table class="table">
 		<thead>
 			<tr>
@@ -28,7 +28,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${ list}" var="dto">
+			<c:forEach items="${list}" var="dto">
 				<tr>
 					<td>${dto.num }</td>
 					<td><a href="reviewread.do?num=${dto.num }">${dto.title }</a></td>
@@ -42,15 +42,15 @@
 					<td>${dto.readcnt }</td>
 					<td>${dto.starpoint }</td>
 				</tr>
-				</tr>
+				
 			</c:forEach>
 		</tbody>
 	</table>
 			
 	<button type="button" class="btn btn-outline-success" onclick="location.href='reviewlist.do'">목록</button>
-	</div>
-	
 	<br><br><br><jsp:include page="footer.jsp" />
 	</div>
+
+
 </body>
 </html>

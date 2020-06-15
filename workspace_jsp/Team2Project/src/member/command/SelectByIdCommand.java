@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import member.dao.MemberDAO;
 import member.domain.MemberDTO;
@@ -18,19 +19,37 @@ public class SelectByIdCommand implements Command {
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
 		
-		MemberDAO dao = new MemberDAO();
-		MemberDTO mDTO = dao.selectById(id);
-		if(mDTO.getProperty().equals("admin")) {
-			request.setAttribute("admin", true);
-		}else if(mDTO.getProperty().equals("manager")) {
-			request.setAttribute("manager", true);
+		HttpSession session = request.getSession();
+		MemberDTO sessionDTO = null;
+		if (session != null) {
+			sessionDTO = (MemberDTO) session.getAttribute("login");
+			if (sessionDTO != null) {
+				if (sessionDTO.getId().equals(id)) {
+					//
+					MemberDAO dao = new MemberDAO();
+					MemberDTO mDTO = dao.selectById(id);
+					if(mDTO.getProperty().equals("admin")) {
+						request.setAttribute("admin", true);
+					}else if(mDTO.getProperty().equals("manager")) {
+						request.setAttribute("manager", true);
+					} else {
+						request.setAttribute("customer", true);
+					}
+					
+					request.setAttribute("mDTO", mDTO);
+					
+					return new CommandAction(false, "memberselectById.jsp");
+					//				
+				} else {
+					return new CommandAction(true, "memberloginui.do");
+				}
+			} else {
+				return new CommandAction(true, "memberloginui.do");
+			}
 		} else {
-			request.setAttribute("customer", true);
+			return new CommandAction(true, "memberloginui.do");
+			
 		}
-		
-		request.setAttribute("mDTO", mDTO);
-		
-		return new CommandAction(false, "memberselectById.jsp");
 	}
 
 }

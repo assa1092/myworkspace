@@ -112,7 +112,7 @@
 	}
 
 	function deleteMember(id) {
-		var isOk = confirm("탈퇴시키시겠습니까?");
+		var isOk = confirm("해당 id의 모든 게시글이 삭제됩니다. 탈퇴시키시겠습니까?");
 		if (isOk == true) {
 			document.location.href = "membergrantdelete.do?id=" + id;
 		}

@@ -23,12 +23,15 @@ public class ListPageCommand implements Command {
 		if (scurPage != null) {
 			curPage = Integer.parseInt(scurPage);
 		}
-		
+
 		ReviewDAO dao = new ReviewDAO();
 		PageTO to = dao.page(curPage);
+		// 공지 데이터 바인딩
+		ReviewDTO notice = dao.notice();
 		// List<ReviewDTO> list = dao.list();
 		request.setAttribute("list", to.getList());
 		request.setAttribute("to", to);
+		request.setAttribute("notice", notice);
 		return new CommandAction(false, "reviewlist.jsp");
 	}
 

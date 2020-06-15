@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 import review.domain.PageTO;
 import review.domain.ReviewDTO;
+import review.domain.UploadDTO;
 
 public class ReviewDAO {
 	private DataSource dataFactory;
@@ -454,5 +455,200 @@ public class ReviewDAO {
 			closeAll(null, pstmt, conn);
 		}
 		return list;
+	}
+
+	// id를 넣으면 id가 작성한 게시글 전부 삭제
+	public void deleteById(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "delete from review where id = ?";
+
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, id);
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+
+	}
+
+	// 공지글 뽑기
+	public ReviewDTO notice() {
+		ReviewDTO list = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM (SELECT * FROM review WHERE id = 'admin' ORDER BY num desc) WHERE ROWNUM = 1";
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				int num = rs.getInt("num");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String category = rs.getString("category");
+				String writeday = rs.getString("writeday");
+				String id = rs.getString("id");
+				int readcnt = rs.getInt("readcnt");
+				int starpoint = rs.getInt("starpoint");
+
+				list = new ReviewDTO(num, title, content, id, category, writeday, readcnt, starpoint);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return list;
+	}
+
+	// 카테고리 셀렉트
+	public List<ReviewDTO> cateSelect(String category) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select * from review where category = ?";
+		ResultSet rs = null;
+		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, category);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				int num = rs.getInt("num");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String id = rs.getString("id");
+				String writeday = rs.getString("writeday");
+				int readcnt = rs.getInt("readcnt");
+				int starpoint = rs.getInt("starpoint");
+				list.add(new ReviewDTO(num, title, content, id, category, writeday, readcnt, starpoint));
+
+			}
+
+			if (list == null) {
+				System.out.println("해당 카테고리로 작성된 게시글이 존재하지 않습니다.");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+		return list;
+	}
+
+	// 원래 insert에 파라미터값을 다르게 줌
+	public void insert(ReviewDTO reviewDTO, UploadDTO uploadDTO) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into review (num, title, content, id, category, starpoint) values (?, ?, ?, ?, ?, ?)";
+
+		boolean isOk = false;
+
+		try {
+			conn = dataFactory.getConnection();
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement(sql);
+
+			int num = createNum(conn);
+
+			upload(conn, new UploadDTO(uploadDTO.getFileName(), uploadDTO.getOrgFileName(), num));
+
+			pstmt.setInt(1, num);
+			pstmt.setString(2, reviewDTO.getTitle());
+			pstmt.setString(3, reviewDTO.getContent());
+			pstmt.setString(4, reviewDTO.getId());
+			pstmt.setString(5, reviewDTO.getCategory());
+			pstmt.setInt(6, reviewDTO.getStarpoint());
+
+			pstmt.executeUpdate();
+
+			isOk = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (isOk) {
+					conn.commit();
+				} else {
+					conn.rollback();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			closeAll(null, pstmt, conn);
+		}
+	}
+
+// 업로드테이블에 insert
+	private void upload(Connection conn, UploadDTO dto) {
+		PreparedStatement pstmt = null;
+		String sql = "insert into upload (num, fileName, orgFileName) values(?,?,?)";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getNum());
+			pstmt.setString(2, dto.getFileName());
+			pstmt.setString(3, dto.getOrgFileName());
+
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			closeAll(null, pstmt, null);
+		}
+
+	}
+
+	// read에서 파일 이름 반환
+	public UploadDTO imgSelect(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		UploadDTO dto = null;
+		String sql = "select fileName, orgFileName from upload where num = ?";
+
+		String fileName;
+		String orgFileName;
+
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, num);
+
+			pstmt.executeUpdate();
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				fileName = rs.getString(1);
+				orgFileName = rs.getString(2);
+
+				dto = new UploadDTO(fileName, orgFileName, num);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			closeAll(rs, pstmt, conn);
+		}
+
+		return dto;
 	}
 }

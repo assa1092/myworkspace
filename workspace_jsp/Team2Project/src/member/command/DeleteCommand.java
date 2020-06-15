@@ -28,6 +28,9 @@ public class DeleteCommand implements Command {
 			
 				if (dto.getId().equals(id)) {
 					MemberDAO dao = new MemberDAO();
+					ReviewDAO rDao = new ReviewDAO();
+					rDao.deleteById(id);
+
 					dao.delete(id);
 					session.invalidate();
 					return new CommandAction(true, "reviewlist.do");

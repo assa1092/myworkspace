@@ -1,3 +1,5 @@
+<%@page import="review.domain.ReviewDTO"%>
+<%@page import="com.sun.org.apache.xerces.internal.impl.xpath.regex.REUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -10,12 +12,12 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script type="text/javascript">
-function managerdelete(num){
-	var isOk = confirm("삭제하시겠습니까?");
-	if(isOk==true){
-		location.href="reviewmanagerdelete.do?num="+num;
+	function managerdelete(num) {
+		var isOk = confirm("삭제하시겠습니까?");
+		if (isOk == true) {
+			location.href = "reviewmanagerdelete.do?num=" + num;
+		}
 	}
-}
 </script>
 <title>IT 제품 리뷰</title>
 </head>
@@ -46,12 +48,10 @@ function managerdelete(num){
 			test="${login.property.equals('admin')||login.property.equals('manager') }">
 			<button onclick="location.href='membergrantui.do'">회원 관리</button>
 		</c:if> --%>
-		<c:if test="${!empty login}">
-			<button type="button" class="btn btn-primary"
-				onclick="location.href='reviewinsertui.do'" style="float: right">글쓰기</button>
-		</c:if>
-		<table class="table">
-			<thead>
+		<br><br>
+		
+		<table class="table table-striped">
+			<thead  bgcolor = "pink">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -68,27 +68,43 @@ function managerdelete(num){
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${list }" var="dto">
-					<tr>
-						<td>${dto.num }</td>
-						<td><a href="reviewread.do?num=${dto.num }">${dto.title }</a></td>
-						<td>${dto.id }</td>
-						<td>${dto.category }</td>
+				<tr style="font-weight:bold">
+					<!-- EL로 표기하기 위한 데이터 바인딩 -->
+					<%ReviewDTO notice = (ReviewDTO) request.getAttribute("notice"); %>
+						<td>${notice.num }</td>
+						<td><a href="reviewread.do?num=${notice.num }">${notice.title }</a></td>
+						<td>${notice.id }</td>
+						<td>${notice.category }</td>
 						<td><c:choose>
-								<c:when test="${fn:length(dto.writeday)>10 }">
-									<c:out value="${fn:substring(dto.writeday,0,10)}" />
-								</c:when>
-							</c:choose></td>
-						<td>${dto.readcnt }</td>
-						<td>${dto.starpoint }</td>
-						<c:if
-							test="${login.property.equals('admin')||login.property.equals('manager') }">
-							<td>
-								<button onclick="managerdelete('${dto.num}')">글 삭제</button>
-							</td>
-						</c:if>
+							<c:when test="${fn:length(notice.writeday)>10 }">
+								<c:out value="${fn:substring(notice.writeday,0,10)}" />
+							</c:when>
+						</c:choose></td>
+						<td>${notice.readcnt }</td>
+						<td>${notice.starpoint }</td>
 					</tr>
-					</tr>
+					<c:forEach items="${list }" var="dto">
+				
+				<tr>
+					<td>${dto.num }</td>
+					<td><a href="reviewread.do?num=${dto.num }">${dto.title }</a></td>
+					<td>${dto.id }</td>
+					<td>${dto.category }</td>
+					<td><c:choose>
+							<c:when test="${fn:length(dto.writeday)>10 }">
+								<c:out value="${fn:substring(dto.writeday,0,10)}" />
+							</c:when>
+						</c:choose></td>
+					<td>${dto.readcnt }</td>
+					<td>${dto.starpoint }</td>
+					<c:if
+						test="${login.property.equals('admin')||login.property.equals('manager') }">
+						<td>
+							<button onclick="managerdelete('${dto.num}')">글 삭제</button>
+						</td>
+					</c:if>
+				</tr>
+				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
@@ -117,16 +133,24 @@ function managerdelete(num){
 					href="reviewlist.do?curPage=${(to.curPage+1) < to.totalPage? (to.curPage+1) : to.totalPage }">&raquo;</a>
 			</c:if>
 
-<br>
+			<br>
+			<div style="float: right">
+		<c:if test="${!empty login}">
+			<button type="button" class="btn btn-primary"
+				onclick="location.href='reviewinsertui.do'">글쓰기</button>
+		</c:if>
+		</div>
 			<form action="reviewsearch.do" method="get">
 				<select name="category">
 					<option value="title">제목</option>
 					<option value="id">글쓴이</option>
 					<option value="titlecontent">제목 + 내용</option>
-				</select> <input name="search" required> <input type=submit value="검색">
+				</select> <input name="search" required> <input type=submit
+					value="검색">
 			</form>
 		</div>
-		<br><br><br><br>
+		<br> <br> <br> <br>
+		
 		<jsp:include page="footer.jsp" />
 	</div>
 

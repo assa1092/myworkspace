@@ -16,6 +16,9 @@
 <jsp:include page="header.jsp" />
 	
 		<h1>상세 보기</h1>
+		<div  style="text-align: center;">
+		<img alt="" src="upload/${upload.fileName }"style="width:auto; height:auto; max-height: 400px; max-width: 600px;" ><br>
+		</div>
 		<table class="table table-striped">
 			<tr>
 				<th>번호</th>

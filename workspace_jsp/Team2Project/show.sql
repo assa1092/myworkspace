@@ -22,7 +22,7 @@ starpoint number(2) check (starpoint<=10)
 
 )
 
-
+SELECT * FROM (SELECT * FROM review WHERE id = 'admin' ORDER BY num desc) WHERE ROWNUM = 1
 
 insert into REVIEW values (1, 'title1','content1','m001','category1', sysdate,1,1)
 commit
@@ -31,3 +31,10 @@ select * from member
 update member set property = 'admin' where id = 'admin'
 commit
 SELECT * FROM review WHERE (title = '%?%') or (content like '%?%')
+
+create table upload(
+num number(10) primary key,
+fileName varchar2(30),
+orgFileName varchar2(30)
+)
+select * from upload

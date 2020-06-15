@@ -94,6 +94,10 @@ public class FrontController extends HttpServlet {
 			com = new review.command.SearchCommand();
 		} else if (sp.equalsIgnoreCase("/reviewmanagerdelete.do")) {
 			com = new review.command.ManagerDeleteCommand();
+		} else if (sp.equalsIgnoreCase("/reviewcateselect.do")) {
+			com = new review.command.CateSelectCommand();
+		} else if (sp.equalsIgnoreCase("/reviewupload.do")) {
+			com = new review.command.UploadCommand();
 		}
 
 		if (com != null) {
