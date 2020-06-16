@@ -3,6 +3,7 @@ package member.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,9 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import member.domain.MemberDTO;
+import review.dao.ReviewDAO;
 import share.CommandAction;
+import sun.reflect.generics.visitor.Reifier;
 import sun.security.provider.certpath.ResponderId;
 
 public class MemberDAO {
@@ -193,14 +196,35 @@ public class MemberDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "delete from member where id=?";
+		boolean isOk = false;
+		ReviewDAO dao = new ReviewDAO();
+		
 		try {
 			conn = dataFactory.getConnection();
+			conn.setAutoCommit(false);
+			
+			dao.uploadDeleteById(conn, id);
+			dao.deleteById(conn, id);
+			
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
+			
+			isOk = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			try {
+				if(isOk) {
+					conn.commit();
+				}else {
+					conn.rollback();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			closeAll(null, pstmt, conn);
 		}
 	}
@@ -264,8 +288,17 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		String sql1 = "delete from (select * from member where property = 'customer' or property = 'manager') where id = ?";
 		String sql2 = "delete from (select * from member where property = 'customer') where id = ?";
+		boolean isOk=false;
+		ReviewDAO dao = new ReviewDAO();
+		
 		try {
 			conn = dataFactory.getConnection();
+			conn.setAutoCommit(false);
+			
+			dao.uploadDeleteById(conn, id);
+			dao.deleteById(conn, id);
+			
+			
 			if (property.equals("admin")) {
 				pstmt = conn.prepareStatement(sql1);
 			} else if (property.equals("manager")) {
@@ -276,9 +309,21 @@ public class MemberDAO {
 
 			pstmt.executeUpdate();
 
+			
+			isOk = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			try {
+				if(isOk) {
+					conn.commit();
+				}else {
+					conn.rollback();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			closeAll(null, pstmt, conn);
 		}
 
@@ -312,5 +357,6 @@ public class MemberDAO {
 
 		return check;
 	}
+	
 
 }

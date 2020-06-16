@@ -82,6 +82,10 @@
 						</c:choose></td>
 						<td>${notice.readcnt }</td>
 						<td>${notice.starpoint }</td>
+						<c:if
+						test="${login.property.equals('admin')||login.property.equals('manager') }">
+						<td></td>
+					</c:if>
 					</tr>
 					<c:forEach items="${list }" var="dto">
 				
@@ -136,7 +140,7 @@
 			<br>
 			<div style="float: right">
 		<c:if test="${!empty login}">
-			<button type="button" class="btn btn-primary"
+			<button type="button" class="btn btn-primary btn-lg"
 				onclick="location.href='reviewinsertui.do'">글쓰기</button>
 		</c:if>
 		</div>

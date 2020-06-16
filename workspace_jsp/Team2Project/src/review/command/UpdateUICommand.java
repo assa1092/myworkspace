@@ -5,7 +5,10 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import member.dao.MemberDAO;
+import member.domain.MemberDTO;
 import review.dao.ReviewDAO;
 import review.domain.ReviewDTO;
 import share.Command;
@@ -22,12 +25,35 @@ public class UpdateUICommand implements Command {
 			num = Integer.parseInt(sNum);
 		}
 
-		ReviewDAO dao = new ReviewDAO();
-		ReviewDTO dto = dao.updateUI(num);
+		
 
-		request.setAttribute("dto", dto);
+		
 
-		return new CommandAction(false, "reviewupdate.jsp");
+	String id = request.getParameter("id");
+	HttpSession session = request.getSession();
+	MemberDTO sessionDto = null;
+	// 세션으로 아이디 검증
+	if (session != null) {
+		sessionDto = (MemberDTO) session.getAttribute("login");			
+		if (sessionDto != null) {
+			if (sessionDto.getId().equals(id)) {
+
+				ReviewDAO dao = new ReviewDAO();
+				ReviewDTO dto = dao.updateUI(num);
+
+				request.setAttribute("dto", dto);
+				
+				return new CommandAction(false, "reviewupdate.jsp");
+
+				
+			} else {
+				return new CommandAction(true, "notdelete.jsp");
+			}			
+		} else {
+			return new CommandAction(true, "notdelete.jsp");
+		}
+	} else {
+		return new CommandAction(true, "notdelete.jsp");
 	}
-
+}
 }

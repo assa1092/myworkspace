@@ -15,8 +15,8 @@
 <div style="padding: 20px 70px 20px 70px;">
 <jsp:include page="header.jsp" />
 	<h1>검색결과</h1>
-	<table class="table">
-		<thead>
+	<table class="table table-striped">
+			<thead  bgcolor = "pink">
 			<tr>
 				<th>번호</th>
 				<th>제목</th>

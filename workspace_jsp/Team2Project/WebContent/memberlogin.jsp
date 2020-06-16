@@ -76,6 +76,7 @@ body {
 </style>
 <title>Insert title here</title>
 </head>
+
 <%-- <body>
 <div style="padding: 20px 70px 20px 70px;">
 <h1>로그인</h1>
@@ -93,7 +94,9 @@ PassWord <br>
 </form><br><br><br>
 <jsp:include page="footer.jsp" />
 </div> --%>
+
 <body class="text-center">
+
 	<form class="form-signin" action="memberlogin.do" method="post"
 		id="login">
 		<h1 class="h3 mb-3 font-weight-normal">로그인</h1>
@@ -102,10 +105,11 @@ PassWord <br>
 			required autofocus> <label for="inputEmail" class="sr-only">비밀번호</label>
 		<input type="password" id="inputPassword" class="form-control"
 			name="pw" placeholder="비밀번호" required>
-		<div class="checkbox mb-3"></div>
+
 		<button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+		<button class="btn btn-lg btn-secondary btn-block" type="button" onclick="location.href='memberinsertui.do'">회원가입</button>
+		<button class="btn btn-lg btn-info btn-block" type="button" onclick="location.href='reviewlist.do'">메인화면</button>
+		
 	</form>
-
-
 </body>
 </html>

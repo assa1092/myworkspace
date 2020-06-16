@@ -45,12 +45,11 @@
 		<br> <input type="submit" value="등록">
 	</form> --%>
 	<form action="reviewupload.do" method="post" enctype="multipart/form-data">
-	
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="id">작성자</label>
       <input name = "id" type="text" class="form-control" id="id" value="${login.id}">
-    </div>
+   </div>
  
     <div class="form-group col-md-6">
       <label for="category">카테고리</label>
@@ -58,12 +57,12 @@
       			<option value="컴퓨터">컴퓨터</option>
 				<option value="디지털">디지털</option>
 				<option value="가전">가전</option>
-	  </select><br> 
+			</select><br> 
     </div>
   </div>
   <div class="form-group">
     <label for="title">제목</label>
-    <input name="title" type="text" class="form-control" id="title" placeholder="제목을 입력하세요.">
+    <input name="title" type="text" class="form-control" id="title" placeholder="제목을 입력하세요." required="required">
   </div>
   <div class="form-group">
     <label for="content">내용</label>
@@ -92,7 +91,7 @@
   </div>
   <div class="form-group">
     <label for="file">첨부파일</label>
-    <input type = "file" name="file"  class="form-control" id="file">
+    <input type = "file" name="file"  class="form-control" id="file"></textarea>
   </div>
  
   <button type="submit" class="btn btn-primary">글쓰기</button>
