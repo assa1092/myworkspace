@@ -9,13 +9,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>IT 제품 리뷰</title>
+<!-- 파비콘 적용 -->
+<link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-	<div style="padding: 20px 70px 20px 70px;">
+	<div style="padding: 20px 70px 0px 70px;">
 		<jsp:include page="header.jsp" />
-		<h1>카테고리: ${category}</h1>
+		<br><br>
 		<table class="table table-striped">
+		<colgroup>
+            <col width="8%" />
+            <col width="*%" />
+            <col width="16%" />
+            <col width="16%" />
+            <col width="16%" />
+            <col width="12%" />
+            <col width="8%" />
+         </colgroup>
+		
 			<thead bgcolor="pink">
 				<tr>
 					<th>번호</th>
@@ -47,34 +59,35 @@
 			</tbody>
 		</table>
 		<div align="center">
-			<c:if test="${to.curPage != 1 }">
-				<a
-					href="reviewcateselect.do?category=${category }&curPage=${(to.curPage-1) >0 ? (to.curPage-1) : 1} ">&laquo;</a>&nbsp;&nbsp;
+      <ul class="pagination justify-content-center" >
+         <c:if test="${to.curPage != 1 }">
+         <li class="page-item"><a class="page-link" href="reviewcateselect.do?category=${category }&curPage=${(to.curPage-1) >0 ? (to.curPage-1) : 1} ">&laquo;</a>
 </c:if>
 
-			<c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}"
-				var="idx">
+         <c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}"
+            var="idx">
 
-				<c:if test="${to.curPage == idx }">
-					<a style="font-size: 20px;"
-						href="reviewcateselect.do?curPage=${idx}&category=${category}">${idx}</a> &nbsp;&nbsp;
+            <c:if test="${to.curPage == idx }">
+               <li class="page-item active"><a class="page-link" 
+                  href="reviewcateselect.do?curPage=${idx}&category=${category}">${idx}</a></li> 
       </c:if>
 
-				<c:if test="${to.curPage != idx }">
-					<a style="text-decoration: none"
-						href="reviewcateselect.do?curPage=${idx}&category=${category}">${idx}</a> &nbsp;&nbsp;
+            <c:if test="${to.curPage != idx }">
+               <li class="page-item"><a class="page-link" style="text-decoration: none"
+                  href="reviewcateselect.do?curPage=${idx}&category=${category}">${idx}</a></li>
       </c:if>
 
-			</c:forEach>
-			<c:if test="${to.curPage != to.totalPage}">
-				<a
-					href="reviewcateselect.do?category=${category}&curPage=${(to.curPage+1) < to.totalPage? (to.curPage+1) : to.totalPage }">&raquo;</a>
-			</c:if>
-			<div style="float: left">
-				<button type="button" class="btn btn-outline-success"
-					onclick="location.href='reviewlist.do'">목록</button>
-			</div>
-			<br> <br> <br><jsp:include page="footer.jsp" />
-		</div>
+         </c:forEach>
+         <c:if test="${to.curPage != to.totalPage}">
+            <li class="page-item"><a class="page-link" href="reviewcateselect.do?category=${category}&curPage=${(to.curPage+1) < to.totalPage? (to.curPage+1) : to.totalPage }">&raquo;</a></li>
+         </c:if>
+         
+         </ul>
+         <div style="float: left">
+            <button type="button" class="btn btn-outline-success"
+               onclick="location.href='reviewlist.do'">목록</button>
+         </div>
+         <br> <br> <br><jsp:include page="footer.jsp" />
+      </div>
 </body>
 </html>

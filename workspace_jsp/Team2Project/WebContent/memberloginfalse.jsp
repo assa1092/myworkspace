@@ -7,10 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>IT 제품 리뷰</title>
+<!-- 파비콘 적용 -->
+<link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-<div style="padding: 20px 70px 20px 70px;">
+<div style="padding: 20px 70px 0px 70px;">
 <h1>아이디나 비밀번호가 틀렸습니다.</h1><br>
 
 

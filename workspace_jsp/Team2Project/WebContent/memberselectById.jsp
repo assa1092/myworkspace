@@ -11,7 +11,9 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<title>Insert title here</title>
+<title>IT 제품 리뷰</title>
+<!-- 파비콘 적용 -->
+<link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
 <style>
 body {
 	color: #6F8BA4;
@@ -159,7 +161,7 @@ mark {
 </style>
 </head>
 <body>
-	<div style="padding: 20px 70px 20px 70px;">
+	<div style="padding: 20px 70px 0px 70px;">
 		<jsp:include page="header.jsp" />
 		<%-- <h2>회원 정보 자세히 보기</h2>
 
@@ -223,23 +225,35 @@ mark {
 					</div>
 				</div>
 				<div style="float: right">
-				<button class="btn btn-outline-success"
-					onclick="location.href='memberupdateui.do?id=${mDTO.id}'">수정</button>
-				<button class="btn btn-outline-success"
-					onclick="memberDelete('${mDTO.id}')">탈퇴</button>
-				<button class="btn btn-outline-success"
-					onclick="location.href='reviewlist.do'">목록</button>
-
-
-				<script type="text/javascript">
-					function memberDelete(id) {
-						var isOk = confirm("모든 게시글이 삭제됩니다. 탈퇴하시겠습니까?");
-						if (isOk == true) {
-							location.href = "memberdelete.do?id=" + id;
+				
+				<c:choose>
+					<c:when test="${sessionScope.login.id.equals(param.id) }">
+					<button class="btn btn-outline-success"
+						onclick="location.href='memberupdateui.do?id=${mDTO.id}'">수정</button>
+					<button class="btn btn-outline-success"
+						onclick="memberDelete('${mDTO.id}')">탈퇴</button>
+					<button class="btn btn-outline-success"
+						onclick="location.href='reviewlist.do'">목록</button>
+					<script type="text/javascript">
+						function memberDelete(id) {
+							var isOk = confirm("모든 게시글이 삭제됩니다. 탈퇴하시겠습니까?");
+							if (isOk == true) {
+								location.href = "memberdelete.do?id=" + id;
+							}
 						}
-					}
-				</script>
-				</div>
+					</script>					
+					</c:when>					
+					<c:otherwise>
+					<button class="btn btn-outline-success"
+						onclick="location.href='reviewlist.do'">목록</button>					
+					</c:otherwise>
+				</c:choose>
+				
+
+				
+
+
+			</div>
 			</div>
 
 		</section>

@@ -12,7 +12,9 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>IT 제품 리뷰</title>
+<!-- 파비콘 적용 -->
+<link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>

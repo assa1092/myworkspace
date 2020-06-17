@@ -20,10 +20,11 @@
 	}
 </script>
 <title>IT 제품 리뷰</title>
+<!-- 파비콘 적용 -->
+<link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-
-	<div style="padding: 20px 70px 20px 70px;">
+	<div style="padding: 20px 70px 0px 70px;">
 		<jsp:include page="header.jsp" />
 		<%-- <h1>IT 제품 리뷰 리스트</h1>
 		<!-- 버튼에 스타일 적용하기 -->
@@ -51,6 +52,30 @@
 		<br><br>
 		
 		<table class="table table-striped">
+		 <colgroup>
+            <c:if
+               test="${login.property.equals('customer')||empty login.property}">
+               <col width="8%" />
+               <col width="24%" />
+               <col width="16%" />
+               <col width="16%" />
+               <col width="16%" />
+               <col width="12%" />
+               <col width="8%" />
+            </c:if>
+            <c:if
+               test="${login.property.equals('admin')||login.property.equals('manager') }">
+               <col width="7%" />
+               <col width="21%" />
+               <col width="14%" />
+               <col width="14%" />
+               <col width="14%" />
+               <col width="10%" />
+               <col width="7%" />
+               <col width="13%" />
+            </c:if>
+         </colgroup>
+		
 			<thead  bgcolor = "pink">
 				<tr>
 					<th>번호</th>
@@ -92,7 +117,7 @@
 				<tr>
 					<td>${dto.num }</td>
 					<td><a href="reviewread.do?num=${dto.num }">${dto.title }</a></td>
-					<td>${dto.id }</td>
+					<td><a href="memberselectById.do?id=${dto.id }">${dto.id }</a></td>
 					<td>${dto.category }</td>
 					<td><c:choose>
 							<c:when test="${fn:length(dto.writeday)>10 }">
@@ -114,49 +139,52 @@
 		</table>
 		<!-- 페이징처리 -->
 		<div align="center">
-			<c:if test="${to.curPage != 1 }">
-				<a
-					href="reviewlist.do?curPage=${(to.curPage-1) >0 ? (to.curPage-1) : 1} ">&laquo;</a>&nbsp;&nbsp;
+      
+      <ul class="pagination justify-content-center" >
+         <c:if test="${to.curPage != 1 }">
+            <li class="page-item"><a class="page-link" href="reviewlist.do?curPage=${(to.curPage-1) >0 ? (to.curPage-1) : 1} ">&laquo;</a></li>
 </c:if>
 
-			<c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}"
-				var="idx">
+         <c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}"
+            var="idx">
 
-				<c:if test="${to.curPage == idx }">
-					<a style="font-size: 20px;" href="reviewlist.do?curPage=${idx}">${idx}</a> &nbsp;&nbsp;
-		</c:if>
+            <c:if test="${to.curPage == idx }">
+               <li class="page-item active"><a class="page-link" href="reviewlist.do?curPage=${idx}">${idx}</a></li> 
+      </c:if>
 
-				<c:if test="${to.curPage != idx }">
-					<a style="text-decoration: none"
-						href="reviewlist.do?curPage=${idx}">${idx}</a> &nbsp;&nbsp;
-		</c:if>
+            <c:if test="${to.curPage != idx }">
+               <li class="page-item"><a class="page-link" 
+                  href="reviewlist.do?curPage=${idx}">${idx}</a></li> 
+      </c:if>
 
-			</c:forEach>
-			<c:if test="${to.curPage != to.totalPage}">
-				<a
-					href="reviewlist.do?curPage=${(to.curPage+1) < to.totalPage? (to.curPage+1) : to.totalPage }">&raquo;</a>
-			</c:if>
+         </c:forEach>
+         <c:if test="${to.curPage != to.totalPage}">
+            <li class="page-item"><a class="page-link"   href="reviewlist.do?curPage=${(to.curPage+1) < to.totalPage? (to.curPage+1) : to.totalPage }">&raquo;</a></li>
+         </c:if>
+         </ul>
 
-			<br>
-			<div style="float: right">
-		<c:if test="${!empty login}">
-			<button type="button" class="btn btn-primary btn-lg"
-				onclick="location.href='reviewinsertui.do'">글쓰기</button>
-		</c:if>
-		</div>
-			<form action="reviewsearch.do" method="get">
-				<select name="category">
-					<option value="title">제목</option>
-					<option value="id">글쓴이</option>
-					<option value="titlecontent">제목 + 내용</option>
-				</select> <input name="search" required> <input type=submit
-					value="검색">
-			</form>
-		</div>
-		<br> <br> <br> <br>
-		
-		<jsp:include page="footer.jsp" />
-	</div>
+         <br>
+         <div style="float: right">
+      <c:if test="${!empty login}">
+         <button type="button" class="btn btn-primary btn-lg"
+            onclick="location.href='reviewinsertui.do'">글쓰기</button>
+      </c:if>
+      </div>
+      
+         <form action="reviewsearch.do" method="get">
+            <select name="category">
+               <option value="title">제목</option>
+               <option value="id">글쓴이</option>
+               <option value="titlecontent">제목 + 내용</option>
+            </select> <input name="search" required> <input type=submit
+               value="검색">
+         </form>
+      </div>
+      
+      <br> <br> <br> <br>
+      
+      <jsp:include page="footer.jsp" />
+   </div>
 
 </body>
 

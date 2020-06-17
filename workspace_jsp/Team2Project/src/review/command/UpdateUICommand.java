@@ -11,6 +11,7 @@ import member.dao.MemberDAO;
 import member.domain.MemberDTO;
 import review.dao.ReviewDAO;
 import review.domain.ReviewDTO;
+import review.domain.UploadDTO;
 import share.Command;
 import share.CommandAction;
 
@@ -40,9 +41,9 @@ public class UpdateUICommand implements Command {
 
 				ReviewDAO dao = new ReviewDAO();
 				ReviewDTO dto = dao.updateUI(num);
-
+				UploadDTO udto = dao.imgSelect(num);
 				request.setAttribute("dto", dto);
-				
+				request.setAttribute("udto", udto);
 				return new CommandAction(false, "reviewupdate.jsp");
 
 				

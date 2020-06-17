@@ -26,7 +26,7 @@ public class CateSelectCommand implements Command{
    if (scurPage != null) {
       curPage = Integer.parseInt(scurPage);
    }
-   System.out.println(curPage);
+//   System.out.println(curPage);
    ReviewDAO dao = new ReviewDAO();
    PageTO to = dao.catepage(curPage, category);
    // List<ReviewDTO> list = dao.list();

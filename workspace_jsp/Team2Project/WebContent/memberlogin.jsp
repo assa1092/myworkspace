@@ -74,11 +74,13 @@ body {
 	border-top-right-radius: 0;
 }
 </style>
-<title>Insert title here</title>
+<title>IT 제품 리뷰</title>
+<!-- 파비콘 적용 -->
+<link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <%-- <body>
-<div style="padding: 20px 70px 20px 70px;">
+
 <h1>로그인</h1>
 
 <form action="memberlogin.do" method="post">
@@ -111,5 +113,6 @@ PassWord <br>
 		<button class="btn btn-lg btn-info btn-block" type="button" onclick="location.href='reviewlist.do'">메인화면</button>
 		
 	</form>
+	</div>
 </body>
 </html>

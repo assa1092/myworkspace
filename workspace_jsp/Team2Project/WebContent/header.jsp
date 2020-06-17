@@ -7,15 +7,34 @@
 	<a href="reviewlist.do"><img alt="IT 제품 리뷰" src="logo.png" ></a>
 	<div style="width: 100%;">
 		<div style="display: inline; float: left">
-			<button type="button" class="btn btn-dark btn-lg"
-				onclick="location.href='reviewcateselect.do?category=컴퓨터'">컴퓨터</button>
-			&nbsp;
-			<button type="button" class="btn btn-dark btn-lg"
-				onclick="location.href='reviewcateselect.do?category=디지털'">디지털</button>
-			&nbsp;
-			<button type="button" class="btn btn-dark btn-lg"
-				onclick="location.href='reviewcateselect.do?category=가전'">가전</button>
-			&nbsp;
+	 <c:if test="${category=='컴퓨터' }">
+            <button type="button" class="btn btn-danger btn-lg"
+               onclick="location.href='reviewcateselect.do?category=컴퓨터'">컴퓨터</button>
+         </c:if>
+         <c:if test="${category!='컴퓨터'}">
+            <button type="button" class="btn btn-dark btn-lg"
+               onclick="location.href='reviewcateselect.do?category=컴퓨터'">컴퓨터</button>
+         </c:if>
+         &nbsp;
+         <c:if test="${category=='디지털' }">
+            <button type="button" class="btn btn-danger btn-lg"
+               onclick="location.href='reviewcateselect.do?category=디지털'">디지털</button>
+         </c:if>
+         <c:if test="${category!='디지털'}">
+            <button type="button" class="btn btn-dark btn-lg"
+               onclick="location.href='reviewcateselect.do?category=디지털'">디지털</button>
+         </c:if>
+         &nbsp;
+         <c:if test="${category=='가전' }">
+            <button type="button" class="btn btn-danger btn-lg"
+               onclick="location.href='reviewcateselect.do?category=가전'">가전</button>
+         </c:if>
+         <c:if test="${category!='가전'}">
+            <button type="button" class="btn btn-dark btn-lg"
+               onclick="location.href='reviewcateselect.do?category=가전'">가전</button>
+         </c:if>
+         &nbsp;
+
 		</div>
 		<div style="display: inline; float: right">
 

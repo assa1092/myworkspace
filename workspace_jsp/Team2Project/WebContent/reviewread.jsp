@@ -10,9 +10,11 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <title>${list.title}</title>
+<!-- 파비콘 적용 -->
+<link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-	<div style="padding: 20px 70px 20px 70px;">
+	<div style="padding: 20px 70px 0px 70px;">
 		<jsp:include page="header.jsp" />
 
 		<h1>상세 보기</h1>
@@ -26,7 +28,7 @@
 		<table class="table">
 			<tr><td style="font-size:20px; background-color: lightgray;"  colspan=2><b>${list.title}</b>
 			</tr>
-			<tr><td><b>${list.id}&nbsp;님</b>
+			<tr><td><b><a href="memberselectById.do?id=${list.id }">${list.id}</a>&nbsp;님</b>
 			<td style="text-align: right;" class="text-muted">
 			<svg class="bi bi-clock" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   			<path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z"/>
@@ -44,7 +46,10 @@
 		</table>
 		<table class="table table-bordered">
 			<tr>
-				<td>${list.content }
+				<td><div style="min-height: 200px; font-size: 20px;"><%-- ${list.content } --%>
+				<pre><c:out value="${list.content}" /></pre></div>
+
+
 			</tr>
 		</table>
 		<table class="table table-borderless">
@@ -96,12 +101,20 @@
 			
 		</table>
 		--%>
-		<c:if test="${!empty login}">
+
+		
+
+		<c:if test="${sessionScope.login.id.equals(list.id) }">
 			<button type="button" class="btn btn-outline-success"
 				onclick="location.href='reviewupdateui.do?num=${list.num }&id=${list.id }'">수정</button>
+		</c:if>
+		
+		<c:if test="${sessionScope.login.id.equals(list.id) || (login.property.equals('admin') || login.property.equals('manager')) }">
 			<button type="button" class="btn btn-outline-success"
 				onclick="location.href='reviewdelete.do?num=${list.num }&id=${list.id }'">삭제</button>
+
 		</c:if>
+
 		<button type="button" class="btn btn-outline-success"
 			onclick="location.href='reviewlist.do'">목록</button>
 

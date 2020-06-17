@@ -209,7 +209,7 @@ public class ReviewDAO {
 				String category = rs.getString("category");
 				int starpoint = rs.getInt("starpoint");
 
-				dto = new ReviewDTO(num, title, content, id, category, null, 0, 0);
+				dto = new ReviewDTO(num, title, content, id, category, null, 0, starpoint);
 			}
 
 		} catch (Exception e) {
@@ -258,11 +258,13 @@ public class ReviewDAO {
 			conn = dataFactory.getConnection();
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql);
-			// 기존의 파일 삭제
+			// 기존의 파일이 존재할 시 삭제
+			if(uploadDTO.getFileName()!=null) {
 			uploadDelete(conn, reviewDTO.getNum());
 			// 새로운 파일 업로드
 			upload(conn, new UploadDTO(uploadDTO.getFileName(), uploadDTO.getOrgFileName(), reviewDTO.getNum()));
-
+			}
+			
 			pstmt.setString(1, reviewDTO.getTitle());
 			pstmt.setString(2, reviewDTO.getCategory());
 			pstmt.setInt(3, reviewDTO.getStarpoint());

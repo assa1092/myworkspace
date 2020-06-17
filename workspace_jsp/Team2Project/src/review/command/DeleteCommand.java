@@ -25,7 +25,10 @@ public class DeleteCommand implements Command {
 			if (login != null) {
 				String id = request.getParameter("id");
 
-				if (login.getId().equals(id)) {
+				// 아이디가 같은 경우 뿐 아니라 매니저나 어드민계정일 경우에도 삭제가 가능
+				if (login.getId().equals(id)
+						|| (login.getProperty().equals("admin") || login.getProperty().equals("manager"))) {
+
 					String sNum = request.getParameter("num");
 					int num = -1;
 					if (sNum != null) {

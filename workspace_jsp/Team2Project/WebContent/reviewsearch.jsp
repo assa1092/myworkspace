@@ -9,10 +9,12 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<title>Insert title here</title>
+<title>IT 제품 리뷰</title>
+<!-- 파비콘 적용 -->
+<link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-<div style="padding: 20px 70px 20px 70px;">
+<div style="padding: 20px 70px 0px 70px;">
 <jsp:include page="header.jsp" />
 	<h1>검색결과</h1>
 	<table class="table table-striped">

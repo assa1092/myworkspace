@@ -40,11 +40,12 @@ public class UpdateCommand implements Command {
 				MultipartRequest multi = new MultipartRequest(request, uploadPath, 10 * 1024 * 1024, "utf-8",
 						new DefaultFileRenamePolicy());
 				// request로 값을 받으면 사용할 수 없으므로 multi로 받는다.
-//				String rid = request.getParameter("id");
+
 				String id = multi.getParameter("id");
 
 				if (login.getId().equals(id)) {
-
+					// 새로 수정하는 파일 이름
+					String newFileName = multi.getFilesystemName("file");
 					String sNum = multi.getParameter("num");
 					int num = -1;
 					if (sNum != null) {
@@ -60,27 +61,31 @@ public class UpdateCommand implements Command {
 					if (sStarpoint != null) {
 						starpoint = Integer.parseInt(sStarpoint);
 					}
+
 					// 수정 시 기존 파일 삭제 후 덮어쓰기
 					ReviewDAO dao = new ReviewDAO();
 					UploadDTO dto = dao.imgSelect(num);
-					// 기존의 파일 이름
-					String fileName = dto.getFileName();
 
-					String filePath = uploadPath + File.separator + fileName;
-					String orgFileName = multi.getOriginalFileName("file");
+					String fileName = null;
+					String orgFileName = null;
 
-					File file = new File(filePath);
+					if (newFileName != null) {
+						// 기존의 파일 이름
+						fileName = dto.getFileName();
 
-					// 기존 파일 삭제
-					if (file.exists()) {
-						file.delete();
+						String filePath = uploadPath + File.separator + fileName;
+						orgFileName = multi.getOriginalFileName("file");
+
+						File file = new File(filePath);
+
+						// 기존 파일 삭제
+						if (file.exists()) {
+							file.delete();
+						}
 					}
-
-					// 파일 이름이 새로넣는 파일의 이름으로 대체
-					fileName = multi.getFilesystemName("file");
 					// 수정
 					dao.update(new ReviewDTO(num, title, content, null, category, null, 0, starpoint),
-							new UploadDTO(fileName, orgFileName, num));
+							new UploadDTO(newFileName, orgFileName, num));
 
 					return new CommandAction(true, "reviewlist.do");
 				} else {
