@@ -1,4 +1,4 @@
-package member.command;
+package member;
 
 import java.io.IOException;
 
@@ -13,14 +13,15 @@ import share.CommandAction;
 public class LogoutCommand implements Command {
 
 	@Override
-	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-
+	public CommandAction execute(HttpServletRequest request, HttpServletResponse reponse)
+		
+			throws ServletException, IOException {
+		
+		
 		HttpSession session = request.getSession(false);
-
+		
 		session.invalidate();
-
-		return new CommandAction(true, "reviewlist.do");
+		return new CommandAction(true, "memberlist.do");
 	}
 
 }

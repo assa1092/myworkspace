@@ -112,6 +112,7 @@
 						<td></td>
 					</c:if>
 					</tr>
+					
 					<c:forEach items="${list }" var="dto">
 				
 				<tr>
@@ -133,7 +134,7 @@
 						</td>
 					</c:if>
 				</tr>
-				</tr>
+				
 				</c:forEach>
 			</tbody>
 		</table>
@@ -143,7 +144,7 @@
       <ul class="pagination justify-content-center" >
          <c:if test="${to.curPage != 1 }">
             <li class="page-item"><a class="page-link" href="reviewlist.do?curPage=${(to.curPage-1) >0 ? (to.curPage-1) : 1} ">&laquo;</a></li>
-</c:if>
+		</c:if>
 
          <c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}"
             var="idx">

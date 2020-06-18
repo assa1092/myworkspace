@@ -26,10 +26,6 @@ public class UpdateUICommand implements Command {
 			num = Integer.parseInt(sNum);
 		}
 
-		
-
-		
-
 	String id = request.getParameter("id");
 	HttpSession session = request.getSession();
 	MemberDTO sessionDto = null;

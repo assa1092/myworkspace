@@ -1,0 +1,34 @@
+
+1. getSession(), getSession(true)
+
+ - HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로이 세션을 생성합니다
+
+
+
+2. getSession(false)
+
+ - HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로이 생성하지 않고 그냥 null을 반환합니다
+
+
+
+3. 사용 예
+
+HttpSession session = request.getSession();
+
+HttpSession session = request.getSession(true);
+
+위는 동일한 결과를 반환합니다
+
+새로 생성된 놈인지 확인은 session.isNew() 로 가능합니다
+
+그리고 getSession(), getSession(true)는 null 체크없이 바로 getAttribute()를 사용해도 무방하지만, getSession(false)는 null을 리턴할수 있기 때문에 null체크를 해야 합니다.
+
+HttpSession session = request.getSession(false);
+
+if (session != null)
+
+    User user = (User) session.getAttribute("User");
+
+
+
+출처: https://denodo1.tistory.com/283 [dBack]
