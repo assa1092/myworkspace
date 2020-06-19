@@ -30,9 +30,7 @@ public class InsertCommand implements Command {
 		ReviewDAO dao = new ReviewDAO();
 		dao.insert(new ReviewDTO(-1, title, content, id, category, null, 0, starpoint));
 		
-		System.out.println(123);
-		
-		return new CommandAction(true, "memberlist.do");
+		return new CommandAction(true, "reviewlist.do");
 	}
 
 }

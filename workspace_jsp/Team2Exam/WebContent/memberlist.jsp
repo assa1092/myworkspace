@@ -25,7 +25,7 @@
 		<h3>${login.id}님이 로그인 하였습니다.</h3>
 	</c:if>
 	<c:forEach items="${list}" var = "dto">
-		<a href="selectById.do?id=${dto.id }">${dto.id} : ${dto.name}</a>
+		<a href="memberselectById.do?id=${dto.id }">${dto.id} : ${dto.name}</a>
 		<br>
 	</c:forEach>
 

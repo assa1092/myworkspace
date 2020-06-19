@@ -1,4 +1,3 @@
-<%@page import="member.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -13,19 +12,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script>
-      alert('다른사람은 건들지 맙시다.');
-</script>
-	<%
-      MemberDTO login = (MemberDTO) session.getAttribute("login");
-   %>
-	
-		<h1>사용자 정보</h1>
-		아이디 : ${login.id}<br>
-		이  름 : ${login.name}<br>
-		<a href="memberlist.do?">목록으로</a>
-	
-	
+	<h1>회원 정보 수정</h1>
+	<form action="memberupdate.do" method="post">
+		ID : <input name="id" readonly value="${dto.id }"><br>
+		Name : <input name="name" value="${dto.name }"><br>
+		Pw : <input name="pw" type="password" required><br>
+		<input type="submit" value="수정">
+		
+	</form>
 
 </body>
 </html>

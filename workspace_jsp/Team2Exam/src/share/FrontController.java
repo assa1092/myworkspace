@@ -56,8 +56,18 @@ public class FrontController extends HttpServlet {
 			com = new member.LoginUICommand();
 		} else if (sp.equalsIgnoreCase("/memberlogin.do")) {
 			com = new member.LoginCommand();
-		}else if (sp.equalsIgnoreCase("/memberlogout.do")) {
+		} else if (sp.equalsIgnoreCase("/memberlogout.do")) {
 			com = new member.LogoutCommand();
+		} else if(sp.equalsIgnoreCase("/memberselectById.do")) {
+			com = new member.SelectByIdCommand();
+		}else if (sp.equalsIgnoreCase("/memberupdateui.do")) {
+			com = new member.UpdateUICommand();
+		} else if (sp.equalsIgnoreCase("/memberupdate.do")) {
+			com = new member.UpdateCommand();
+		} else if (sp.equalsIgnoreCase("/memberdelete.do")) {
+			com = new member.DeleteCommand();
+		} else if(sp.equalsIgnoreCase("/reviewcateselect.do")) {
+			com = new review.CateSelectCommand();
 		}
 		
 		else {

@@ -316,6 +316,81 @@ public class ReviewDAO {
 			closeAll(rs, pstmt, null);
 		}
 		return num;
+	}
+
+	public PageTO catepage(int curPage, String category) {
+		PageTO to =  new PageTO(curPage);
+		List<ReviewDTO> list = new ArrayList<ReviewDTO>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from ("
+					+ "select rownum rnum, num, title, id, category,writeday, readcnt, starpoint from ("
+					+ "select * from review where category=? order by num desc)) "
+					+ "where rnum >=? and rnum<= ?";
+		
+		try {
+			conn = dataFactory.getConnection();
+			int amount = getCateAmount(conn, category);
+			to.setAmount(amount);
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);
+			pstmt.setInt(2, to.getStartNum());
+			pstmt.setInt(3, to.getEndNum());
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				int num = rs.getInt("num");
+				String title = rs.getString("title");
+				String id = rs.getString("id");
+
+				String writeday = rs.getString("writeday");
+				int readcnt = rs.getInt("readcnt");
+				int starpoint = rs.getInt("starpoint");
+				
+				ReviewDTO dto = new ReviewDTO(num, title, null, id, category, writeday, readcnt, starpoint);
+				
+				list.add(dto);
+			}
+			to.setList(list);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return to;
+	}
+
+	private int getCateAmount(Connection conn, String category) {
+		int amount =0;
+		PreparedStatement pstmt = null;
+		String sql = "select count(num) from review where category=?";
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, category);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				amount = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, null);
+		}
+		
+		
+		return amount;
 	} 
 
 }

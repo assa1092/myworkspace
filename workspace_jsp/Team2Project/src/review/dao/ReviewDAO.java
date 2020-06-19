@@ -807,13 +807,13 @@ public class ReviewDAO {
 			while (rs.next()) {
 				String Rcategory = rs.getString("category");
 				if (Rcategory.equals(category)) {
-					int num = rs.getInt("num");
-					String title = rs.getString("title");
-					String id = rs.getString("id");
-
-					String writeday = rs.getString("writeday");
-					int readcnt = rs.getInt("readcnt");
-					int starpoint = rs.getInt("starpoint");
+						int num = rs.getInt("num");
+						String title = rs.getString("title");
+						String id = rs.getString("id");
+	
+						String writeday = rs.getString("writeday");
+						int readcnt = rs.getInt("readcnt");
+						int starpoint = rs.getInt("starpoint");
 
 					ReviewDTO dto = new ReviewDTO(num, title, null, id, category, writeday, readcnt, starpoint);
 

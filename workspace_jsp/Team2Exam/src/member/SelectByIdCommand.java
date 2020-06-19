@@ -5,23 +5,23 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import share.Command;
 import share.CommandAction;
 
-public class LogoutCommand implements Command {
+public class SelectByIdCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse reponse)
-		
 			throws ServletException, IOException {
+		String id = request.getParameter("id");
 		
+		MemberDAO dao = new MemberDAO();
+		MemberDTO dto = dao.selectById(id);
 		
-		HttpSession session = request.getSession(false);
+		request.setAttribute("dto", dto);
 		
-		session.invalidate();
-		return new CommandAction(true, "reviewlist.do");
+		return new CommandAction(false, "selectById.jsp");
 	}
 
 }

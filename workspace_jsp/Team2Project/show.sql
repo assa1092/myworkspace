@@ -38,3 +38,6 @@ num number(10) primary key,
 fileName varchar2(30),
 orgFileName varchar2(30)
 )
+
+
+select * from (select rownum rnum, num, title, id, category,writeday, readcnt, starpoint from (select * from review where category='?' order by num desc)) where rnum >=? and rnum<= ?

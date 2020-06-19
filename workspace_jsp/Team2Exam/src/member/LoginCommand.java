@@ -26,7 +26,7 @@ public class LoginCommand implements Command {
 			HttpSession session = request.getSession();
 			session.setAttribute("login", dto);
 			
-			return new CommandAction(true, "memberlist.do");
+			return new CommandAction(true, "reviewlist.do");
 			
 		} else {
 			System.out.println("로그인실패");
