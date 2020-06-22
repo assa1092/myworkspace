@@ -391,6 +391,152 @@ public class ReviewDAO {
 		
 		
 		return amount;
+	}
+
+	public uploadDTO imgSelect(int num) {
+		uploadDTO dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select fileName, orgFileName from upload from num=?";
+		ResultSet rs = null;
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				String fileName = rs.getString("fileName");
+				String orgFileName = rs.getString("orgFileName");
+				
+				dto = new uploadDTO(fileName, orgFileName, num);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		
+		
+		return dto;
+	}
+
+	public void delete(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "delete from review where num=?";
+		
+		boolean isOk = false;
+		try {
+			conn = dataFactory.getConnection();
+			conn.setAutoCommit(false);
+			uploadDelete(conn, num);
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, num);
+			
+			pstmt.executeUpdate();
+			
+			isOk = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (isOk) {
+					conn.commit();
+				} else {
+					conn.rollback();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			closeAll(null, pstmt, conn);
+		}
+		
+	}
+
+	private void uploadDelete(Connection conn, int num) {
+		PreparedStatement pstmt = null;
+		String sql = "delete from upload where num=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, num);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, null);
+		}
+	}
+
+	public void insert(ReviewDTO reviewDTO, uploadDTO uploadDTO) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into review (num, title, content, id, category, starpoint) values(?,?,?,?,?,?)";
+		
+		boolean isOk = false;
+		
+		try {
+			conn = dataFactory.getConnection();
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement(sql);
+			
+			int num = createNum(conn);	// 게시판 글 마직막 숫자 알아오기.
+			
+			upload(conn, new uploadDTO(uploadDTO.getFileName(), uploadDTO.getOrgFileName(), num));
+			
+			pstmt.setInt(1, num);
+			pstmt.setString(2, reviewDTO.getTitle());
+			pstmt.setString(3, reviewDTO.getContent());
+			pstmt.setString(4, reviewDTO.getId());
+			pstmt.setString(5, reviewDTO.getCategory());
+			pstmt.setInt(6, reviewDTO.getStarpoint());
+
+			pstmt.executeUpdate();
+			
+			isOk = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (isOk) {
+					conn.commit();
+				} else {
+					conn.rollback();
+
+				}
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			closeAll(null, pstmt, conn);
+		}
+		
+	}
+
+	private void upload(Connection conn, uploadDTO uploadDTO) {
+		PreparedStatement pstmt = null;
+		String sql = "insert into upload(num, fileName, orgFileName) values(?,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, uploadDTO.getNum());
+			pstmt.setString(2, uploadDTO.getFileName());
+			pstmt.setString(3, uploadDTO.getOrgFileName());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, null);
+		}
+		
 	} 
 
 }

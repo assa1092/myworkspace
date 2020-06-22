@@ -128,12 +128,12 @@
 
             <c:if test="${to.curPage == idx }">
                <li class="page-item active"><a class="page-link" href="reviewlist.do?curPage=${idx}">${idx}</a></li> 
-      </c:if>
+      		</c:if>
 
             <c:if test="${to.curPage != idx }">
                <li class="page-item"><a class="page-link" 
                   href="reviewlist.do?curPage=${idx}">${idx}</a></li> 
-      </c:if>
+     		</c:if>
 
          </c:forEach>
          

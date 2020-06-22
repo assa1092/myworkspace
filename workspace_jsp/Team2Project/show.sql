@@ -22,6 +22,9 @@ starpoint number(2) check (starpoint<=10)
 )
 
 alter table review modify readcnt number(10) default 0
+alter table review add repIndent number(10) default 0
+alter table review rename column readRoot to repRoot
+
 
 SELECT * FROM (SELECT * FROM review WHERE id = 'admin' ORDER BY num desc) WHERE ROWNUM = 1
 
@@ -39,5 +42,10 @@ fileName varchar2(30),
 orgFileName varchar2(30)
 )
 
+select * from upload
 
-select * from (select rownum rnum, num, title, id, category,writeday, readcnt, starpoint from (select * from review where category='?' order by num desc)) where rnum >=? and rnum<= ?
+select * from member where property = 'admin' order by id
+
+select * from (
+select rownum rnum, num, title, id, category,writeday, readcnt, starpoint from (
+select * from review where category='?' order by num desc)) where rnum >=? and rnum<= ?

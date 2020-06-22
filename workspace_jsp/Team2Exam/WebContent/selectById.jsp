@@ -19,7 +19,7 @@
 	
 	<a href="memberupdateui.do?id=${dto.id}">수정</a> | 
 	<a href="memberdelete.do?id=${dto.id}">삭제</a> |
-	<a href="memberlist.do">목록</a> |   
+	<a href="reviewlist.do">목록</a> |   
 
 </body>
 </html>
