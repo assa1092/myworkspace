@@ -21,7 +21,7 @@
 	조회수: ${dto.readcnt }<br>
 	별 점 : ${dto.starpoint}<br>
 	내 용 : ${dto.content }<br>
-	
+
 	   <a href="reviewupdateui.do?num=${dto.num}&id=${dto.id}">수 정</a> 
 	|  <a href="reviewdelete.do?num=${dto.num}">삭 제</a> 
 	|  <a href="#">댓 글</a> 
