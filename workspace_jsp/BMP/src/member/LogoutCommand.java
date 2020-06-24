@@ -23,7 +23,7 @@ public class LogoutCommand implements Command {
 				session.invalidate();
 			}
 		}
-		return new CommandAction(true, "select.do");
+		return new CommandAction(true, "boardlist.do");
 	}
 
 }

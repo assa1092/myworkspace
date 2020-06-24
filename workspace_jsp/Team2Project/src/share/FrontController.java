@@ -98,6 +98,16 @@ public class FrontController extends HttpServlet {
 			com = new review.command.CateSelectCommand();
 		} else if (sp.equalsIgnoreCase("/reviewupload.do")) {
 			com = new review.command.UploadCommand();
+		} else if (sp.equalsIgnoreCase("/boardlist.do")) {
+			com = new board.command.ListPageCommand();
+		} else if (sp.equalsIgnoreCase("/boardread.do")) {
+			com = new board.command.ReadCommand();
+		}else if (sp.equalsIgnoreCase("/boardinsertui.do")) {
+			com = new board.command.InsertUICommand();
+		} else if (sp.equalsIgnoreCase("/boardinsert.do")) {
+			com = new board.command.InsertCommand();
+		} else if (sp.equalsIgnoreCase("/boardupload.do")) {
+			com = new board.command.UploadCommand();
 		}
 
 		if (com != null) {

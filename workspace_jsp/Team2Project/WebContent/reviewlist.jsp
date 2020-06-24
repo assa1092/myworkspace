@@ -19,6 +19,7 @@
 		}
 	}
 </script>
+
 <title>IT 제품 리뷰</title>
 <!-- 파비콘 적용 -->
 <link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
@@ -26,6 +27,9 @@
 <body>
 	<div style="padding: 20px 70px 0px 70px;">
 		<jsp:include page="header.jsp" />
+		<div align="right">
+		<h1>리뷰게시판&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick="location.href='boardlist.do'">자유게시판</button></h1>
+		</div>
 		<%-- <h1>IT 제품 리뷰 리스트</h1>
 		<!-- 버튼에 스타일 적용하기 -->
 		<button type="button" class="btn btn-primary"
@@ -49,7 +53,7 @@
 			test="${login.property.equals('admin')||login.property.equals('manager') }">
 			<button onclick="location.href='membergrantui.do'">회원 관리</button>
 		</c:if> --%>
-		<br><br>
+
 		
 		<table class="table table-striped">
 		 <colgroup>
@@ -151,12 +155,12 @@
 
             <c:if test="${to.curPage == idx }">
                <li class="page-item active"><a class="page-link" href="reviewlist.do?curPage=${idx}">${idx}</a></li> 
-      </c:if>
+      		</c:if>
 
             <c:if test="${to.curPage != idx }">
                <li class="page-item"><a class="page-link" 
                   href="reviewlist.do?curPage=${idx}">${idx}</a></li> 
-      </c:if>
+      		</c:if>
 
          </c:forEach>
          <c:if test="${to.curPage != to.totalPage}">

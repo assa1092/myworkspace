@@ -93,7 +93,7 @@
   </div>
   <div class="form-group">
     <label for="file">첨부파일</label>
-    <input type = "file" name="file"  class="form-control" id="file"></textarea>
+    <input type = "file" name="file"  class="form-control" id="file">
   </div>
  
   <button type="submit" class="btn btn-primary">글쓰기</button>

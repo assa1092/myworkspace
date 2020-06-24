@@ -26,9 +26,9 @@ public class LoginCommand implements Command {
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("login", new LoginDTO(id, pw));
-			return new CommandAction(false, "select.do");
+			return new CommandAction(false, "boardlist.do");
 		} else {
-			return new CommandAction(false, "loginui.do");
+			return new CommandAction(false, "memberloginui.do");
 		}
 		
 	}

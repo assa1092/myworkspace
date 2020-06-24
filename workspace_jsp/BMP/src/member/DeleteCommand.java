@@ -27,7 +27,7 @@ public class DeleteCommand implements Command {
 					
 					session.invalidate();
 					
-					return new CommandAction(true, "select.do");
+					return new CommandAction(true, "boardlist.do");
 				} else {
 					return new CommandAction(true, "memberloginui.do");
 				}

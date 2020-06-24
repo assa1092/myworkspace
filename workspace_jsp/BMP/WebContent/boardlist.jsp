@@ -43,6 +43,26 @@ table.ex1 {width:98%; margin:0 auto; text-align:right; border-collapse:collapse}
 <div style="padding: 20px 70px 0px 70px;">
 	&nbsp;&nbsp;&nbsp;&nbsp;<h1>게시글 목록</h1>
 	
+	<div style="display: inline; float: right">
+
+			<!-- 로그인 화면 -->
+			<c:if test="${!empty login }">
+				${login.id }님, 안녕하세요.&nbsp;
+				<button type="button" class="btn btn-primary" onclick="location.href='memberlogout.do'">로그아웃</button>&nbsp;
+				<button type="button" class="btn btn-info"
+					onclick="location.href='memberselectById.do?id=${login.id}'">내정보보기</button>&nbsp;
+			</c:if>
+			<!-- 로그아웃 화면 -->
+			<c:if test="${empty login }">
+				<button type="button" class="btn btn-primary" onclick="location.href='memberloginui.do'">로그인</button>&nbsp;
+				<button type="button" class="btn btn-primary" onclick="location.href='memberinsertui.do'">회원가입</button>&nbsp;
+			</c:if>
+
+
+			<br> <br>
+
+		</div>
+	
 	
 	<table class="ex1 table table-striped">
 		<thead>
@@ -94,7 +114,7 @@ table.ex1 {width:98%; margin:0 auto; text-align:right; border-collapse:collapse}
 	<c:forEach begin="${to.beginPageNum}" end ="${to.stopPageNum}" var ="idx">
 		<!-- 현재 페이지와 인덱스 페이지가 같으면. 숫자가 커보이게...-->
 		<c:if test="${to.curPage == idx }">
-			<a style="font-size:20px;" href="boardlist.do?curPage=${idx}">${idx}</a> &nbsp;&nbsp;
+			<a style="font-size:30px;" href="boardlist.do?curPage=${idx}">${idx}</a> &nbsp;&nbsp;
 		</c:if>
 		<!-- 현재 페이지와 인덱스 페이지가 다르면. 밑줄 안보이게...-->
 		<c:if test="${to.curPage != idx }">

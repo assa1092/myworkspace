@@ -32,7 +32,7 @@ public class FrontController extends HttpServlet {
 		String sp = uri.substring(ctxp.length());
 		
 		Command com = null;
-		if (sp.equalsIgnoreCase("/select.do")) {
+		if (sp.equalsIgnoreCase("/memberselect.do")) {
 			com = new member.SelectCommand();
 		} else if (sp.equalsIgnoreCase("/memberinsertui.do")) {
 			com = new member.InsertUICommand();
@@ -44,7 +44,7 @@ public class FrontController extends HttpServlet {
 			com = new member.LoginCommand();
 		} else if (sp.equalsIgnoreCase("/memberlogout.do")) {
 			com = new member.LogoutCommand();
-		} else if (sp.equalsIgnoreCase("/selectById.do")) {
+		} else if (sp.equalsIgnoreCase("/memberselectById.do")) {
 			com = new member.SelectByIdCommand();
 		} else if (sp.equalsIgnoreCase("/memberupdateui.do")) {
 			com = new member.UpdateUICommand();
@@ -59,6 +59,8 @@ public class FrontController extends HttpServlet {
 			com = new board.InsertUICommand();
 		} else if(sp.equalsIgnoreCase("/boardinsert.do")) {
 			com = new board.InsertCommand();
+		}  else if(sp.equalsIgnoreCase("/boardread.do")) {
+			com = new board.ReadCommand();
 		}
 		
 		

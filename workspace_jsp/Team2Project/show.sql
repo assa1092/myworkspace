@@ -42,10 +42,18 @@ fileName varchar2(30),
 orgFileName varchar2(30)
 )
 
-select * from upload
+select * from boardupload
+select * from board order by reproot desc, repstep asc
 
 select * from member where property = 'admin' order by id
 
 select * from (
 select rownum rnum, num, title, id, category,writeday, readcnt, starpoint from (
 select * from review where category='?' order by num desc)) where rnum >=? and rnum<= ?
+
+create table boardupload(
+num number(10) primary key,
+fileName varchar2(30),
+orgFileName varchar2(30)
+)
+
