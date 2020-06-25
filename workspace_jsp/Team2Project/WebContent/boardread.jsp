@@ -19,7 +19,7 @@
 
 		<h1>상세 보기</h1>
 		<div style="text-align: center;">
-			<img alt="" src="upload/${upload.fileName }"
+			<img alt="" src="boardupload/${upload.fileName }"
 				style="width: auto; height: auto; max-height: 400px; max-width: 600px;"><br>
 		</div>
 
@@ -61,8 +61,14 @@
 		<c:if test="${sessionScope.login.id.equals(dto.writer) || (login.property.equals('admin') || login.property.equals('manager')) }">
 			<button type="button" class="btn btn-outline-success"
 				onclick="location.href='boarddelete.do?num=${dto.num }&writer=${dto.writer }'">삭제</button>
-
 		</c:if>
+		
+			<!-- 로그인 화면 -->
+	<c:if test="${!empty login }">		
+		<button type="button" class="btn btn-outline-success"
+				onclick="location.href='boardreplyui.do?num=${dto.num}&writer=${dto.writer }'">댓글</button>
+	</c:if>
+		
 
 		<button type="button" class="btn btn-outline-success"
 			onclick="location.href='boardlist.do'">목록</button>

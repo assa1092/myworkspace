@@ -44,7 +44,7 @@
 					<td>${dto.readcnt }</td>
 					<td>${dto.starpoint }</td>
 				</tr>
-				</tr>
+				
 			</c:forEach>
 		</tbody>
 	</table>
@@ -53,6 +53,6 @@
 	</div>
 	
 	<br><br><br><jsp:include page="footer.jsp" />
-	</div>
+	
 </body>
 </html>

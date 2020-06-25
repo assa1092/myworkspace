@@ -108,6 +108,18 @@ public class FrontController extends HttpServlet {
 			com = new board.command.InsertCommand();
 		} else if (sp.equalsIgnoreCase("/boardupload.do")) {
 			com = new board.command.UploadCommand();
+		} else if (sp.equalsIgnoreCase("/boardreplyui.do")) {
+			com = new board.command.ReplyUICommand();
+		} else if (sp.equalsIgnoreCase("/boardreply.do")) {
+			com = new board.command.ReplyCommand();
+		}  else if (sp.equalsIgnoreCase("/boardupdateui.do")) {
+			com = new board.command.UpdateUICommand();
+		} else if (sp.equalsIgnoreCase("/boardupdate.do")) {
+			com = new board.command.UpdateCommand();
+		} else if(sp.equalsIgnoreCase("/boarddelete.do")) {
+			com = new board.command.DeleteCommand();
+		} else if(sp.equalsIgnoreCase("/boardsearch.do")) {
+			com = new board.command.SearchCommand();
 		}
 
 		if (com != null) {

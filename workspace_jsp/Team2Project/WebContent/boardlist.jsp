@@ -81,53 +81,32 @@
 					</c:if>
 				</tr>
 			</thead>
+			
 			<tbody>
-			<%-- 
-				<tr style="font-weight:bold">
-					<!-- EL로 표기하기 위한 데이터 바인딩 -->
-					<%ReviewDTO notice = (ReviewDTO) request.getAttribute("notice"); %>
-						<td>${notice.num }</td>
-						<td><a href="reviewread.do?num=${notice.num }">${notice.title }</a></td>
-						<td>${notice.id }</td>
-						<td>${notice.category }</td>
+				<c:forEach items="${list }" var="dto">
+
+					<tr>
+						<td>${dto.num }</td>
+						<td width="300px">
+							<c:forEach begin="1" end="${dto.repIndent}">
+								&nbsp;re:
+							</c:forEach> <a href="boardread.do?num=${dto.num }">${dto.title }</a></td>
+						<td><a href="memberselectById.do?id=${dto.writer }">${dto.writer }</a></td>
 						<td><c:choose>
-							<c:when test="${fn:length(notice.writeday)>10 }">
-								<c:out value="${fn:substring(notice.writeday,0,10)}" />
-							</c:when>
-						</c:choose></td>
-						<td>${notice.readcnt }</td>
-						<td>${notice.starpoint }</td>
+								<c:when test="${fn:length(dto.writeday)>10 }">
+									<c:out value="${fn:substring(dto.writeday,0,10)}" />
+								</c:when>
+							</c:choose></td>
+						<td>${dto.readcnt }</td>
+
 						<c:if
-						test="${login.property.equals('admin')||login.property.equals('manager') }">
-						<td></td>
-					</c:if>
+							test="${login.property.equals('admin')||login.property.equals('manager') }">
+							<td>
+								<button onclick="managerdelete('${dto.num}')">글 삭제</button>
+							</td>
+						</c:if>
 					</tr>
-			--%>	
-					<c:forEach items="${list }" var="dto">
-				
-				<tr>
-					<td>${dto.num }</td>
-					<td width="300px">
-						<c:forEach begin ="1" end ="${dto.repIndent}">
-							&nbsp;&nbsp;
-						</c:forEach>
-							<a href="boardread.do?num=${dto.num }">${dto.title }</a>
-					</td>
-					<td><a href="memberselectById.do?id=${dto.writer }">${dto.writer }</a></td>
-					<td><c:choose>
-							<c:when test="${fn:length(dto.writeday)>10 }">
-								<c:out value="${fn:substring(dto.writeday,0,10)}" />
-							</c:when>
-						</c:choose></td>
-					<td>${dto.readcnt }</td>
-					
-					<c:if test="${login.property.equals('admin')||login.property.equals('manager') }">
-						<td>
-							<button onclick="managerdelete('${dto.num}')">글 삭제</button>
-						</td>
-					</c:if>
-				</tr>
-				
+
 				</c:forEach>
 			</tbody>
 		</table>
@@ -168,7 +147,7 @@
          <form action="boardsearch.do" method="get">
             <select name="category">
                <option value="title">제목</option>
-               <option value="id">글쓴이</option>
+               <option value="writer">글쓴이</option>
                <option value="titlecontent">제목 + 내용</option>
             </select> <input name="search" required> <input type=submit
                value="검색">

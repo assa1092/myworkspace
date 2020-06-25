@@ -42,7 +42,7 @@ fileName varchar2(30),
 orgFileName varchar2(30)
 )
 
-select * from boardupload
+select * from boardupload order by num desc
 select * from board order by reproot desc, repstep asc
 
 select * from member where property = 'admin' order by id
@@ -56,4 +56,4 @@ num number(10) primary key,
 fileName varchar2(30),
 orgFileName varchar2(30)
 )
-
+select * from (select rownum rnum, num, title, writer, writeday, readcnt, repIndent from (select * from board order by repRoot desc, repStep asc)) where rnum >=0 and rnum <= 10
