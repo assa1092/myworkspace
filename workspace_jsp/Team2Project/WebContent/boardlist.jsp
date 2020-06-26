@@ -42,7 +42,7 @@
 			</div>
 	 -->	
 		
-		<table class="table table-striped">
+		<table class="table table-striped table-bordered table-hover">
 		 <colgroup>
             <c:if
                test="${login.property.equals('customer')||empty login.property}">
@@ -67,7 +67,7 @@
             </c:if>
          </colgroup>
 		
-			<thead  bgcolor = "pink">
+			<thead  bgcolor = "pink" align="center">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -85,9 +85,9 @@
 			<tbody>
 				<c:forEach items="${list }" var="dto">
 
-					<tr>
+					<tr align="center">
 						<td>${dto.num }</td>
-						<td width="300px">
+						<td width="300px" align="left">
 							<c:forEach begin="1" end="${dto.repIndent}">
 								&nbsp;re:
 							</c:forEach> <a href="boardread.do?num=${dto.num }">${dto.title }</a></td>

@@ -583,7 +583,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM board WHERE title like '%'||?||'%'";
+		String sql = "SELECT * FROM board  WHERE title like '%'||?||'%' order by num desc";
 		
 		try {
 			conn = dataFactory.getConnection();
@@ -622,7 +622,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM board WHERE writer like '%'||?||'%'";
+		String sql = "SELECT * FROM board WHERE writer like '%'||?||'%' order by num desc";
 		
 		try {
 			conn = dataFactory.getConnection();
@@ -660,7 +660,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM board WHERE (title like '%'||?||'%') or (content like '%'||?||'%')";
+		String sql = "SELECT * FROM board WHERE (title like '%'||?||'%') or (content like '%'||?||'%')  order by num desc";
 		
 		try {
 			conn = dataFactory.getConnection();

@@ -467,10 +467,6 @@ public class ReviewDAO {
 				list.add(new ReviewDTO(num, title, content, search, category, writeday, readcnt, starpoint));
 			}
 
-			if (list == null) {
-				System.out.println("해당 ID로 작성된 게시글이 존재하지 않습니다.");
-			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -556,10 +552,6 @@ public class ReviewDAO {
 				int starpoint = rs.getInt("starpoint");
 				list.add(new ReviewDTO(num, title, content, id, category, writeday, readcnt, starpoint));
 
-			}
-
-			if (list == null) {
-				System.out.println("해당 카테고리로 작성된 게시글이 존재하지 않습니다.");
 			}
 
 		} catch (Exception e) {

@@ -30,35 +30,12 @@
 		<div align="right">
 		<h1>리뷰게시판&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info" onclick="location.href='boardlist.do'">자유게시판</button></h1>
 		</div>
-		<%-- <h1>IT 제품 리뷰 리스트</h1>
-		<!-- 버튼에 스타일 적용하기 -->
-		<button type="button" class="btn btn-primary"
-			onclick="location.href='${empty login ? 'memberloginui.do' : 'memberlogout.do'}'">${empty login ? '로그인' : '로그아웃' }</button>
-		&nbsp;&nbsp;
-		<a href="${empty login ? 'memberloginui.do' : 'memberlogout.do'}">	${empty login ? '로그인' : '로그아웃' }</a>
-		<button type="button" class="btn btn-primary" onclick="location.href='${empty login ? 'memberinsertui.do' : ''}'">${empty login ? '회원가입' : ''}</button>
-		<a	href="${empty login ? 'memberinsertui.do' : ' '}">${empty login ? '회원가입' : ' '}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<!-- 로그아웃 되었을 때만 회원가입 보기 -->
-		<c:if test="${empty login}">
-			<button type="button" class="btn btn-primary"
-				onclick="location.href='memberinsertui.do'">회원가입</button>
-		</c:if>
-
-		<c:if test="${!empty login}">
-			<button type="button" class="btn btn-info"
-				onclick="location.href='memberselectById.do?id=${login.id}'">내정보보기</button>
-			<a href="memberselectById.do?id=${login.id}">내정보보기</a>
-		</c:if>
-		<c:if
-			test="${login.property.equals('admin')||login.property.equals('manager') }">
-			<button onclick="location.href='membergrantui.do'">회원 관리</button>
-		</c:if> --%>
+		
 
 		
-		<table class="table table-striped">
+		<table class="table table-striped table-bordered table-hover" >
 		 <colgroup>
-            <c:if
-               test="${login.property.equals('customer')||empty login.property}">
+            <c:if test="${login.property.equals('customer')||empty login.property}">
                <col width="8%" />
                <col width="24%" />
                <col width="16%" />
@@ -80,7 +57,7 @@
             </c:if>
          </colgroup>
 		
-			<thead  bgcolor = "pink">
+			<thead  bgcolor = "pink"  align = "center">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -96,8 +73,8 @@
 					</c:if>
 				</tr>
 			</thead>
-			<tbody>
-				<tr style="font-weight:bold">
+			<tbody align = "center">
+				<tr style="font-weight:bold" >
 					<!-- EL로 표기하기 위한 데이터 바인딩 -->
 					<%ReviewDTO notice = (ReviewDTO) request.getAttribute("notice"); %>
 						<td>${notice.num }</td>
