@@ -1,0 +1,132 @@
+spring.io/tools 접속.
+
+Spring Tools 4 for Eclipse
+
+좌측... WINDOWS 64-BIT 클릭
+
+압축 풀고나서 contents 폴더 압축  안풀려있으면 풀고.. ver4.7.0이면
+
+sts-4.7.0 RELEASE 폴더로 압축 풀림....
+
+그 안에 SpringToolSuite4.exe 우클릭후 관리자 권한으로 실행...
+
+
+플러그인 작업...
+Spring Tool Suite -> sts
+sts의 [help]메뉴에서 Eclipse Marketplace 클릭후
+검색창에 spring 검색 후
+Spring Tools 3 Add-On for Spring Tools 4 3.9.13 RELEASE install
+-> confirm -> agree...
+
+포트번호 변경
+windows->show view ->other->servers ->Tomcatv7.0 더블클릭후
+overview 탭이동...Tomcat admin port 8005변경
+
+실행창 chrome로...
+windows->preference->browser검색-> Web browser 클릭
+Use external web browser 클릭, chrome 클릭 ..apply
+
+
+pom.xml 수정
+11번 줄
+<java-version>1.8</java-version>		// 1.6 => 1.8로 변경
+<org.springframework-version>4.2.1.RELEASE</org.springframework-version>  // 3.1.1 =>4.2.1 로 변경
+
+116번 줄
+<version>4.12</version>  // 4.7 => 4.12로 변경
+
+해당 프로젝트 우클릭 proteties ->project Facets   ==> java 1.6 클릭  ==> 1.8 로 변경
+project-> clean
+
+web.xml 수정
+13번 줄..<listener>위에...
+<filter>
+	<filter-name>encoding</filter-name>
+	<filter-class>org.springframework.web.filter.CharacterEncodingFilter
+	</filter-class>
+	
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</init-param>
+	
+	<init-param>
+		<param-name>forceEncoding</param-name>
+		<param-value>true</param-value>
+	</init-param>
+</filter>
+	
+<filter-mapping>
+	<filter-name>encoding</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+
+
+
+
+maven을 이용해서 jar 파일을 관리한다....
+보호된 운영체제 파일 숨기기 해제
+
+ .m2/repository 안에 수많은 jar 를 저장해놓는다.
+
+
+->org->springframework 안에 
+
+숨김파일, 드라이브 표시 적용....
+
+c: /user/자기계정/.m2 /repository
+
+************************************************************************
+프로젝트가 잘못 되었을시에는
+sts 를 종료후 
+ .m2/repository 지우고
+다시 sts 실행...
+프로젝트 우클릭....밑에서 7번째 maven...update project 클릭...
+하단에 offline 선택....Force update of snapshots/releases 클릭하고 OK....
+
+java 버전 다시 변경....
+프로젝트 우클릭...properties -> project Facets ->java 1.6 을 1.8로 클릭...
+
+project 탭....Clean....
+************************************************************************
+
+
+1. src/main/java
+2. src/main/resources
+3. servlet-context.xml
+4. root-context.xml
+5. views
+6. web.xml
+7. pom.xml
+
+uri를 넘겨받으면 서비스를 제공해주는 메소드...mvc 핸들러
+클라이언트의 요청을 처리해주는 메소드 ........mvc 핸들러
+
+
+************  encoding 변경***********************************
+
+windows->preferences->General ->workspace-> encoding ==> UTF-8 로 변경
+windows->preferences->JSON->JSON Files -> encoding ==> UTF-8 로 변경
+-> Web->CSS Files-> encoding ==> UTF-8 로 변경
+-> Web->HTML Files -> encoding ==> UTF-8 로 변경
+-> Web ->JSP Files -> encoding ==> UTF-8 로 변경
+
+************  templates 변경***********************************
+windows->preferences->templates 검색
+JSP Files-> Templates 에서.... 밑에서 9번째...New JSP File(html 5) 더블클릭
+상단에 붙여넣기..
+   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+중간에 <head> 바로 밑에 붙여넣기...
+기존 <meta charset ???> 지우고...
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
