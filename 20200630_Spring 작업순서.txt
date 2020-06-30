@@ -1,0 +1,12 @@
+Spring 작업 순서...
+
+1. table생성
+2. 도메인 DTO
+3. dao interface 생성
+4. mapper.xml 생성
+5. dao 구현체 생성..클래스
+6. service interface
+7. service 구현체... 클래스
+8. controller
+9. view
+

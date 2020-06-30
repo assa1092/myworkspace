@@ -1,0 +1,88 @@
+<dependency> 등록.
+mybatis 3.2.8
+mybatis-spring 1.2.2
+spring-jdbc 4.2.1
+spring-test 4.2.1
+
+maven mybatis 검색
+maven mybatis-spring 검색
+maven spring-jdbc 검색
+maven spring-test 검색
+
+version 에 맞게 찾아서 복사후 pom.xml <dependencies> 안에 넣어준다...
+
+************************************************
+DB 연결하기위해.... root-context.xml 에 추가...
+
+열어서 하단의 namespace 탭으로 이동...
+aop, context, jdbc, mybatis, tx 체크한다...
+
+
+DB 연결하기위해.... root-context.xml 에 추가...
+	<!-- 이 자료형으로 자동으로 객체가 생성된다... -->
+
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property value ="oracle.jdbc.driver.OracleDriver" name="driverClassName"></property>
+	<property value ="jdbc:oracle:thin@localhost:1521:xe" name="url"></property>
+	<property value ="ca5" name="username"></property>
+	<property value ="ca5" name="password"></property>
+</bean>
+	
+
+
+
+******************************************************
+mabatis 연결...
+src/main/resources  안에...mybatis-config.xml 환경설정파일...
+mybatis-config.xml 구글 검색후...
+첫번째 꺼 들어가서 예제 복사한다....
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="org/mybatis/example/BlogMapper.xml"/>
+  </mappers>
+</configuration>
+
+
+복사한 후...<configuration> 사이의 것은 다 지운고....
+사이에 이것만 넣어준다...
+<typeAliases>
+	<package name="kr.co.domain"/>
+</typeAliases>
+
+===============mybatis-config.xml================
+ 
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<package name="kr.co.domain"/>		// 경로지정...
+	</typeAliases>
+</configuration>
+
+==================================================
+
+
+
+
+
+
+
+
