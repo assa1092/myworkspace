@@ -20,8 +20,7 @@ public class RestTestController {
 		
 		List<Map<String, Object>> list 
 			= (List<Map<String, Object>>) map.get("listStr");
-		
-		
+			
 		for(Map<String, Object> m : list) {	
 			System.out.println("=====================");
 			System.out.println(m.get("id"));
