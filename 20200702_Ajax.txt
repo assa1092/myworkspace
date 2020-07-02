@@ -1,0 +1,58 @@
+dependency(JSON 관련 디펜던시) 추가...
+ - jackson-databind2.5.4 추가...
+
+$()
+${} : $()는 jquery에서 선택자 선정 할 때...
+
+ajax 데이터 넣는것.. 8가지...
+
+1. Object class
+2. function kerword를 이용해서 class 만들고 그것으로 다시 객체로 만든다.
+3. JSON(JavaScript Object Notation)
+4.
+
+var obj = JSON.parse(result);
+// 파싱...java script 가 object 로 인식하게끔...
+// 객체를 새로 만든것 이지 DTO 객체에서 getID해서 가져온것이 아니다.
+// 다른곳에 뿌릴라고 하면 파싱해서 처리해야한다...
+
+
+// ajax() 와 송신을 하겠다는 의미...여러가지 일을 하기때문에 .ajax({})
+// type 데이터 송신방법 post로......
+// url : 어디로 갈지...
+// dataType 자료형...
+// dataType : 보내는 타입이 아니라 통신 끝나고 넘겨받는 데이터 타입
+// data 는 값이 여러개 이므로 배열로...{}... 
+// 속성은'', "" 숫자만 그대로...
+// success : 성공했을시 하는일...
+// error : 실패했을시...에러 체크해볼때...
+// console.log(result); 콘솔에 결과 찍어보는것...
+// 어떤 상황에서 에러가 났는지 보여주게.... 
+// complete :성공이든 실패든 무조건 실행....
+// traditional : true  => 배열을 보낼때는 무조건 작성...
+
+// 속성명이 ''감싸져 있다...그러면 무조건...json
+
+
+$(document).ready(function(){
+	$("button").click(function(){
+		$.ajax({		
+			type : 'post',			
+			url : '/at1',
+			dataType : 'test', 		
+			data : {				
+			'msg' : "hello"
+			},
+			success : function(result){		
+				console.log(result);			
+			},
+			error : function(request, status, error){			
+				console.log("code" + request.status +"\n"+ "msg:" +request.responseText+"\n" +"error : " + error);
+			},
+			complete : funtcion(){
+				alert('ok');	
+			}			
+	
+		});	
+	});
+});
