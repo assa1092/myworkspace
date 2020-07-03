@@ -9,7 +9,23 @@ ajax 데이터 넣는것.. 8가지...
 1. Object class
 2. function kerword를 이용해서 class 만들고 그것으로 다시 객체로 만든다.
 3. JSON(JavaScript Object Notation)
-4.
+4. 
+5. TestController를 이용해서 view 로 넘어가고 view에서 ajax 통신을 하면 RestTestController 로 요청
+
+
+
+
+$("p").text(obj[0]['id']);
+	// alert(obj[0]['name']);
+	for(var i=0; i<obj.length;i++){
+		for(x in obj[i]){
+			console.log(x);
+			console.log(obj[i][x]);		// obj
+			console.log("================");
+		}
+}	
+
+
 
 var obj = JSON.parse(result);
 // 파싱...java script 가 object 로 인식하게끔...

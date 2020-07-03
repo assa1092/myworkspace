@@ -1,0 +1,45 @@
+VO / DTO 차이....(사용방식이 같다고 똑같은것은 아니다...)
+
+개념
+Value Object는 DTO와 동일한 개념이나 차이 점은 read only 속성을 갖습니다.
+
+Value Object는 관계데이터베이스의 레코드에 대응되는 자바클래스입니다. 형태는 db레코드를 구성하는 필드들을 Value Object의 Attribute로 하고 해당 변수에 접근 할 수 있는 Getter Setter 메소드의 조합으로 클래스를 형성되어진 클래스입니다. 특성은 대체로 불변성이고 equals()로 비교할 때 객체의 모든 값을 비교해야 합니다.
+
+ 
+
+필요성
+Network traffic을 줄임으로 인해서 효과적입니다.
+
+
+
+출처: https://itmore.tistory.com/entry/자바-VO-DTO-차이점사용하는-방식이-같다고-똑같다고-생각하지-말자 [IT모아]
+
+
+Spring 작업 순서...
+
+1. table생성
+2. 도메인 DTO
+3. dao interface 생성
+4. mapper.xml 생성
+5. dao 구현체 생성..클래스
+6. service interface
+7. service 구현체... 클래스
+8. controller
+9. view
+
+
+
+
+
+
+계시판 시작...
+
+create table board(
+bno number primary key,
+title varchar2(100) not null,
+content varchar2(3000) not null,
+writer varchar2(21) not null,
+viewcnt number default 0,
+regDate date default sysdate,
+updateDate date default sysdate
+);
