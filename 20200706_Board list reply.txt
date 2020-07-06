@@ -1,0 +1,32 @@
+
+paging 처리....
+PageTO 에 제네릭 타입 부여 <T>
+
+하나의 사건으로 여러 개의 DB작업이 필요할때...트랜잭션...
+@Service 에서 처리하려고한다...
+
+CUD - 에서만 트랜잭션이 발생...
+R - 트랜잭션이 발생...하지 않는
+
+
+#{num}  = > 23
+// '' 있고 없고 차이...
+#{writer}  => '홍길동'
+${writer} => 홍길동
+
+
+나중에 페이징 처리할때...
+앞쪽 주소는 그대로하고 뒤쪽 curPage= 만 바뀌게....
+http://localhost:8089/board/searchlist?searchType=writer&keyword=%hello%=curPage=1
+
+create table reply(
+rno number primary key,
+bno number not null,
+replyer varchar2(30) not null,
+replytext varchar2(1000) not null,
+regdate date default sysdate,
+updatedate date default sysdate,
+constraint reply_fk_bno foreign key (bno) references board(bno)
+);
+
+
