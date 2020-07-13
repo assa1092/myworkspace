@@ -1,0 +1,17 @@
+attach라는 테이블..
+
+업로드한 파일 정보를 저장하는 테이블.
+ - 업로드하면 업로드리스트가 아이콘과 함께 보입니다.
+ - 그러나 새로고침을 하면, 업로드리스트가 사라짐.
+ - 데이터가 그냥 Ram에 저장이 되어서 그런다.
+ - 디스크나 DB에 저장이 되있어야 불러올수있다..
+ - 파일로 저장되어있지만. 파일정보는 불러오지 않았다...
+
+
+
+create table attach(
+id number primary key,
+fullName varchar2(200) not null,
+bno number references board(bno),
+regdate date default sysdate
+);
