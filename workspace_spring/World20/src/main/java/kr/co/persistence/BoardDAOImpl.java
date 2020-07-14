@@ -146,7 +146,17 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public void updateAttach(String fullName, int bno) {
-		session.update(NS+".updateAttach", bno);
+		
+		Integer id = session.selectOne(NS + ".getId");
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("id", id);
+		map.put("fullName", fullName);
+		map.put("bno", bno);
+		
+		session.update(NS+".updateAttach", map);
 		
 	}
 

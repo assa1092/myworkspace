@@ -63,12 +63,16 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void update(BoardVO vo) {
+		
+		
 		bDao.update(vo);
 		
 		String[] files = vo.getFiles();
 		if (files != null) {
 			for(String fullName : files) {
 				bDao.updateAttach(fullName, vo.getBno());
+				
+				
 			}
 		}
 		

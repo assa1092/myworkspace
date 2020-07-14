@@ -1,0 +1,48 @@
+1. text만 수정
+2. 업로드만 수정
+  - 기존 파일을 삭제만 하기
+  -  새로운 파일 추가만 하기
+  - 기존 파일 삭제와 새로운 파일 추가
+  - 새로운 파일 추가하고 그 파일 삭제
+3. 둘 다 수정
+
+
+attach 테이블에서 특정 bno를 갖고있는 업로드 파일 레코드를 다 삭제함.
+그런후에 수정화면에서 보내준 업로드 파일 정보를 attach 테이블에 입력함.
+
+
+SQL 에서
+있으면 update, 없으면 insert...
+
+
+@Transactional
+클래스위에 선언해서 그 클래스 전체를 트랜잭션 처리할수도 있지만, 세심하게 처리하기 위해서는 트랜젝션이 필요한 메서드에만 따로 따로 선언해주면
+트랜젝션이 불필요한 메서드에서는 트랜젝션처리를 하지 않는다...
+
+
+
+ =====   Interceptor =====
+interceptor 클래스에.....상속해줘야한다...
+extends HandlerInterceptorAdapter
+
+servlet-context.xml에 추가한다...
+
+
+<beans:bean id="myinter" class="kr.co.inter.MyInter"></beans:bean>
+	
+<interceptors>
+	<interceptor>
+		<mapping path="/intertest1"/>	// 경로지정...
+		<beans:ref bean="myinter"/>
+	</interceptor>
+</interceptors>
+
+============== 다른 Interceptor 추가하려면   =========
+
+<beans:bean ></beans:bean>
+<interceptor>
+		<mapping path="/intertest1"/>	// 경로지정...
+		<beans:ref bean="myinter"/>
+</interceptor>	
+
+
