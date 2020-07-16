@@ -1,0 +1,187 @@
+lamda(람다)식 : jdk1.8부터...
+
+람다식 문법 
+(매개변수 목록)->{실행문}  
+매개변수를 가지고 { } 내용을 실행하겟다...
+
+functional interface : 추상메서드를 1 개만 갖고있는 interface
+
+PL/SQL
+system계정 위의 상위계정...sys
+
+// 처음에 이렇게 접속하던지
+sqlplus system/sys1234 as sysdba
+
+// 아니면 접속중 변경
+conn system/sys1234 as sysdba
+
+============  Sequence  =================
+일련번호 생성해주는것
+그런데.... 한번씩 번호가 튄다...넘어간다...
+그래서 안정적이지 않는다...
+
+create sequence seq_test_id
+start with 10 		// 시작번호....10부터...
+increment by 10		// 증가폭 ...10...
+maxvalue 10000;		// 최고값
+
+// dual 테이블 넣기 애매한곳에 넣는 가상 테이블?
+select seq_test_id.currval from dual;
+
+
+// sequence 만든것 seq_test_id의  .nextval다음값을 입력해라...
+insert into test (id) values(seq_test_id.nextval);
+
+
+============ index ==================
+// 기본적으로 primary key 가 인덱스 가 된다...
+// test테이블의 id를 인덱스로 사용하다
+
+create index idx_test_id	
+on test(id);		
+create index idx_test_name_addr	
+on test(name, addr);		
+
+
+name, job, grade 를 이용한 index 생성
+create index idx_test_name_job_grade
+on test(name, job, grade);
+
+
+insert into test(id, name, job addr) values (1, 'kim','doctor','서울');
+
+============ Procedure  ===============================
+자주 사용하는 구문을 저장한 객체....리턴 X 
+(stored) procedure
+데이터 전송량을 줄이고, 보안을 위해서 데이터를 숨기고...
+
+
+// 프로시져가 외부의 데이터를 넘겨준다.
+create or replace procedure proc_test_insert(
+myId in number,
+myName in varchar2,
+myJob in varchar2,
+myAddr in varchar2
+)
+as
+begin
+insert into test (id, name, job, addr) values(myId, myName,myJob,myAddr);
+end;
+/
+
+exec proc_test_insert(1, 'kim','경찰','경기');		// 실행할때는 exec , execute 다써도됨.
+
+
+test 테이블의 레코드를 id를 이용해서 삭제하는 프로시져, proc_test_del
+create or replace procedure proc_test_del(
+myId in number
+)
+as
+begin
+delete from test where id = myId;
+end;
+/
+
+exec proc_test_del(1);
+
+
+==============     Function    =======================
+사용자 정의 함수
+입력한 값 그대로 넘겨주기...
+create or replace function fn_return_original_val(num in number)
+return number
+is
+begin
+return num + 10;
+end;
+/
+
+select fn_return_original_val(35) from dual;
+
+create or replace function fn_dc_price(price in number)
+return number
+is
+dc_price number(7);	// 변수
+begin
+select price*(100-10)/100 into dc_price from dual;	// 계산값을 넣어주어라 into  dc_price 
+return dc_price;
+end;
+/
+
+select fn_dc_price(10000) from dual;
+
+::::::::::::::::::::::::::::::::::::::::
+함수명 fn_dc   파라미터:price, dc  기능 : 할인된 가격을 반환하는 기능
+
+create or replace function fn_dc(price in number, dc in number)
+return number
+is
+dc_price number(7);
+begin
+select price*(100-dc)/100 into dc_price from dual;
+return dc_price;
+end;
+/
+
+select fn_dc(10000, 30) from dual;
+
+
+==================== Trigger  =========================
+
+// 어떤일이 시작하기전에....
+create or replace trigger trg_before_update_apple
+before update on apple for each row		// 업데이트 전에 수행할일....
+update apple_back set name =:new.name, location = :new.location where id=:old.id;
+end;
+/
+
+create or replace trigger trg_before_update_apple
+before update on apple for each row
+begin		
+update apple_back set name =:new.name, location =:new.location where id=:old.id ;
+end;
+/
+
+create or replace trigger trg_after_delete_apple
+after delete on apple for each row
+begin
+delete from apple_back where id = :old.id;
+end;
+/
+
+
+
+
+create or replace trigger trg_after_insert_apple
+after insert on apple for each row
+begin
+insert into apple_back values (:new.id, :new.name, :new.location);
+end;
+/
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+
+create table test(
+id number primary key,
+name varchar2(21),
+addr varchar2(21),
+birth date,
+job varchar2(21),
+grade number
+);
+
+
+create table apple(
+id number primary key,
+name varchar2(21),
+location varchar2(200)
+);
+
+create table apple_back(
+id number primary key,
+name varchar2(21),
+location varchar2(200)
+);
