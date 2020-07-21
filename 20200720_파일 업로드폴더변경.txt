@@ -1,0 +1,13 @@
+파일 업로드 폴더를 프로젝트의 resources 밑의 img 폴더로 설정할 경우
+
+기존.
+String uploadPath = "C:"+ File.separator + "upload";
+
+변경
+업로드와 관련된 모든 MVC핸들러의 다음 코드 추가
+0. 프로젝트의 resources 폴더에 img 폴더 추가
+1. 파라미터로 HttpSession session 추가		(Controller 클래스 젤 위에 선언해 놓고)
+2. 각 MVC 핸들러 첫 줄에 아래 코드 추가		(MVC 핸들러 안에서 사용)
+  uploadPath = session.getServletContext().getRealPath("/resources/img");
+
+
