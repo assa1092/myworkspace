@@ -18,7 +18,7 @@ public class BoardVO implements Serializable {
 	private String updateDate;
 	
 	public BoardVO() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public BoardVO(int bno, String title, String content, String writer, int viewcnt, String regDate,

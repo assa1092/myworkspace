@@ -31,4 +31,10 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.list(to);
 	}
 
+	@Override
+	public BoardVO read(int bno) {
+		bDao.increaseViewcnt(bno);
+		return bDao.read(bno);
+	}
+
 }

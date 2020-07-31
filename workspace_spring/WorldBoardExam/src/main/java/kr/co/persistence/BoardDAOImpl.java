@@ -20,6 +20,8 @@ public class BoardDAOImpl implements BoardDAO{
 
 	@Override
 	public void insert(BoardVO vo) {
+		
+		
 		Integer bno = session.selectOne(NS+".getBno");
 		if (bno != null) {
 			bno += 1;
@@ -28,6 +30,7 @@ public class BoardDAOImpl implements BoardDAO{
 		}
 		
 		vo.setBno(bno);
+		
 		
 		session.insert(NS+".insert", vo);
 		
@@ -70,6 +73,18 @@ public class BoardDAOImpl implements BoardDAO{
 		
 		
 		return to;
+	}
+
+	@Override
+	public BoardVO read(int bno) {
+		return session.selectOne(NS+".read", bno);
+		
+	}
+
+	@Override
+	public void increaseViewcnt(int bno) {
+		session.update(NS+".increaseViewcnt", bno );
+		
 	}
 
 }

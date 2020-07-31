@@ -32,7 +32,7 @@
 	
 	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
 	<!-- 디폴트 생성자 느낌. -->
-		<constructor-arg ref="sqlSessionFactony" name="sqlSessionFactory"></constructor-arg>
+		<constructor-arg ref="sqlSessionFactory" name="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
 	<context:component-scan base-package="kr.co.service" />

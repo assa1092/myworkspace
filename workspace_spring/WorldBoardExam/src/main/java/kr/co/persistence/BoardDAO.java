@@ -13,4 +13,8 @@ public interface BoardDAO {
 
 	PageTO<BoardVO> list(PageTO<BoardVO> to);
 
+	BoardVO read(int bno);
+
+	void increaseViewcnt(int bno);
+
 }

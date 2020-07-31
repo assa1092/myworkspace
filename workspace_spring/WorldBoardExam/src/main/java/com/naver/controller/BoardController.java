@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,22 +21,40 @@ public class BoardController {
 	private BoardService bService;
 	
 	
+	@RequestMapping(value = "/read/{bno}", method = RequestMethod.GET)
+	public String read(Model model,@PathVariable("bno") int bno) {
+		
+		BoardVO vo = bService.read(bno);
+		
+		model.addAttribute("vo", vo);
+		
+		return "/board/read";
+	}
+	
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void list(Model model, String curPage) {
-		int page = -1;
+	public void list(Model model, String curPage) {		// 바인딩해서 보낸것은 무조건 model
+		
+		// list 화면으로 들어오면 무조건 첫페이지로 보이게 해야한다...
+		// 페이지 값 설정...
+		
+		int page =-1;
+		// if else 문은 실행되는 빈도수에 따라서 실행문은 정해준다...
 		if (curPage == null) {
 			page = 1;
 		} else {
 			page = Integer.parseInt(curPage);
 		}
 		
+		// 페이징 처리 객체...
 		PageTO<BoardVO> to = new PageTO<BoardVO>(page);
+		
 		to = bService.list(to);
 		
-		model.addAttribute("to",to);
+		model.addAttribute("to", to);
+		// 기존 list를 수정하지 않고...
+		// to.getList() 가져와서 list에 넣어준다....
 		model.addAttribute("list", to.getList());
-//		List<BoardVO> list = bService.list();
-//		model.addAttribute("list", list);
 		
 	}
 	

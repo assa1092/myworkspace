@@ -13,4 +13,6 @@ public interface BoardService {
 
 	PageTO<BoardVO> list(PageTO<BoardVO> to);
 
+	BoardVO read(int bno);
+
 }

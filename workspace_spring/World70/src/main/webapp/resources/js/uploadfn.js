@@ -2,7 +2,7 @@
  * 
  */
  
- function getImageLink(result){
+		function getImageLink(result){
 			if(checkImage(result)){	
 				return result.substring(0,12) + result.substring(14);
 			} else {
