@@ -1,6 +1,8 @@
 package kr.co.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -85,6 +87,63 @@ public class BoardDAOImpl implements BoardDAO{
 	public void increaseViewcnt(int bno) {
 		session.update(NS+".increaseViewcnt", bno );
 		
+	}
+
+	@Override
+	public List<String> getAttach(Integer bno) {
+		return session.selectList(NS+".getAttach", bno);
+	}
+
+	@Override
+	public void deleteAttachByFileName(String filename) {
+		session.delete(NS+".deleteAttachByFileName", filename);
+		
+	}
+
+	@Override
+	public void addAttach(String fullName, int bno) {
+		Integer id = session.selectOne(NS+".getId");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("id", id);
+		map.put("fullName", fullName);
+		map.put("bno", bno);
+		
+		session.insert(NS+".addAttach", map);
+	}
+
+	@Override
+	public BoardVO updateUI(int bno) {
+		return session.selectOne(NS+".updateUI", bno);
+	}
+
+	@Override
+	public void update(BoardVO vo) {
+		session.update(NS+".update", vo);
+		
+	}
+
+	@Override
+	public void deleteByBno(int bno) {
+		session.delete(NS+".deleteByBno", bno);
+		
+	}
+
+	@Override
+	public void delete(int bno) {
+		session.delete(NS+".delete", bno);
+		
+	}
+
+	@Override
+	public List<BoardVO> searchlist(String searchType, String keyword) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchType", searchType);
+		map.put("keyword", keyword);
+		
+		return session.selectList(NS+".searchlist", map);
 	}
 
 }

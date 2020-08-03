@@ -5,6 +5,10 @@
 <mapper namespace="r.e.p">
 <!-- namespace =>폴더 또는 페키지 역할... -->
 
+<delete id="deleteByBno">
+	delete from reply where bno = #{bno}
+</delete>
+
 <delete id="delete">
 	delete from reply where rno =#{rno}
 </delete>

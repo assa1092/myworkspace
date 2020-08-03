@@ -44,32 +44,37 @@
 	
 	<div class="container"><!-- class="container-fluid" 왼쪽으로 붙어서 정렬... -->
 		<div class="row text-center">
-			<h1>글쓰기</h1>
+			<h1>글수정</h1>
 		</div>
 		<div class="row"> <!-- class="row" 한 줄을 의미... -->
 			
-			<form action="/board/insert" method="post">
+			<form action="/board/update" method="post">
+				<input type="hidden" name="bno" value="${vo.bno}">
 				<div class="form-group">
 					<label for="title">제목</label><!-- for="title" 제목 클릭시 name="title"으로 포커스 가게... -->
-					<input name="title" id="title" class="form-control"><!-- input 태그가 한줄로 모서리 둥글게...class="form-control" -->
+					<input value="${vo.title}" name="title" id="title" class="form-control"><!-- input 태그가 한줄로 모서리 둥글게...class="form-control" -->
 					
 				</div>
 				<div class="form-group">
 					<label for="writer">작성자</label>
-					<input name="writer" id="writer" class="form-control">
+					<input value="${vo.writer}" name="writer" id="writer" class="form-control">
 				</div>
 				
 				<div class="form-group">
 					<label for="content">내용</label>
-					<textarea rows="5" name="content" id="content" class="form-control"></textarea>
+					<textarea rows="5" name="content" id="content" class="form-control">${vo.content}</textarea>
 				</div>		
 			</form>
 			
+		
 			<div class="form-group">
 				<label>업로드할 파일을 드랍시키세요.</label>
 				<div class="fileDrop"></div>
 				<!-- 해당 형태로 파일이 들어올 것 -->
-				<ul class = "uploadedList  clearfix"></ul>
+
+				<!-- 
+				 <ul class = "uploadedList  clearfix"></ul>
+				 -->
 				
 				<!-- 단말기가 바뀔 때마다 다른 칸을 적용해라 -->
 				<!-- <li class= "col-xs-2"> -->
@@ -83,9 +88,14 @@
 				-->
 			</div>
 			
+			<div class="form-group">
+				<label>첨부파일 목록(삭제할 버튼을 누르면 삭제 됩니다.) </label>
+					<ul class = "uploadedList  clearfix"></ul>
+			</div>
+			
 			
 			<div class="form-group">
-				<button class="btn btn-danger" id="insertbtn">등록</button><!-- 문맥 테그 primary, warning,danger, link, default... -->
+				<button class="btn btn-danger" id="updatebtn">수정</button><!-- 문맥 테그 primary, warning,danger, link, default... -->
 				<button class="btn btn-danger" id="listbtn">목록</button>
 			</div>	
 		</div>
@@ -94,26 +104,31 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 
+			var bno = ${vo.bno};
+
 			// 쓰레기통 버튼 누르면 삭제
 			$(".uploadedList").on("click",".deletefile", function(event){
 				event.preventDefault();
 
-				// 지금 현재 눌러진것을 알아야 한다.
-				// ajax통신후에는 누구였는지를 알수가 없다.
-				var that = $(this);
+				var isOk = confirm("수정 버튼과 상관없이 파일을 삭제합니다.");
 
-				$.ajax({
-					type : 'post',
-					url : '/deletefile',
-					dataType : 'text',
-					data : {
-						filename : that.attr("href")
-					},
-					success : function(result){
-						// 부모의 부모의 속성의 li를 없앤다.
-						that.parent("p").parent("li").remove();	
-					}
-				});	
+				if(isOk){
+					var that = $(this);
+
+					$.ajax({
+						type : 'post',
+						url : '/deletefile',
+						dataType : 'text',
+						data : {
+							filename : that.attr("href")
+						},
+						success : function(result){
+							that.parent("p").parent("li").remove();
+						},
+					});
+				}
+
+					
 			});
 
 
@@ -201,9 +216,42 @@
 				});
 			
 			});
+
+			// 첨부파일 목록 가져오기.
+			$.getJSON("/getAttach/"+bno, function(arr){
+
+				for(var i=0; i < arr.length;i++){
+					
+					var str ='<li class="col-xs-2">';
+
+					str += '<a href="/displayfile?filename='+getImageLink(arr[i])+'">';
+
+					// 이미지 파일이면 썸네일 만들고
+					// 아니면 기본 아이콘으로 보이게
+					if(checkImage(arr[i])){
+						str += '<img src ="/displayfile?filename='+arr[i]+'"/>';
+					} else {
+						str += '<img src = "/resources/showshow.png"/>';
+					}
+
+					str += '</a>';
+					str += '<p class="orifilename">';
+
+					str += '<a href="'+arr[i]+'" class="deletefile"><span class="glyphicon glyphicon-trash"></span></a>';
+					str += getOriginalName(arr[i]);
+					str += '</p>';
+					str += '</li>';	
+
+
+					// 새로운것도 이이지게끔...append
+					// 덮어쓰기는 .html 
+					$(".uploadedList").append(str);	
+				}
+			
+			});
 			
 			
-			$("#insertbtn").click(function(event){
+			$("#updatebtn").click(function(event){
 				event.preventDefault();
 
 				var str = '';
@@ -220,6 +268,10 @@
 
 				$("form").append(str);
 				$("form").submit();			// 클릭했을때 form 태그가...submit 된다....
+			});
+
+			$("#listbtn").click(function(){
+				location.assign("/board/list");
 			});
 		});
 

@@ -14,4 +14,6 @@ public interface ReplyDAO {
 
 	int delete(int rno);
 
+	void deleteByBno(int bno);
+
 }

@@ -15,6 +15,31 @@
 <script src ="/resources/js/uploadfn.js" type="text/javascript"></script>
 
 <title>Insert title here</title>
+
+<style type="text/css">
+	.fileDrop{
+		width : 80%;
+		height : 200px;
+		border : 1px solid red;
+		margin : auto;
+	}
+	
+	.uploadedList {
+		margin-top : 50px;
+	}
+	
+	/* 앞의 점 없애기 */
+	.uploadedList li{
+		list-style : none;
+	}
+	.orifilename {
+		overflow : hidden;
+		white-space : nowrap;
+		text-overflow : ellipsis;
+	}
+
+</style>
+
 </head>
 <body>
 	<div class="container">
@@ -129,6 +154,44 @@
 		getList(bno);
 	
 		$(document).ready(function(){
+
+
+			// 글 자세히 보기로 들어오면 바로 첨부파일 보이게...
+			// insert.jsp 에서 복사해와서 지우는 아이콘만 삭제...
+			// 파일이 여거래라 배열로 받고...
+			// result를 다
+			$.getJSON("/getAttach/"+bno, function(arr){
+
+				for(var i=0; i < arr.length;i++){
+					
+					var str ='<li class="col-xs-2">';
+
+					str += '<a href="/displayfile?filename='+getImageLink(arr[i])+'">';
+
+					// 이미지 파일이면 썸네일 만들고
+					// 아니면 기본 아이콘으로 보이게
+					if(checkImage(arr[i])){
+						str += '<img src ="/displayfile?filename='+arr[i]+'"/>';
+					} else {
+						str += '<img src = "/resources/showshow.png"/>';
+					}
+
+					str += '</a>';
+					str += '<p class="orifilename">';
+
+					
+					str += getOriginalName(arr[i]);
+					str += '</p>';
+					str += '</li>';	
+
+
+					// 새로운것도 이이지게끔...append
+					// 덮어쓰기는 .html 
+					$(".uploadedList").append(str);	
+				}
+			
+			});
+			
 
 			$("#replies").on("click", ".replydelete", function(){
 				var rno = $(this).attr("data-rno");

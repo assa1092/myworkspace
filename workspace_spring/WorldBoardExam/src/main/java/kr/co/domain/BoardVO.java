@@ -17,8 +17,33 @@ public class BoardVO implements Serializable {
 	private String regDate;
 	private String updateDate;
 	
+	// 업로드한 파일 정보... 
+	// 실제 파일이 아닌 파일들의 정보...
+	private String[] files;
+	
+	public String[] getFiles() {
+		return files;
+	}
+
+	public void setFiles(String[] files) {
+		this.files = files;
+	}
+
 	public BoardVO() {
 		
+	}
+
+	public BoardVO(int bno, String title, String content, String writer, int viewcnt, String regDate, String updateDate,
+			String[] files) {
+		super();
+		this.bno = bno;
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+		this.viewcnt = viewcnt;
+		this.regDate = regDate;
+		this.updateDate = updateDate;
+		this.files = files;
 	}
 
 	public BoardVO(int bno, String title, String content, String writer, int viewcnt, String regDate,

@@ -42,4 +42,9 @@ public class ReplyDAOImpl implements ReplyDAO {
 		return session.delete(NS+".delete", rno);
 	}
 
+	@Override
+	public void deleteByBno(int bno) {
+		session.delete(NS+".deleteByBno", bno);
+	}
+
 }
