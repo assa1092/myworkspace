@@ -23,7 +23,7 @@
 		<property value ="ca5" name="password"></property>
 	</bean>
 	
-	<bean id="sqlSessionFactony" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	<!-- 문자열은 value, 객체는 ref  -->
 		<property ref="dataSource" name="dataSource"></property>
 		<property value="classpath:/mybatis-config.xml" name="configLocation"></property>
@@ -32,7 +32,7 @@
 	
 	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
 	<!-- 디폴트 생성자 느낌. -->
-		<constructor-arg ref="sqlSessionFactony" name="sqlSessionFactory"></constructor-arg>
+		<constructor-arg ref="sqlSessionFactory" name="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
 	<context:component-scan base-package="kr.co.service" />

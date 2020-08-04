@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 이 자료형으로 자동으로 객체가 생성된다... -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property value ="oracle.jdbc.driver.OracleDriver" name="driverClassName"></property>
+		<property value ="jdbc:oracle:thin:@localhost:1521:xe" name="url"></property>
+		<property value ="ca7" name="username"></property>
+		<property value ="ca7" name="password"></property>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<!-- 문자열은 value, 객체는 ref  -->
+		<property ref="dataSource" name="dataSource"></property>
+		<property value="classpath:/mybatis-config.xml" name="configLocation"></property>
+		<property value="classpath:mappers/**/*Mapper.xml" name="mapperLocations"></property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+	<!-- 디폴트 생성자 느낌. -->
+		<constructor-arg ref="sqlSessionFactory" name="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+	<context:component-scan base-package="kr.co.service" />
+	<context:component-scan base-package="kr.co.persistence" />
+	<context:component-scan base-package="kr.co.aop"/>
+		
+</beans>

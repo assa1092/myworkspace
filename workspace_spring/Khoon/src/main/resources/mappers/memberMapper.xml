@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="m.e.m">
+<!-- namespace =>폴더 또는 페키지 역할... -->
+
+
+<!-- 회원 가입 -->
+<insert id="insert">
+ insert into member(userId, userPw, userName, userPhone)
+  values(#{userId}, #{userPw}, #{userName}, #{userPhone}) 
+</insert>
+
+</mapper>
