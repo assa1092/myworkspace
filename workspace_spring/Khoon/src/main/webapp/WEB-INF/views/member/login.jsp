@@ -14,17 +14,31 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <title>Insert title here</title>
-
 </head>
 <body>
-	<ul>
-		<li>
-			<a href="/member/login">로그인</a>
-		</li>
-		<li>
-			<a href="/member/insert">회원가입</a>
-		</li>
-	</ul>
+	<jsp:include page="../include/header.jsp"></jsp:include>
+	<jsp:include page="../include/nav.jsp"></jsp:include>
+	
+	<section id="container">
+	<div class="container">
+		<form action="/member/loginpost" method="post">
+			<div class="from-group">
+				<label for="id">아이디</label>
+				<input id="id" name="id" class="form-control">
+			</div>
+			<div class="from-group">
+				<label for="pw">비밀번호</label>
+				<input id="pw" name="pw" class="form-control">
+			</div>
+			<div class="from-group">
+				<button type="submit" class="btn btn-primary form-control">로그인</button>
+			</div>
+		</form>
+	</div>		
+	</section>
+
+	<jsp:include page="../include/footer.jsp"></jsp:include>
+
 
 </body>
 </html>

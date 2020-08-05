@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b.o.a">
+<!-- namespace =>폴더 또는 페키지 역할... -->
+
+<select id="list" resultType="BoardVO">
+	SELECT * FROM board ORDER BY bno desc
+</select>
+
+<select id="getBno" resultType="Integer">
+	SELECT max(bno) FROM board
+</select>
+
+<insert id="insert">
+INSERT INTO board (bno, title, content, writer)
+VALUES (#{bno}, #{title}, #{content}, #{writer})
+ 
+</insert>
+
+</mapper>

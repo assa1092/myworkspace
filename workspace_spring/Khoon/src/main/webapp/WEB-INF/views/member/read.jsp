@@ -20,15 +20,37 @@
 	<jsp:include page="../include/nav.jsp"></jsp:include>
 	
 	<section id="container">
-	<form action="/member/insert" method="post">
-		<label>아이디 </label><input name="id" required="required"><br>
-		<label>이름</label><input name="name" required="required"><br> 
-		<label>나이 </label><input name="age" required="required"><br>  
-		<input type="submit" value="등록">
-	</form>
-			
+	
+		<label>아이디 </label><input name="id" value ="${dto.id}" readonly><br>
+		<label>이름</label><input name="name" value ="${dto.name}" readonly><br> 
+		<label>나이 </label><input name="age" value ="${dto.age}" readonly><br>
+
+
+		<div class="row">
+			<div class="form-group">
+				<button class="btn btn-primary" id="update_btn">수정</button>
+				<button class="btn btn-danger" id="delete_btn">삭제</button>
+				<button class="btn btn-info" id="list_btn">목록</button>
+			</div>
+		</div>
+
 	</section>
 
 	<jsp:include page="../include/footer.jsp"></jsp:include>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#update_btn").click(function(){
+				location.assign("/member/update/${dto.id}");
+			});
+			$("#delete_btn").click(function(){
+				location.assign("/member/delete/${dto.id}");
+			});
+			$("#list_btn").click(function(){
+				location.assign("/member/list");
+			});
+		});
+	</script>
+
 </body>
 </html>

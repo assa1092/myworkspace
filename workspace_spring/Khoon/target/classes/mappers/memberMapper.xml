@@ -5,11 +5,35 @@
 <mapper namespace="m.e.m">
 <!-- namespace =>폴더 또는 페키지 역할... -->
 
+<select id="loginpost" resultType="MemberDTO">
+	select * from member where id = #{id} and pw =#{pw}
+</select>
+
+<delete id="delete">
+	delete from member where id=  #{id}
+</delete>
+
+<update id="update">
+	update member set name = #{name}, age = #{age} where id = #{id}
+</update>
+
+<select id="updateui" resultType="MemberDTO">
+	select * from member where id=#{id}
+</select>
+
+<select id="read" resultType="MemberDTO">
+	select * from member where id=#{id}
+</select>
+
+<select id="list" resultType="MemberDTO">
+	select * from member
+</select>
 
 <!-- 회원 가입 -->
 <insert id="insert">
- insert into member(userId, userPw, userName, userPhone)
-  values(#{userId}, #{userPw}, #{userName}, #{userPhone}) 
+insert into member (id, name, age)
+values (#{id},#{name},#{age})
+ 
 </insert>
 
 </mapper>

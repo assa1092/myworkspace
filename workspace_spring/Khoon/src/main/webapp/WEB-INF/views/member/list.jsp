@@ -14,17 +14,23 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <title>Insert title here</title>
-
 </head>
 <body>
+
+	<jsp:include page="../include/header.jsp"></jsp:include>
+	<jsp:include page="../include/nav.jsp"></jsp:include>
+	
 	<ul>
+	<c:forEach items="${list}" var ="dto">
 		<li>
-			<a href="/member/login">로그인</a>
+			<a href="/member/read/${dto.id}">${dto.id} : ${dto.name}</a>
 		</li>
-		<li>
-			<a href="/member/insert">회원가입</a>
-		</li>
+	</c:forEach>
 	</ul>
+	
+	
+	<br><br><br><br><br><br><br><br>
+	<jsp:include page="../include/footer.jsp"></jsp:include>
 
 </body>
 </html>
