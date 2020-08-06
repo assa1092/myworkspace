@@ -23,6 +23,7 @@
 	<section id="container">
 		<form action="/member/update" method="post">
 			<label>아이디 </label><input name="id" value="${dto.id }" readonly><br>
+			<label>비밀번호</label><input name="pw" value="${dto.pw }"><br>
 			<label>이름</label><input name="name" value="${dto.name }"><br>
 			<label>나이 </label><input name="age" value="${dto.age }"><br>
 

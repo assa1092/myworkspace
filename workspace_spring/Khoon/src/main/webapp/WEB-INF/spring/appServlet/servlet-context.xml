@@ -26,6 +26,19 @@
 		<beans:property value="1048760" name="maxUploadSize"></beans:property>
 	</beans:bean>
 	
+	<beans:bean id="myinter" class="kr.co.inter.MyInter"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<!-- 수정, 삭제시 로그인이 안되어있으면 -->
+			
+			<mapping path="/member/update/*"/>
+			<mapping path="/member/delete/*"/>
+			
+			<beans:ref bean="myinter"/>
+		</interceptor>
+	</interceptors>
+	
 	
 	
 	<context:component-scan base-package="kr.co.ca" />

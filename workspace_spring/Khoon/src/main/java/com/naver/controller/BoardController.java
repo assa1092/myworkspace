@@ -7,10 +7,12 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.domain.BoardVO;
+import kr.co.domain.PageTO;
 import kr.co.service.BoardService;
 
 @Controller
@@ -20,12 +22,51 @@ public class BoardController {
 	@Inject
 	private BoardService bService;
 	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(BoardVO vo) {
+		System.out.println(vo);
+		bService.update(vo);
+		return "redirect:/board/read/"+ vo.getBno();
+	}
+	
+	@RequestMapping(value = "/update/{bno}", method = RequestMethod.GET)
+	public String update(@PathVariable("bno")int bno, Model model) {
+		
+		BoardVO vo = bService.updateUI(bno);
+		
+		model.addAttribute("vo", vo);
+		
+		return "/board/update";
+	}
+	
+	@RequestMapping(value = "/read/{bno}", method = RequestMethod.GET)
+	public String read(@PathVariable("bno")int bno, Model model) {
+		BoardVO vo = bService.read(bno);
+		
+		model.addAttribute("vo", vo);
+		
+		return "/board/read";
+	}
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void list(Model model) {
+	public void list(Model model, String curPage) {
+		
+		int page = -1;
+		if (curPage == null) {
+			page = 1;
+		} else {
+			page = Integer.parseInt(curPage);
+		}
+		
+		PageTO<BoardVO> to = new PageTO<BoardVO>(page);
+		to = bService.list(to);
+			
 		List<BoardVO> list = new ArrayList<BoardVO>();
 		list = bService.list();
 		
-		model.addAttribute("list", list);
+		model.addAttribute("to", to);
+		
+		model.addAttribute("list", to.getList());
 	}
 	
 	

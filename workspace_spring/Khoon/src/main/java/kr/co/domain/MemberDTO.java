@@ -2,12 +2,34 @@ package kr.co.domain;
 
 public class MemberDTO {
 	private String id;
+	private String pw;
 	private String name;
 	private int age;
 	
 	public MemberDTO() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public String getPw() {
+		return pw;
+	}
+
+
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+
+
+	public MemberDTO(String id, String pw, String name, int age) {
+		super();
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.age = age;
+	}
+
+
 	public MemberDTO(String id, String name, int age) {
 		super();
 		this.id = id;
@@ -37,6 +59,7 @@ public class MemberDTO {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((pw == null) ? 0 : pw.hashCode());
 		return result;
 	}
 	@Override
@@ -53,11 +76,16 @@ public class MemberDTO {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (pw == null) {
+			if (other.pw != null)
+				return false;
+		} else if (!pw.equals(other.pw))
+			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "MemberDTO [id=" + id + ", name=" + name + ", age=" + age + "]";
+		return "MemberDTO [id=" + id + ", pw=" + pw + ", name=" + name + ", age=" + age + "]";
 	}
 	
 

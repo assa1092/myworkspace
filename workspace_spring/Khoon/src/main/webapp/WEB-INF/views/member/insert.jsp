@@ -13,6 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -20,13 +21,38 @@
 	<jsp:include page="../include/nav.jsp"></jsp:include>
 	
 	<section id="container">
-	<form action="/member/insert" method="post">
-		<label>아이디 </label><input name="id" required="required"><br>
-		<label>이름</label><input name="name" required="required"><br> 
-		<label>나이 </label><input name="age" required="required"><br>  
-		<input type="submit" value="등록">
-	</form>
-			
+		<div class="container" style="width: 300px">
+			<form action="/member/insert" method="post">
+				<div class="form-group ">
+
+					<input id="id" name="id" class="form-control" placeholder="아이디"
+						required="required">
+
+				</div>
+				<div class="form-group ">
+
+					<input id="pw" name="pw" class="form-control" placeholder="비밀번호"
+						required="required">
+				</div>
+				<div class="form-group ">
+
+					<input id="name" name="name" class="form-control" placeholder="이름"
+						required="required">
+				</div>
+				<div class="form-group ">
+
+					<input id="age" name="age" class="form-control" placeholder="나이"
+						required="required">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary form-control">회원가입</button>
+				</div>
+			</form>
+
+		</div>
+
+
+
 	</section>
 
 	<jsp:include page="../include/footer.jsp"></jsp:include>

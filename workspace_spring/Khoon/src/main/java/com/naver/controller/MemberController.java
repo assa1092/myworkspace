@@ -37,7 +37,7 @@ public class MemberController {
 	public String loginpost(LoginDTO login, Model model, HttpSession session) {
 		
 		MemberDTO dto = mService.loginpost(login);
-		
+				
 		if (dto != null) {
 			model.addAttribute("login", dto);
 			

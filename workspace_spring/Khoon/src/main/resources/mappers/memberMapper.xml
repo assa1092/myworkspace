@@ -14,7 +14,7 @@
 </delete>
 
 <update id="update">
-	update member set name = #{name}, age = #{age} where id = #{id}
+	update member set pw = #{pw}, name = #{name}, age = #{age} where id = #{id}
 </update>
 
 <select id="updateui" resultType="MemberDTO">
@@ -31,8 +31,8 @@
 
 <!-- 회원 가입 -->
 <insert id="insert">
-insert into member (id, name, age)
-values (#{id},#{name},#{age})
+insert into member (id, pw, name, age)
+values (#{id},#{pw}, #{name},#{age})
  
 </insert>
 

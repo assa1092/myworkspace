@@ -5,6 +5,23 @@
 <mapper namespace="b.o.a">
 <!-- namespace =>폴더 또는 페키지 역할... -->
 
+<update id="update">
+	UPDATE board SET title = #{title}, writer = #{writer}, content = #{content}
+	WHERE bno = #{bno}
+</update>
+
+<select id="updateUI" resultType="BoardVO">
+	SELECT * FROM board WHERE bno = #{bno}
+</select>
+
+<select id="read" resultType="BoardVO">
+	SELECT * FROM board WHERE bno =#{bno}
+</select>
+
+<select id="getAmount" resultType="Integer">
+	SELECT count(bno) FROM board
+</select>
+
 <select id="list" resultType="BoardVO">
 	SELECT * FROM board ORDER BY bno desc
 </select>

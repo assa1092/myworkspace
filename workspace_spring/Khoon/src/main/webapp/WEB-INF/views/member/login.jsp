@@ -20,15 +20,15 @@
 	<jsp:include page="../include/nav.jsp"></jsp:include>
 	
 	<section id="container">
-	<div class="container">
+	<div class="container" style="width: 300px">
 		<form action="/member/loginpost" method="post">
-			<div class="from-group">
-				<label for="id">아이디</label>
-				<input id="id" name="id" class="form-control">
+			<div class="form-group ">
+					<input id="id" name="id" class="form-control" 
+						placeholder="아이디" required="required">
 			</div>
-			<div class="from-group">
-				<label for="pw">비밀번호</label>
-				<input id="pw" name="pw" class="form-control">
+			<div class="form-group ">
+					<input id="pw" name="pw" class="form-control" 
+					placeholder="비밀번호" required="required">
 			</div>
 			<div class="from-group">
 				<button type="submit" class="btn btn-primary form-control">로그인</button>
