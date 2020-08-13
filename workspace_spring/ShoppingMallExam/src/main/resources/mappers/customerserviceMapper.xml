@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="c.u.s">
+
+	<!-- Q&A -->
+	<select id="qnaUpdateUI" resultType="QnaDTO">
+		select * from qna where qnaNo = #{qnaNo}
+	</select>
+
+	<update id="qnaUpdate">
+		<![CDATA[update qna set qnaTitle = #{qnaTitle}, memberId=#{memberId},qnaContent=#{qnaContent}
+		where qnaNo = #{qnaNo}]]>
+	</update>
+
+	<delete id="qnaDelete">
+		<![CDATA[delete from qna where qnaNo = #{qnaNo]]>
+	</delete>
+
+	<select id="getAmount" resultType="Integer">
+		<![CDATA[select qnaContent(qnaNo) from qna]]>
+	
+	</select>
+
+	<update id="qnaIncreaseViewcnt">
+		update qna set qnaReadCnt = qnaReadCnt+1 where qnaNp = #{qnaNo}
+	</update>
+	
+	<select id="qnaRead" resultType="QnaDTO">
+		select*from qna where qnaNo = #{qnaNo}
+	</select>
+	
+	<select id="qnaList" resultType="QnaDTO">
+		select* from qna order by qnaNo desc
+	</select>
+	
+	<insert id="qnaInsert">
+		insert into qna (qnaNo,qnaTitle,qnaContent,qnaRegDate,qnaReadCnt,memberId,productNo,isDelete)
+		values (#{qnaNo},#{qnaTitle},#{qnaContent},#{qnaRegDate},#{qnaReadCnt},#{memberId},#{productNo},#{isDelete})
+	</insert>
+	
+	<!-- FAQ -->
+ 
+	
+</mapper>

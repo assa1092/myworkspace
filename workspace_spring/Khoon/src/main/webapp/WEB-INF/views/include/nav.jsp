@@ -17,6 +17,35 @@
 
 </head>
 <body>
+
+
+	<form name='homeForm' method="post" action="/member/login">
+		<c:if test="${login == null}">
+			<div>
+				<label for="id"></label>
+				<input type="text" id="id" name="id">
+			</div>
+			<div>
+				<label for="pw"></label>
+				<input type="password" id="pw" name="pw">
+			</div>
+			<div>
+				<button type="submit">로그인</button>
+				<button type="button">회원가입</button>
+			</div>
+		</c:if>
+		<c:if test="${login != null }">
+			<div>
+				<p>${login.id}님 환영 합니다.</p>
+				<button id="logoutBtn" type="button">로그아웃</button>
+			</div>
+		</c:if>
+		<c:if test="${msg == false}">
+			<p style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</p>
+		</c:if>
+	</form>
+	
+	
 	<ul>
 		<li>
 			<a href="/member/login">로그인</a>

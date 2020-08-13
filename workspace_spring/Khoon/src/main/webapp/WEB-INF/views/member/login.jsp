@@ -16,11 +16,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	<jsp:include page="../include/nav.jsp"></jsp:include>
 	
 	<section id="container">
 	<div class="container" style="width: 300px">
+		<h2>로그인</h2>
 		<form action="/member/loginpost" method="post">
 			<div class="form-group ">
 					<input id="id" name="id" class="form-control" 

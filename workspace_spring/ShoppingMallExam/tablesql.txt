@@ -1,0 +1,119 @@
+create user ca20 identified by ca20;
+grant connect, resource, dba to ca20;
+
+
+
+member table
+
+create table member (
+memberNo number NOT NULL,
+memberId varchar2(32) NOT NULL,
+memberPw varchar2(32) NOT NULL,
+memberName varchar2(21) NOT NULL,
+memberZipcode varchar2(12) NOT NULL,
+memberAddress_1 varchar2(300) NOT NULL,
+memberAddress_2 varchar2(300),
+memberTel varchar2(24),
+memberPhone varchar2(24) NOT NULL,
+memberPetName varchar2(21),
+memberPetAge number,
+memberHolder varchar2(21) NOT NULL,
+memberAccount varchar2(28) NOT NULL,
+memberBank varchar2(45) NOT NULL,
+memberRegDate date default sysdate,
+memberEmail varchar2(200) unique not null,
+memberAcceptedEmail number default 0,
+memberAcceptedSns number default 0,
+isDelete number default 0,
+memberGrade number default 0,
+constraint member_pk primary key (memberNo)
+);
+
+
+notice table
+
+create table notice(
+noticeNo number,
+noticeTitle varchar2(90) not null,
+noticeRegDate date default sysdate,
+noticeContent varchar2(3000) not null,
+noticeReadCnt number default 0,
+isDelete number default 0,
+constraint notice_pk primary key (noticeNo)
+);
+
+
+create table product(
+productNo number,
+productName varchar2(60) not null,
+productPrice number not null,
+productDiscountRate number default 0,
+productSet varchar2(60),
+isDelete number default 0,
+constraint product_pk primary key (productNo)
+);
+
+create table delivery(
+deliveryNo number,
+deliveryName varchar2(50) not null,
+deliveryCustomer varchar2(21) not null,
+deliveryCode varchar2(12) not null,
+deliveryAddress_1 varchar2(300) not null,
+deliveryAddress_2 varchar2(300),
+deliveryTel varchar2(24),
+deliveryPhone varchar2(24) not null,
+memberId varchar2(32),
+constraint delivery_pk primary key (deliveryNo),
+constraint delivery_memberId_fk foreign key (memberId) references member (memberId)
+);
+
+create table productOption(
+productOptionNo number,
+productNo number,
+productColor varchar2(12),
+productSize varchar2(12),
+productQuantity number check(productQuantity>-1),
+isDelete number default 0,
+constraint productOption_pk primary key (productOptionNo),
+constraint productOption_productNo_fk foreign key (productNo) references product (productNo)
+);
+
+
+create table cart(
+cartNo number,
+productNo number,
+cartAmount number check(cartAmount>0),
+memberId varchar2(32),
+constraint cart_pk primary key (cartNo),
+constraint cart_productNo_fk foreign key (productNo) references product (productNo),
+constraint cart_memberId_fk foreign key (memberId) references member (memberId)
+);
+
+
+
+create table review(
+reviewNo number,
+productNo number,
+memberId  varchar2(32),
+reviewContent varchar2(3000) not null,
+reviewRegDate date default sysdate,
+reviewTitle varchar2(90) not null,
+reviewReadCnt number default 0,
+reviewScore number not null,
+petKind varchar2(21),
+petWeight number,
+petSize varchar2(6),
+isDelete number default 0,
+constraint review_pk primary key (reviewNo),
+constraint review_productNo_fk foreign key (productNo) references product (productNo),
+constraint review_memberId_fk foreign key (memberId) references member (memberId)
+);
+
+create table wishlist(
+wishNo number,
+productNo number,
+memberId varchar2(32),
+constraint wish_pk primary key (wishNo),
+constraint wish_productNo_fk foreign key (productNo) references product (productNo),
+constraint wish_memberId_fk foreign key (memberId) references member (memberId)
+);

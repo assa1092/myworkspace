@@ -1,7 +1,6 @@
 package com.naver.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.inject.Inject;
 
@@ -61,8 +60,8 @@ public class BoardController {
 		PageTO<BoardVO> to = new PageTO<BoardVO>(page);
 		to = bService.list(to);
 			
-		List<BoardVO> list = new ArrayList<BoardVO>();
-		list = bService.list();
+//		List<BoardVO> list = new ArrayList<BoardVO>();
+//		list = bService.list();
 		
 		model.addAttribute("to", to);
 		

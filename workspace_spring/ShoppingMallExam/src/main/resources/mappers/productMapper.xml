@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="p.r.o">
+	
+	<insert id="insert">
+			<![CDATA[insert into product (productNo, productName, productPrice, productDiscountRate, productSet, isDelete, sellStatus, categoryNo)
+		values (#{productNo}, #{productName}, #{productPrice}, #{productDiscountRate}, #{productSet}, #{isDelete}, #{sellStatus}, #{categoryNo})]]>
+	</insert>
+	<select id="getProductNo" resultType="Integer">
+	<![CDATA[select NVL2(max(productNo), max(productNo)+1, 1) from product]]>
+	</select>
+	<select id="categoryList" resultType="CategoryDTO">
+			<![CDATA[select * from category where categoryNoRef is null]]>
+	</select>
+	
+	<select id="categoryList2" resultType="CategoryDTO">
+			<![CDATA[select * from category where categoryNoRef = #{categoryNoRef}]]>
+	</select>
+	<select id="getAttachNo" resultType="Integer">
+	<![CDATA[select NVL2(max(attachNo), max(attachNo)+1, 1) from productAttach]]>
+	</select>
+	<insert id="addAttach">
+			<![CDATA[insert into productAttach (attachNo, fullName, productNo) values (#{attachNo},  #{fullName}, #{productNo})]]>
+	</insert>
+
+	<insert id="insertProductOption">
+			<![CDATA[insert into productOption (productOptionNo, productColor, productSize, productQuantity, productNo) values ((select NVL2(max(productOptionNo), max(productOptionNo)+1, 1) from productOption) , #{productColor}, #{productSize}, #{productQuantity}, #{productNo})]]>
+	</insert>
+		<select id="getProductOptionNo" resultType="Integer">
+	<![CDATA[select NVL2(max(productOptionNo), max(productOptionNo)+1, 1) from productOption]]>
+	</select>
+	<select id="productList" resultType="ProductDTO">
+			<![CDATA[select * from product]]>
+	</select>
+	<select id="getCategoryName" resultType="string">
+		<![CDATA[select categoryName from category where categoryNo = #{categoryNo}]]>
+	</select>
+	<select id="updateUI" resultType="ProductDTO">
+		<![CDATA[select * from product where productNo = #{productNo}]]>
+	</select>
+	<select id="getProductOptionList" resultType="ProductOptionDTO">
+		<![CDATA[select * from productOption where productNo = #{productNo}]]>
+	</select>
+	<select id="getAttach" resultType="string">
+		<![CDATA[select fullName from productAttach where productNo = #{productNo} order by attachRegDate asc]]>
+	</select>
+	<select id="getCategoryNo" resultType="Integer">
+		<![CDATA[select categoryNo from product where productNo = #{productNo}]]>
+	</select>
+	
+	<sql id="categoryNoRef">
+		<if test="categoryDegree >1 ">
+			categoryNoRef = #{categoryNoRef}
+		</if>
+		<if test="categoryDegree == 1">
+			categoryNoRef is null
+		</if>
+	</sql>
+	
+	<select id="categoryListUpdate" resultType="CategoryDTO">
+		<![CDATA[select * from category where ]]> <include refid="categoryNoRef"></include>
+	</select>
+
+	<update id="update">
+		<![CDATA[update product set productName = #{productName}, productPrice = #{productPrice}, productDiscountRate = #{productDiscountRate}, productSet = #{productSet}, isDelete = #{isDelete}, sellStatus = #{sellStatus}, categoryNo =  #{categoryNo} where productNo = #{productNo}]]>
+	</update>
+	<delete id="deleteAttachByProductNo">
+		<![CDATA[delete from productAttach where productNo = #{productNo}]]>
+	</delete>
+	<delete id="deleteProductOptionByProductNo">
+		<![CDATA[delete from productOption where productNo = #{productNo}]]>
+	</delete>
+	<select id="productDiscountPrice" resultType="Integer">
+		<![CDATA[select fn_dc(#{productPrice}, #{productDiscountRate}) from dual]]>
+	</select>
+	<select id="productTotalQuantity" resultType="Integer">
+	<![CDATA[select sum(productQuantity) as productTotalQuantity from productOption where productNo = #{productNo}]]>
+	</select>
+	
+	<sql id="search">
+		<if test="categoryNo != null">
+			<if test="categoryNo == 0">
+				<![CDATA[where categoryNo like '%']]> 
+			</if>
+			<if test="categoryNo != 0">
+			<![CDATA[where categoryNo like (#{categoryNo})||'%']]> 
+			</if>
+		</if>
+		<if test="regDate != null">
+			and regDate between
+			<foreach collection="regDate" item="date" separator="and">
+				 #{date}		
+			</foreach>	
+			
+		</if>
+		<if test="minPrice != 0">
+			<![CDATA[and productPrice >= #{minPrice}]]>
+		</if>
+		<if test="maxPrice != 0">
+			<![CDATA[and productPrice <= #{maxPrice}]]>
+		</if>
+		<if test="searchType != null">
+			<if test="searchType == 'productName'.toString()">
+				<![CDATA[and lower(productName) like '%'||lower(#{keyWord})||'%']]>
+			</if>
+			<if test="searchType == 'productNo'.toString()">
+				<![CDATA[and lower(productNo) like '%'||lower(#{keyWord})||'%']]>
+			</if>
+			<if test="searchType == 'productSet'.toString()">
+				<![CDATA[and lower(productSet) like '%'||lower(#{keyWord})||'%']]>
+			</if>
+		</if>
+		<if test="sellStatus != null">
+			and
+			<foreach collection="sellStatus" item="status" open="(" close=")" separator="or">
+				sellStatus = #{status}
+			</foreach>
+		</if>
+		<if test="isDelete != null">
+			and
+			<foreach collection="isDelete" item="delete" open="(" close=")" separator="or">
+				isDelete = #{delete}
+			</foreach>
+		</if>
+	</sql>
+	
+	<select id="productSearchList" resultType="ProductDTO">
+		<![CDATA[select * from product ]]><include refid="search"></include>
+	</select>
+	
+	<update id="deleteList">
+		<![CDATA[update product set isDelete = 1 , sellStatus = 0 where productNo = #{productNo}]]>	
+	</update>
+	
+	<update id="updateList">
+		<![CDATA[update product set isDelete = #{isDelete} , sellStatus = #{sellStatus} where productNo = #{productNo}]]>	
+	</update>
+</mapper>
