@@ -1,0 +1,22 @@
+create user ca20 identified by ca7;
+grant connect, resource, dba to ca7;
+
+create table member(
+id varchar2(7),
+pw varchar2(20) not null,
+name varchar2(30) not null,
+age number,
+constraint member_pk primary key (id)
+);
+
+create table board(
+	bno number,
+	title varchar2(100) not null,
+	content varchar2(500) not null,
+	writer varchar2(30)not null,
+	viewcnt number default 0,
+	regDate date default sysdate,
+	updateDate date default sysdate,
+	
+	constraint board_pk primary key(bno)
+);

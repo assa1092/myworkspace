@@ -16,20 +16,43 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	<jsp:include page="../include/nav.jsp"></jsp:include>
-	
-	<ul>
-	<c:forEach items="${list}" var ="dto">
-		<li>
-			<a href="/member/read/${dto.id}">${dto.id} : ${dto.name}</a>
-		</li>
-	</c:forEach>
-	</ul>
-	
-	
-	<br><br><br><br><br><br><br><br>
+
+	<section>
+		<div class="container">
+			<div class="row text-center">
+				<h1>회원 목록</h1>
+			</div>
+			
+			<div class="row">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th class="th-center">아이디</th>
+							<th class="th-center">이름</th>
+							<th class="th-center">나이</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<c:forEach items="${list}" var ="dto">
+							<tr>
+							
+								<td>${dto.id}</td>
+								<td><a href="/member/read/${dto.id}">${dto.name}</a></td>
+								<td>${dto.age}</td>	
+							</tr>	
+						</c:forEach>
+					</tbody>
+					
+				</table>	
+			</div>
+			
+		</div>
+	</section>
+
+	<br><br><br><br>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 
 </body>

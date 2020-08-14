@@ -22,6 +22,7 @@
 	
 	<section id="container">
 		<div class="container" style="width: 300px">
+		<h2>회원가입</h2>
 			<form action="/member/insert" method="post">
 				<div class="form-group ">
 
@@ -32,7 +33,7 @@
 				<div class="form-group ">
 
 					<input id="pw" name="pw" class="form-control" placeholder="비밀번호"
-						required="required">
+						required="required" type="password">
 				</div>
 				<div class="form-group ">
 

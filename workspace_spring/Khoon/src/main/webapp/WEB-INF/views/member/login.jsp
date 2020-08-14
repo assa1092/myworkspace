@@ -19,8 +19,8 @@
 	
 	<jsp:include page="../include/header.jsp"></jsp:include>
 	<jsp:include page="../include/nav.jsp"></jsp:include>
-	
-	<section id="container">
+		
+ 	<section id="container">
 	<div class="container" style="width: 300px">
 		<h2>로그인</h2>
 		<form action="/member/loginpost" method="post">
@@ -29,10 +29,10 @@
 						placeholder="아이디" required="required">
 			</div>
 			<div class="form-group ">
-					<input id="pw" name="pw" class="form-control" 
+					<input type ="password"id="pw" name="pw" class="form-control" 
 					placeholder="비밀번호" required="required">
 			</div>
-			<div class="from-group">
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary form-control">로그인</button>
 			</div>
 		</form>
