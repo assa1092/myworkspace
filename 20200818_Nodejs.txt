@@ -1,0 +1,104 @@
+node.js
+=============
+javascript로 서버프로그래밍을 하게 해주는 언어...
+
+비동기식으로 작성함(Ajax처럼)->function이라는 callback함수가 있어야한다.
+
+
+node.js application
+--------------------
+javascript
+---------------
+nodejs Runtime
+
+
+node.org 접속
+12.18.3 LTS 다운로드	-> node-v12.18.3-x64.msi
+계속 next 해서 설치...
+
+cmd창에 node -v 하면 v12.18.3 이렇게 나오면 제대로 설치된거임.
+
+cmd창에 node 하면 node.js 실행됨
+ctrl+c 두번누르면 나가기...
+
+=======================Command 창으로 실행 화면.  ==================================
+C:\Users\admin>node -v
+v12.18.3
+
+C:\Users\admin>node
+Welcome to Node.js v12.18.3.
+Type ".help" for more information.
+> console.log("hello");
+hello
+undefined
+> console.log(1+1);
+2
+undefined
+>
+(To exit, press ^C again or ^D or type .exit)
+>
+
+C:\Users\admin> 
+
+=========================================================================
+
+
+===================  brackets 설치 ======================
+http://brackets.io/ 접속
+Download Brackets 1.14.2 클릭하면 Brackets.Release.1.14.2.msi 파일 다운로드
+더블클릭후 바로 설치...
+
+*** brackets 는 폴더를 하나의 프로그램으로 인식한다...
+
+
+brackets실행 우측 번개모양 실행화면 (chrome으로), 요철모양 플러그인 설치
+
+요철모양 클릭후 icon 검색후 Brackets Icons 설치
+			    Custom work 설치 -> 젤위에 체크된것 풀어준다 그리고 save
+
+그리고 나서  brackets 재실행
+
+brackets는 폴더를 하나의 프로그램으로 인식하므로...
+폴더를 만든다...
+C에 사용자의 admin 밑에 brackets_nodejs\NodeExample 를 만든다.
+
+C:\Users\admin\brackets_nodejs\NodeExample
+
+그리고나서 brackets에서 파일->폴더열기-> 만든 폴더 선택한다.
+
+
+플러그 인  NodeJS integration 설치 brackets 재실행
+
+
+=============== 모듈화 =============================
+
+함수의 모듈화  -> exports.함수명;
+객체의 모듈화  -> module.exports = 객체명;
+
+호출시에는 require('경로확인')
+
+// 현재 디렉토리의 calc 파일
+var calc = require('./calc');
+console.log(calc.add(2,5));
+
+var calc2 = require('./calc2');
+console.log(calc2.sub(2,5));
+
+var calc3  = require('./calc3');
+console.log(calc3);
+
+
+
+
+calc2.js
+
+calc2.js는 모듈입니다.
+sub라는 함수가 있고,
+이 함수는 숫자 2개를 인자로 받아서 뺄셈한 결과를 리턴하는 기능을 갖고있음.
+
+
+
+
+
+	
+
