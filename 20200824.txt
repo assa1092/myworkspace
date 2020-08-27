@@ -1,0 +1,17 @@
+express = spring framework 의 개념
+
+middleware =  interceptor 의 개념
+
+router = mvc handler(메서드 : url의 이름)
+
+
+
+// cmd 창에서
+// 외부모듈 다운로드....
+npm install express --save
+
+// package.json 파일 생성
+npm init
+// 엔터후.....package명 그대로 써주고 나머지는 엔터...
+
+
